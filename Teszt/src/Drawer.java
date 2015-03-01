@@ -2,9 +2,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
-public class Drawer extends JComponent {
+public class Drawer extends JComponent implements Runnable {
 	/**
 	 * 
 	 */
@@ -19,6 +18,8 @@ public class Drawer extends JComponent {
 	
 	KeyboardState ks = new KeyboardState();
 	
+	private volatile boolean isPaused = true;
+
 	public Drawer()
 	{
 		this.addKeyListener(ks);
@@ -27,35 +28,47 @@ public class Drawer extends JComponent {
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		
 		g.clearRect(0, 0, this.getWidth(), this.getHeight());
 		
 		g.drawString(String.valueOf(fps), 20, 20);
 		g.drawRect(posX, posY, 100, 100);
 	}
-	
+		
 	public void run()
 	{
-		while(true)
+		while(!isPaused)
+		{			
+				long time = System.currentTimeMillis();
+				if(ks.isKeyDown(KeyEvent.VK_UP))
+					posY -= 5;
+				if(ks.isKeyDown(KeyEvent.VK_DOWN))
+					posY += 5;
+				if(ks.isKeyDown(KeyEvent.VK_LEFT))
+					posX -= 5;
+				if(ks.isKeyDown(KeyEvent.VK_RIGHT))
+					posX += 5;
+				this.repaint();
+				
+				try {
+					Thread.sleep(16, 660000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				fps = 1000/(System.currentTimeMillis()-time);
+		}
+	}
+	
+	public void Pause(){ 
+		isPaused = true; 
+	}
+	
+	public void Start() {
+		if(isPaused)
 		{
-			long time = System.currentTimeMillis();
-			if(ks.isKeyDown(KeyEvent.VK_UP))
-				posY -= 5;
-			if(ks.isKeyDown(KeyEvent.VK_DOWN))
-				posY += 5;
-			if(ks.isKeyDown(KeyEvent.VK_LEFT))
-				posX -= 5;
-			if(ks.isKeyDown(KeyEvent.VK_RIGHT))
-				posX += 5;
-			this.repaint();
-			
-			try {
-				Thread.sleep(17L);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			fps = 1000/(System.currentTimeMillis()-time);
+			(new Thread(this)).start();
+			isPaused = false;
 		}
 	}
 }
