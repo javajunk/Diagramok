@@ -13,19 +13,19 @@ public class Vector2D {
 	 * @param vec
 	 */
 	public void Add(Vector2D vec){
-		SkeletonHelper.writeOutMethodName("[:Vector2D] Add (vec)");
+		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
 
 	public double Length(){
-		SkeletonHelper.writeOutMethodName("[:Vector2D] Length ()");
+		SkeletonHelper.writeOutMethodName();
 		int l = SkeletonHelper.getIntegerAnswer("Mekkora a vektor?");
 		SkeletonHelper.returnFromMethod();
 		return l;
 	}
 
 	public void Normalize(){
-		SkeletonHelper.writeOutMethodName("[:Vector2D] Normalize ()");
+		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
 
@@ -34,7 +34,7 @@ public class Vector2D {
 	 * @param s
 	 */
 	public void Scale(double s){
-		SkeletonHelper.writeOutMethodName("[:Vector2D] Scale (s)");
+		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
 
@@ -43,7 +43,7 @@ public class Vector2D {
 	 * @param newVal
 	 */
 	public void Subtract(Vector2D vec){
-		SkeletonHelper.writeOutMethodName("[:Vector2D] Substract (vec)");
+		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
 }
