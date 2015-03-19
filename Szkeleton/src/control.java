@@ -6,5 +6,5 @@
  * @created 19-márc.-2015 11:07:42
  */
 public enum control {
-
+	UP,DOWN,LEFT,RIGHT,OIL,GLUE
 }

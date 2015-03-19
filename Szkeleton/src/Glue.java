@@ -7,7 +7,7 @@
  */
 public class Glue extends Obstacle {
 
-	private static string glueImage = /obstacles/glue.png;
+	private static String glueImage = /obstacles/glue.png;
 	private static final double Radius = /*coming soon*/;
 	private Vector2D m_Vector2D;
 
@@ -19,7 +19,7 @@ public class Glue extends Obstacle {
 		super.finalize();
 	}
 
-	public string getglueImage(){
+	public String getglueImage(){
 		return glueImage;
 	}
 
@@ -39,7 +39,7 @@ public class Glue extends Obstacle {
 	 * 
 	 * @param newVal
 	 */
-	public void setglueImage(string newVal){
+	public void setglueImage(String newVal){
 		glueImage = newVal;
 	}
 

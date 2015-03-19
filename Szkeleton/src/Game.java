@@ -27,17 +27,13 @@ public class Game extends JComponent implements Runnable {
 	public Game(){
 
 	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
+	
 	/**
 	 * 
 	 * @param listener
 	 */
 	public void addGameEndedListener(GameEndedListener listener){
-
+		SkeletonHelper.writeOutMethodName();
 	}
 
 	/**
@@ -45,6 +41,7 @@ public class Game extends JComponent implements Runnable {
 	 * @param gObj
 	 */
 	public void addObstacle(GameObject gObj){
+		SkeletonHelper.writeOutMethodName();
 
 	}
 
@@ -53,51 +50,40 @@ public class Game extends JComponent implements Runnable {
 	 * @param g
 	 */
 	public void Draw(Graphics g){
-
-	}
-
-	public Drawable getDrawable(){
-		return m_Drawable;
-	}
-
-	public GameObject getGameObject(){
-		return m_GameObject;
+		SkeletonHelper.writeOutMethodName();
 	}
 
 	public List<GameObject> getGameObjects(){
+		SkeletonHelper.writeOutMethodName();
 		return null;
 	}
-
-	public HUD getHUD(){
-		return m_HUD;
-	}
-
+	
 	public KeyboardState getkeyboardState(){
+		SkeletonHelper.writeOutMethodName();
 		return keyboardState;
 	}
 
-	public KeyboardState getKeyboardState(){
-		return m_KeyboardState;
-	}
-
 	public Map getMap(){
+		SkeletonHelper.writeOutMethodName();
+		Pause();
 		return m_Map;
 	}
 
 	public void getRemainingTime(){
-
+		SkeletonHelper.writeOutMethodName();
 	}
 
 	public List<Robot> getRobots(){
+		SkeletonHelper.writeOutMethodName();
 		return null;
 	}
 
 	public void Init(){
-
+		SkeletonHelper.writeOutMethodName();
 	}
 
 	public void Pause(){
-
+		SkeletonHelper.writeOutMethodName();
 	}
 
 	/**
@@ -105,15 +91,16 @@ public class Game extends JComponent implements Runnable {
 	 * @param sec
 	 */
 	public void setMaxGameTime(int sec){
-
+		SkeletonHelper.writeOutMethodName();
 	}
 
 	public void Start(){
-
+		SkeletonHelper.writeOutMethodName();
+		getMap();
 	}
 
 	public void Update(){
-
+		SkeletonHelper.writeOutMethodName();
+		Start();
 	}
-
 }
