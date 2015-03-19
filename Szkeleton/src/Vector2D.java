@@ -11,10 +11,11 @@ public class Vector2D {
 	 * @param vec
 	 */
 	public void Add(Vector2D vec){
-
+		
 	}
 
 	public double getangle(){
+		SkeletonHelper.writeOutMethodName();
 		return angle;
 	}
 

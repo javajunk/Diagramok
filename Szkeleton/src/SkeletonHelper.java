@@ -2,10 +2,11 @@
 public abstract class SkeletonHelper {
 	static int t = 0;
 	
-	public static void writeOutMethodName (String name)
+	public static void writeOutMethodName ()
 	{
-		
-		System.out.println(repeat("/t",t)+name);
+		final StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+
+		System.out.println(repeat("\t",t)+"[:"+ste[2].getClassName()+"] "+ste[2].getMethodName());
 		t++;
 	}
 	

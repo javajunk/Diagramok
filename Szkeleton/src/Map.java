@@ -7,8 +7,8 @@
  */
 public class Map implements GameObject {
 
-	private static final string mapImage = /map/map.png;
-	private static final string outOfTrackMaskFile = /map/mapMask.png;
+	private static final String mapImage = /map/map.png;
+	private static final String outOfTrackMaskFile = /map/mapMask.png;
 
 	public Map(){
 
@@ -37,11 +37,11 @@ public class Map implements GameObject {
 
 	}
 
-	public string getmapImage(){
+	public String getmapImage(){
 		return mapImage;
 	}
 
-	public string getoutOfTrackMaskFile(){
+	public String getoutOfTrackMaskFile(){
 		return outOfTrackMaskFile;
 	}
 
@@ -52,22 +52,6 @@ public class Map implements GameObject {
 	 */
 	public boolean isOutOfTrack(Vector2D pos){
 		return false;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setmapImage(string newVal){
-		mapImage = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setoutOfTrackMaskFile(string newVal){
-		outOfTrackMaskFile = newVal;
 	}
 
 	/**
