@@ -1,4 +1,6 @@
 
+
+
 public class Vector2D {
 	private double angle;
 	private double x;
@@ -11,27 +13,20 @@ public class Vector2D {
 	 * @param vec
 	 */
 	public void Add(Vector2D vec){
-
-	}
-
-	public double getangle(){
-		return angle;
-	}
-
-	public double getx(){
-		return x;
-	}
-
-	public double gety(){
-		return y;
+		SkeletonHelper.writeOutMethodName("[:Vector2D] Add (vec)");
+		SkeletonHelper.returnFromMethod();
 	}
 
 	public double Length(){
-		return 0;
+		SkeletonHelper.writeOutMethodName("[:Vector2D] Length ()");
+		int l = SkeletonHelper.getIntegerAnswer("Mekkora a vektor?");
+		SkeletonHelper.returnFromMethod();
+		return l;
 	}
 
 	public void Normalize(){
-
+		SkeletonHelper.writeOutMethodName("[:Vector2D] Normalize ()");
+		SkeletonHelper.returnFromMethod();
 	}
 
 	/**
@@ -39,38 +34,16 @@ public class Vector2D {
 	 * @param s
 	 */
 	public void Scale(double s){
-
+		SkeletonHelper.writeOutMethodName("[:Vector2D] Scale (s)");
+		SkeletonHelper.returnFromMethod();
 	}
 
 	/**
 	 * 
 	 * @param newVal
-	 */
-	public void setangle(double newVal){
-		angle = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setx(double newVal){
-		x = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void sety(double newVal){
-		y = newVal;
-	}
-
-	/**
-	 * 
-	 * @param vec
 	 */
 	public void Subtract(Vector2D vec){
-
+		SkeletonHelper.writeOutMethodName("[:Vector2D] Substract (vec)");
+		SkeletonHelper.returnFromMethod();
 	}
 }
