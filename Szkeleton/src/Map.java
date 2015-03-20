@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 
 
 /**
@@ -7,8 +9,8 @@
  */
 public class Map implements GameObject {
 
-	private static final String mapImage = /map/map.png;
-	private static final String outOfTrackMaskFile = /map/mapMask.png;
+	private static final String mapImage = "/map/map.png";
+	private static final String outOfTrackMaskFile = "/map/mapMask.png";
 
 	public Map(){
 
@@ -60,6 +62,12 @@ public class Map implements GameObject {
 	 */
 	public void Update(Game g){
 
+	}
+
+	@Override
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

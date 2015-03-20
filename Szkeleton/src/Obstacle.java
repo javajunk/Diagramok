@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 
 
 /**
@@ -51,6 +53,12 @@ public class Obstacle implements GameObject {
 	 */
 	public void Update(Game g){
 
+	}
+
+	@Override
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

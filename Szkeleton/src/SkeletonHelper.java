@@ -32,6 +32,19 @@ public abstract class SkeletonHelper {
 	}
 	
 	/**
+	 * A paraméterben kapott kérdést kiírja stdout-ra és vár egy egész számot válaszként.
+	 * Értelmetlen válasz esetén figyelmeztet, majd újra felteszi a kérdést.
+	 * @param question - A kérdés
+	 * @param unit - A mértékegység (pl.: másodperc, db)
+	 * @return	A kérdésre adott válasz
+	 */
+	public static int getIntAnswer(String question, String unit)
+	{
+		System.out.println("Not implemented!"); 
+		return 1;
+	}
+	
+	/**
 	 * A paraméterben kapott kérdést kiírja stdout-ra és vár egy választ.
 	 * Értelmetlen válasz esetén figyelmeztet, majd újra felteszi a kérdést.
 	 * @param s - A kérdés
@@ -55,7 +68,10 @@ public abstract class SkeletonHelper {
 						return false;
 					}
 				}
+				// Ez még mindig 2-szer ugyanaz { - Tamás
 				System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
+				// } - Tamás
+				// Én ezt a 2 sort privát eljárásba tenném. - Tamás
 				System.out.print(repeat("\t", t) + question + " (I/N): ");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -73,12 +89,14 @@ public abstract class SkeletonHelper {
 	public static int getMultipleChoiceAnswer (String question, String choices[])
 	{
 		System.out.print(repeat("\t", t) + question + " (");
+		// Ez a kódrészlet is kétszer szerepel { - Tamás
 		for (int i = 0; i < 5 && i < choices.length; i++)
 		{
 			System.out.print((i+1) + ": " + choices[i] + "   ");
 		}
 		System.out.print("\b\b\b)\n" + repeat("\t", t));
-		
+		// } - Tamás
+		// Kis kódátszervezéssel és egy if-el megoldható. - Tamás
 		while (true)
 		{
 			try {
@@ -102,5 +120,6 @@ public abstract class SkeletonHelper {
 			}
 		}
 	}
+	// De szerintem ez az egész felesleges - Tamás
 	
 }

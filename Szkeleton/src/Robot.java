@@ -1,3 +1,6 @@
+import java.awt.Graphics;
+import java.util.Hashtable;
+
 
 
 /**
@@ -9,14 +12,14 @@ public class Robot implements GameObject {
 
 	private boolean controllable;
 	private Vector2D distance;
-	private static final int initStoredObstacles;
-	private static final Hashtable<Control,int> player1ControlKeys;
-	private static final string player1RobotImage = /robot1.png;
-	private static final Hashtable<Control,int> player2ControlKeys;
-	private static final string player2RobotImage = /robot1.png;
-	private Hashtable<Control,int> playerControlKeys;
+	//private static final int initStoredObstacles;
+	//private static final Hashtable<Control,Integer> player1ControlKeys;
+	private static final String player1RobotImage = "/robot1.png";
+	//private static final Hashtable<Control,Integer> player2ControlKeys;
+	private static final String player2RobotImage = "/robot1.png";
+	private Hashtable<Control,Integer> playerControlKeys;
 	private Vector2D position;
-	private static final double Radius = /*coming soon*/;
+	private static final double Radius = 0/*coming soon*/;
 	private Vector2D speed;
 	private int storedGlue;
 	private int storedOil;
@@ -41,14 +44,6 @@ public class Robot implements GameObject {
 
 	}
 
-	/**
-	 * 
-	 * @param g
-	 */
-	public void Draw(Graphics g){
-
-	}
-
 	public boolean getcontrollable(){
 		return controllable;
 	}
@@ -61,19 +56,19 @@ public class Robot implements GameObject {
 		return initStoredObstacles;
 	}
 
-	public Hashtable<Control,int> getplayer1ControlKeys(){
+	public Hashtable<Control,Integer> getplayer1ControlKeys(){
 		return player1ControlKeys;
 	}
 
-	public string getplayer1RobotImage(){
+	public String getplayer1RobotImage(){
 		return player1RobotImage;
 	}
 
-	public Hashtable<Control,int> getplayer2ControlKeys(){
+	public Hashtable<Control,Integer> getplayer2ControlKeys(){
 		return player2ControlKeys;
 	}
 
-	public string getplayer2RobotImage(){
+	public String getplayer2RobotImage(){
 		return player2RobotImage;
 	}
 
@@ -95,10 +90,6 @@ public class Robot implements GameObject {
 
 	public int getstoredOil(){
 		return storedOil;
-	}
-
-	public Vector2D getVector2D(){
-		return m_Vector2D;
 	}
 
 	public Vector2D getVector2D(){
@@ -154,32 +145,8 @@ public class Robot implements GameObject {
 	 * 
 	 * @param newVal
 	 */
-	public void setplayer1ControlKeys(Hashtable<Control,int> newVal){
+	public void setplayer1ControlKeys(Hashtable<Control,Integer> newVal){
 		player1ControlKeys = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setplayer1RobotImage(string newVal){
-		player1RobotImage = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setplayer2ControlKeys(Hashtable<Control,int> newVal){
-		player2ControlKeys = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setplayer2RobotImage(string newVal){
-		player2RobotImage = newVal;
 	}
 
 	/**
@@ -188,14 +155,6 @@ public class Robot implements GameObject {
 	 */
 	public void setposition(Vector2D newVal){
 		position = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRadius(double newVal){
-		Radius = newVal;
 	}
 
 	/**
@@ -224,26 +183,16 @@ public class Robot implements GameObject {
 
 	/**
 	 * 
-	 * @param newVal
-	 */
-	public void setVector2D(Vector2D newVal){
-		m_Vector2D = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVector2D(Vector2D newVal){
-		m_Vector2D = newVal;
-	}
-
-	/**
-	 * 
 	 * @param g
 	 */
 	public void Update(Game g){
 
+	}
+
+	@Override
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
