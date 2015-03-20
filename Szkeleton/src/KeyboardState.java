@@ -2,21 +2,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-
-/**
- * @author Lucy
- * @version 1.0
- * @created 19-márc.-2015 11:08:08
- */
 public class KeyboardState implements KeyListener {
 
 	public KeyboardState(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 
 	/**
 	 * 
