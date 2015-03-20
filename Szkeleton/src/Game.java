@@ -229,7 +229,7 @@ public class Game extends JComponent implements Runnable {
 	public void run() {
 		SkeletonHelper.writeOutMethodName();
 		
-		while(SkeletonHelper.getBooleanAnswer("Véget ért a játék"))
+		while(!SkeletonHelper.getBooleanAnswer("Véget ért a játék"))
 		{
 			this.Update();
 			this.Draw(this.getGraphics());
