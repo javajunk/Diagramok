@@ -19,9 +19,8 @@ public class Vector2D {
 
 	public double Length(){
 		SkeletonHelper.writeOutMethodName();
-		int l = SkeletonHelper.getIntegerAnswer("Mekkora a vektor?");
 		SkeletonHelper.returnFromMethod();
-		return l;
+		return 0;
 	}
 
 	public void Normalize(){

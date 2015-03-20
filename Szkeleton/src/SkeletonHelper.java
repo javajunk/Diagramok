@@ -30,45 +30,94 @@ public abstract class SkeletonHelper {
 		t--;
 	}
 	
-	public static boolean getBooleanAnswer (String s)
+	/**
+	 * A paraméterben kapott kérdést kíírja stdout-ra és vár egy választ.
+	 * Értelmetlen válasz esetén kiszól, majd újra felrakja a kérdést.
+	 * @param s - A kérdés
+	 * @return	A kérdésre adott választ.
+	 */
+	public static boolean getBooleanAnswer (String question)
 	{
-		System.out.print(repeat("/t", t) + s + " (I/N): ");
+		System.out.print(repeat("/t", t) + question + " (I/N): ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		try {
-			while (true)
-			{
+		while (true)
+		{
+			try {
 				String line = br.readLine();
-				if (line == null)
+				if (line.equals(""))
+				{
+					System.out.println(repeat("/t",t) + "Rossz bemenet, próbáld újra!");
+					System.out.print(repeat("/t", t) + question + " (I/N): ");
 					continue;
+				}
 			
 				if ( ('I' == line.charAt(0)) || ('i' == line.charAt(0)) )
 				{	
-					br.close();
 					return true;
 				}
 				if ( ('N' == line.charAt(0)) || ('n' == line.charAt(0)) )
 				{	
-					br.close();
 					return false;
 				}
-				System.out.println("Rossz bemenet, próbáld újra!");
+				System.out.println(repeat("/t",t) + "Rossz bemenet, próbáld újra!");
+				System.out.print(repeat("/t", t) + question + " (I/N): ");
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		return false;
 	}
 	
-	public static int getIntegerAnswer (String s)
+	/**
+	 * A paraméterben kapott kérdést kiírja stdout-ra. Válaszként egy számot vár.
+	 * Ha nem számot kap hibát jelez és újra felteszi a kérdést.
+	 * @param question - A kérdés
+	 * @param choices - A lehetséges válaszok, max. 4 db
+	 * @return A válasz sorszámát
+	 */
+	public static int getMultipleChoiceAnswer (String question, String choices[])
 	{
-		System.out.println(s);
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		return 0;
+		System.out.print(repeat("/t", t) + question + " (");
+		for (int i = 0; i < 5 && i < choices.length; i++)
+		{
+			System.out.print((i+1) + ": " + choices[i] + "   ");
+		}
+		System.out.print("\b\b\b)\n" + repeat("/t", t));
+		BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
+		
+		while (true)
+		{
+			try {
+				String line = br.readLine();
+				int c = Integer.parseInt(line);
+				if (c > choices.length)
+					c = 0;
+				switch (c)
+				{
+					case 1:
+						return 1;
+					
+					case 2:
+						return 2;
+					
+					case 3:
+						return 3;
+					
+					case 4:
+						return 4;
+						
+					default:
+						System.out.println(repeat("/t",t) + "Rossz bemenet, próbáld újra!");
+						System.out.print(repeat("/t", t) + question + " (");
+						for (int i = 0; i < 5 && i < choices.length; i++)
+						{
+							System.out.print((i+1) + ": " + choices[i] + "   ");
+						}
+						System.out.print("\b\b\b)\n" + repeat("/t", t));
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
-	public static Vector2D getVectorAnswer (String s)
-	{
-		return new Vector2D();
-	}
 }
