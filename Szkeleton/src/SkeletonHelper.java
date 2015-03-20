@@ -38,7 +38,7 @@ public abstract class SkeletonHelper {
 	 */
 	public static boolean getBooleanAnswer (String question)
 	{
-		System.out.print(repeat("/t", t) + question + " (I/N): ");
+		System.out.print(repeat("\t", t) + question + " (I/N): ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true)
 		{
@@ -46,8 +46,8 @@ public abstract class SkeletonHelper {
 				String line = br.readLine();
 				if (line.equals(""))
 				{
-					System.out.println(repeat("/t",t) + "Rossz bemenet, próbáld újra!");
-					System.out.print(repeat("/t", t) + question + " (I/N): ");
+					System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
+					System.out.print(repeat("\t", t) + question + " (I/N): ");
 					continue;
 				}
 			
@@ -59,8 +59,8 @@ public abstract class SkeletonHelper {
 				{	
 					return false;
 				}
-				System.out.println(repeat("/t",t) + "Rossz bemenet, próbáld újra!");
-				System.out.print(repeat("/t", t) + question + " (I/N): ");
+				System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
+				System.out.print(repeat("\t", t) + question + " (I/N): ");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -76,12 +76,12 @@ public abstract class SkeletonHelper {
 	 */
 	public static int getMultipleChoiceAnswer (String question, String choices[])
 	{
-		System.out.print(repeat("/t", t) + question + " (");
+		System.out.print(repeat("\t", t) + question + " (");
 		for (int i = 0; i < 5 && i < choices.length; i++)
 		{
 			System.out.print((i+1) + ": " + choices[i] + "   ");
 		}
-		System.out.print("\b\b\b)\n" + repeat("/t", t));
+		System.out.print("\b\b\b)\n" + repeat("\t", t));
 		BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
 		
 		while (true)
@@ -106,13 +106,13 @@ public abstract class SkeletonHelper {
 						return 4;
 						
 					default:
-						System.out.println(repeat("/t",t) + "Rossz bemenet, próbáld újra!");
-						System.out.print(repeat("/t", t) + question + " (");
+						System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
+						System.out.print(repeat("\t", t) + question + " (");
 						for (int i = 0; i < 5 && i < choices.length; i++)
 						{
 							System.out.print((i+1) + ": " + choices[i] + "   ");
 						}
-						System.out.print("\b\b\b)\n" + repeat("/t", t));
+						System.out.print("\b\b\b)\n" + repeat("\t", t));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
