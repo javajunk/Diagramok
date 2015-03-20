@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 
 public abstract class SkeletonHelper {
 	static int t = 0;
+	static BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
 	
 	public static void writeOutMethodName ()
 	{
@@ -24,7 +25,7 @@ public abstract class SkeletonHelper {
 		return re;
 		
 	}
-	
+		
 	public static void returnFromMethod ()
 	{
 		t--;
@@ -39,25 +40,20 @@ public abstract class SkeletonHelper {
 	public static boolean getBooleanAnswer (String question)
 	{
 		System.out.print(repeat("\t", t) + question + " (I/N): ");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true)
 		{
 			try {
 				String line = br.readLine();
-				if (line.equals(""))
+				if (!line.equals(""))
 				{
-					System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
-					System.out.print(repeat("\t", t) + question + " (I/N): ");
-					continue;
-				}
-			
-				if ( ('I' == line.charAt(0)) || ('i' == line.charAt(0)) )
-				{	
-					return true;
-				}
-				if ( ('N' == line.charAt(0)) || ('n' == line.charAt(0)) )
-				{	
-					return false;
+					if ( ('I' == line.charAt(0)) || ('i' == line.charAt(0)) )
+					{	
+						return true;
+					}
+					if ( ('N' == line.charAt(0)) || ('n' == line.charAt(0)) )
+					{	
+						return false;
+					}
 				}
 				System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
 				System.out.print(repeat("\t", t) + question + " (I/N): ");
@@ -82,38 +78,25 @@ public abstract class SkeletonHelper {
 			System.out.print((i+1) + ": " + choices[i] + "   ");
 		}
 		System.out.print("\b\b\b)\n" + repeat("\t", t));
-		BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
 		
 		while (true)
 		{
 			try {
 				String line = br.readLine();
 				int c = Integer.parseInt(line);
-				if (c > choices.length)
+				if (c > choices.length || c < 0 || c > 4)
 					c = 0;
-				switch (c)
+				if (c == 0)
 				{
-					case 1:
-						return 1;
-					
-					case 2:
-						return 2;
-					
-					case 3:
-						return 3;
-					
-					case 4:
-						return 4;
-						
-					default:
-						System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
-						System.out.print(repeat("\t", t) + question + " (");
-						for (int i = 0; i < 5 && i < choices.length; i++)
-						{
-							System.out.print((i+1) + ": " + choices[i] + "   ");
-						}
-						System.out.print("\b\b\b)\n" + repeat("\t", t));
+					System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
+					System.out.print(repeat("\t", t) + question + " (");
+					for (int i = 0; i < 4 && i < choices.length; i++)
+					{
+						System.out.print((i+1) + ": " + choices[i] + "   ");
+					}
+					System.out.print("\b\b\b)\n" + repeat("\t", t));
 				}
+				return c;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
