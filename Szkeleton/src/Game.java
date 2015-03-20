@@ -20,7 +20,7 @@ public class Game extends JComponent implements Runnable {
 	private Drawable m_Drawable;
 	private GameObject m_GameObject;
 	private KeyboardState m_KeyboardState;
-	private HUD m_HUD;
+	//private HUD m_HUD;
 	private Map m_Map;
 	private Robot m_Robot;
 

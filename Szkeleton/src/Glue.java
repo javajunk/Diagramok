@@ -15,10 +15,6 @@ public class Glue extends Obstacle {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
 	public String getglueImage(){
 		return glueImage;
 	}
@@ -31,17 +27,6 @@ public class Glue extends Obstacle {
 		return m_Vector2D;
 	}
 
-	public Vector2D getVector2D(){
-		return m_Vector2D;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setglueImage(String newVal){
-		glueImage = newVal;
-	}
 
 	/**
 	 * 
@@ -49,14 +34,6 @@ public class Glue extends Obstacle {
 	 */
 	public void setRadius(double newVal){
 		Radius = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVector2D(Vector2D newVal){
-		m_Vector2D = newVal;
 	}
 
 	/**

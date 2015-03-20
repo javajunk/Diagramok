@@ -31,10 +31,10 @@ public abstract class SkeletonHelper {
 	}
 	
 	/**
-	 * A paraméterben kapott kérdést kíírja stdout-ra és vár egy választ.
-	 * Értelmetlen válasz esetén kiszól, majd újra felrakja a kérdést.
+	 * A paraméterben kapott kérdést kiírja stdout-ra és vár egy választ.
+	 * Értelmetlen válasz esetén figyelmeztet, majd újra felteszi a kérdést.
 	 * @param s - A kérdés
-	 * @return	A kérdésre adott választ.
+	 * @return	A kérdésre adott válasz
 	 */
 	public static boolean getBooleanAnswer (String question)
 	{
@@ -69,10 +69,10 @@ public abstract class SkeletonHelper {
 	
 	/**
 	 * A paraméterben kapott kérdést kiírja stdout-ra. Válaszként egy számot vár.
-	 * Ha nem számot kap hibát jelez és újra felteszi a kérdést.
+	 * Ha nem számot kap, hibát jelez és újra felteszi a kérdést.
 	 * @param question - A kérdés
 	 * @param choices - A lehetséges válaszok, max. 4 db
-	 * @return A válasz sorszámát
+	 * @return A válasz sorszáma
 	 */
 	public static int getMultipleChoiceAnswer (String question, String choices[])
 	{
