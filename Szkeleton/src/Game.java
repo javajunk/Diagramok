@@ -182,7 +182,7 @@ public class Game extends JComponent implements Runnable {
 	public void Start(){
 		SkeletonHelper.writeOutMethodName();
 		
-		if(!SkeletonHelper.getBooleanAnswer("Fut már a játék"))
+		if(!SkeletonHelper.getBooleanAnswer("Játék indítása"))
 			this.run();
 		
 		SkeletonHelper.returnFromMethod();
