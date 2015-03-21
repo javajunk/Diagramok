@@ -151,7 +151,7 @@ public class Game extends JComponent implements Runnable {
 				isOut = map.isOutOfTrack(obsPosition);
 			} while(isOut);
 			
-			this.addObstacle(new Glue());
+			this.addObstacle(new Oil());
 		}
 		
 		SkeletonHelper.returnFromMethod();
