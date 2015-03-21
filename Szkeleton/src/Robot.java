@@ -43,7 +43,7 @@ public class Robot implements GameObject {
 	 */
 	public void CollisionWithRobot(Robot robi){
 		SkeletonHelper.writeOutMethodName();
-		boolean coll = SkeletonHelper.getIntAnswer("Ütközik a két robot?");
+		boolean coll = SkeletonHelper.getBooleanAnswer("Ütközik a két robot?");
 		if(coll)
 		{
 			robi.KillHim();
@@ -62,9 +62,8 @@ public class Robot implements GameObject {
 
 	public Vector2D getdistance(){
 		SkeletonHelper.writeOutMethodName();
-		Vector2D dist = SkeletonHelper.getVector2DAnswer("Mekkora távolságot tett már meg a robot?");
 		SkeletonHelper.returnFromMethod();
-		return dist;
+		return distance;
 		//return distance;
 	}
 
@@ -224,7 +223,6 @@ public class Robot implements GameObject {
 	 */
 	public void setSpeed(Vector2D newVal){
 		SkeletonHelper.writeOutMethodName();
-		//System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot sebessége megváltozott");
 		SkeletonHelper.returnFromMethod();
 		speed = newVal;
 	}
@@ -277,7 +275,6 @@ public class Robot implements GameObject {
 			setSpeed(new Vector2D(0,0,0));
 		}
 		
-		//boolean gluekey = g.keyboardState.isKeyDown(playerControlKeys[control.glue]);
 		if(g.keyboardState.isKeyDown(playerControlKeys[control.glue])) // Itt nem vagyok biztos, hogy milyen controlkey-t kell figyelni
 		{
 			int glue = getStoredGlue();
