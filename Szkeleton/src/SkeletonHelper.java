@@ -33,17 +33,20 @@ public abstract class SkeletonHelper {
 	
 	private static void printInputWarning ()
 	{
-		System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");		
+		System.out.println(repeat("\t",t) + "Rossz bemenet, prÃ³bÃ¡ld Ãºjra!");		
 	}
 	/**
-	 * A paraméterben kapott kérdést kiírja stdout-ra és vár egy egész számot válaszként.
-	 * Értelmetlen válasz esetén figyelmeztet, majd újra felteszi a kérdést.
-	 * @param question - A kérdés
-	 * @param unit - A mértékegység (pl.: másodperc, db)
-	 * @return	A kérdésre adott válasz
+	 * A paramÃ©terben kapott kÃ©rdÃ©st kiÃ­rja stdout-ra Ã©s vÃ¡r egy egÃ©sz szÃ¡mot vÃ¡laszkÃ©nt.
+	 * Ã‰rtelmetlen vÃ¡lasz esetÃ©n figyelmeztet, majd Ãºjra felteszi a kÃ©rdÃ©st.
+	 * @param question - A kÃ©rdÃ©s
+	 * @param unit - A mÃ©rtÃ©kegysÃ©g (pl.: mÃ¡sodperc, db)
+	 * @return	A kÃ©rdÃ©sre adott vÃ¡lasz
 	 */
 	public static int getIntAnswer(String question, String unit)
 	{
+		//MiÃ©rt folyton db-t fÅ±z hozÃ¡?????????????????????? - TamÃ¡s
+		//????????????????????????????????????????????????? - TamÃ¡s
+		//????????????????????????????????????????????????? - TamÃ¡s
 		System.out.print(repeat("\t",t) + question + " (db) ");
 		try {
 			String line = br.readLine();
@@ -60,10 +63,10 @@ public abstract class SkeletonHelper {
 	}
 	
 	/**
-	 * A paraméterben kapott kérdést kiírja stdout-ra és vár egy választ.
-	 * Értelmetlen válasz esetén figyelmeztet, majd újra felteszi a kérdést.
-	 * @param s - A kérdés
-	 * @return	A kérdésre adott válasz
+	 * A paramÃ©terben kapott kÃ©rdÃ©st kiÃ­rja stdout-ra Ã©s vÃ¡r egy vÃ¡laszt.
+	 * Ã‰rtelmetlen vÃ¡lasz esetÃ©n figyelmeztet, majd Ãºjra felteszi a kÃ©rdÃ©st.
+	 * @param s - A kÃ©rdÃ©s
+	 * @return	A kÃ©rdÃ©sre adott vÃ¡lasz
 	 */
 	public static boolean getBooleanAnswer (String question)
 	{
@@ -89,11 +92,11 @@ public abstract class SkeletonHelper {
 	}
 	
 	/**
-	 * A paraméterben kapott kérdést kiírja stdout-ra. Válaszként egy számot vár.
-	 * Ha nem számot kap, hibát jelez és újra felteszi a kérdést.
-	 * @param question - A kérdés
-	 * @param choices - A lehetséges válaszok, max. 4 db
-	 * @return A válasz sorszáma
+	 * A paramÃ©terben kapott kÃ©rdÃ©st kiÃ­rja stdout-ra. VÃ¡laszkÃ©nt egy szÃ¡mot vÃ¡r.
+	 * Ha nem szÃ¡mot kap, hibÃ¡t jelez Ã©s Ãºjra felteszi a kÃ©rdÃ©st.
+	 * @param question - A kÃ©rdÃ©s
+	 * @param choices - A lehetsÃ©ges vÃ¡laszok, max. 4 db
+	 * @return A vÃ¡lasz sorszÃ¡ma
 	 */
 	public static int getMultipleChoiceAnswer (String question, String choices[])
 	{
