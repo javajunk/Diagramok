@@ -31,6 +31,10 @@ public abstract class SkeletonHelper {
 		t--;
 	}
 	
+	private static void printInputWarning ()
+	{
+		System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");		
+	}
 	/**
 	 * A paraméterben kapott kérdést kiírja stdout-ra és vár egy egész számot válaszként.
 	 * Értelmetlen válasz esetén figyelmeztet, majd újra felteszi a kérdést.
@@ -40,8 +44,19 @@ public abstract class SkeletonHelper {
 	 */
 	public static int getIntAnswer(String question, String unit)
 	{
-		System.out.println("Not implemented!"); 
-		return 1;
+		System.out.print(repeat("\t",t) + question + " (db) ");
+		try {
+			String line = br.readLine();
+			int c = Integer.parseInt(line);
+			if (c >= 0)
+				return c;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			
+		}
+		SkeletonHelper.printInputWarning();
+		return getIntAnswer(question, unit);
 	}
 	
 	/**
@@ -53,30 +68,24 @@ public abstract class SkeletonHelper {
 	public static boolean getBooleanAnswer (String question)
 	{
 		System.out.print(repeat("\t", t) + question + " (I/N): ");
-		while (true)
-		{
-			try {
-				String line = br.readLine();
-				if (!line.equals(""))
-				{
-					if ( ('I' == line.charAt(0)) || ('i' == line.charAt(0)) )
-					{	
-						return true;
-					}
-					if ( ('N' == line.charAt(0)) || ('n' == line.charAt(0)) )
-					{	
-						return false;
-					}
+		try {
+			String line = br.readLine();
+			if (!line.equals(""))
+			{
+				if ( ('I' == line.charAt(0)) || ('i' == line.charAt(0)) )
+				{	
+					return true;
 				}
-				// Ez még mindig 2-szer ugyanaz { - Tamás
-				System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
-				// } - Tamás
-				// Én ezt a 2 sort privát eljárásba tenném. - Tamás
-				System.out.print(repeat("\t", t) + question + " (I/N): ");
-			} catch (IOException e) {
-				e.printStackTrace();
+				if ( ('N' == line.charAt(0)) || ('n' == line.charAt(0)) )
+				{	
+					return false;
+				}
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		SkeletonHelper.printInputWarning();
+		return getBooleanAnswer(question);
 	}
 	
 	/**
@@ -89,37 +98,27 @@ public abstract class SkeletonHelper {
 	public static int getMultipleChoiceAnswer (String question, String choices[])
 	{
 		System.out.print(repeat("\t", t) + question + " (");
-		// Ez a kódrészlet is kétszer szerepel { - Tamás
-		for (int i = 0; i < 5 && i < choices.length; i++)
+		for (int i = 0; i < 4 && i < choices.length; i++)
 		{
 			System.out.print((i+1) + ": " + choices[i] + "   ");
 		}
 		System.out.print("\b\b\b)\n" + repeat("\t", t));
-		// } - Tamás
-		// Kis kódátszervezéssel és egy if-el megoldható. - Tamás
-		while (true)
-		{
-			try {
-				String line = br.readLine();
-				int c = Integer.parseInt(line);
-				if (c > choices.length || c < 0 || c > 4)
-					c = 0;
-				if (c == 0)
-				{
-					System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");
-					System.out.print(repeat("\t", t) + question + " (");
-					for (int i = 0; i < 4 && i < choices.length; i++)
-					{
-						System.out.print((i+1) + ": " + choices[i] + "   ");
-					}
-					System.out.print("\b\b\b)\n" + repeat("\t", t));
-				}
+		try {
+			String line = br.readLine();
+			int c = Integer.parseInt(line);
+			if (c > choices.length || c < 0 || c > 4)
+				c = 0;
+			if (c != 0)
+			{
 				return c;
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			
 		}
+		SkeletonHelper.printInputWarning();
+		return getMultipleChoiceAnswer(question, choices);
 	}
-	// De szerintem ez az egész felesleges - Tamás
 	
 }
