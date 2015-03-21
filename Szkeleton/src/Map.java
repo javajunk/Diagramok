@@ -13,12 +13,13 @@ public class Map implements GameObject {
 	private static final String outOfTrackMaskFile = "/map/mapMask.png";
 
 	public Map(){
-
+		SkeletonHelper.writeOutMethodName();
+		SkeletonHelper.returnFromMethod();
 	}
 
-	public void finalize() throws Throwable {
+	/*public void finalize() throws Throwable {
 
-	}
+	}*/
 
 	/**
 	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
@@ -28,14 +29,21 @@ public class Map implements GameObject {
 	 * @param robi
 	 */
 	public void CollisionWithRobot(Robot robi){
-
+		SkeletonHelper.writeOutMethodName();
+		boolean onGround = robi.onTheGround();
+		boolean out = isOutOfTrack(new Vector2D());
+		if(onGround && out)
+		{
+			robi.killHim();
+		}
+		SkeletonHelper.returnFromMethod();
 	}
 
 	/**
 	 * 
 	 * @param g
 	 */
-	public void Draw(Graphics g){
+	/*public void Draw(Graphics g){
 
 	}
 
@@ -45,7 +53,7 @@ public class Map implements GameObject {
 
 	public String getoutOfTrackMaskFile(){
 		return outOfTrackMaskFile;
-	}
+	}*/
 
 	/**
 	 * Megmondja, hogy az adott pont kint van-e a pályából.
@@ -53,7 +61,10 @@ public class Map implements GameObject {
 	 * @param pos
 	 */
 	public boolean isOutOfTrack(Vector2D pos){
-		return false;
+		SkeletonHelper.writeOutMethodName();
+		boolean out = SkeletonHelper.getBooleanAnswer("Kint van a pályáról?");
+		SkeletonHelper.returnFromMethod();
+		return out;
 	}
 
 	/**
@@ -61,13 +72,15 @@ public class Map implements GameObject {
 	 * @param g
 	 */
 	public void Update(Game g){
-
+		SkeletonHelper.writeOutMethodName();
+		SkeletonHelper.returnFromMethod();
 	}
 
 	@Override
 	public void Draw(Graphics g) {
 		// TODO Auto-generated method stub
-		
+		SkeletonHelper.writeOutMethodName();
+		SkeletonHelper.returnFromMethod();
 	}
 
 }

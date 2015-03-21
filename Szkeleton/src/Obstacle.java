@@ -7,26 +7,25 @@ import java.awt.Graphics;
  * @version 1.0
  * @created 19-márc.-2015 11:08:13
  */
-public class Obstacle implements GameObject {
+public abstract class Obstacle implements GameObject {
 
 	protected Vector2D position;
 	protected int radius;
 
-	public Obstacle(){
+	/*public Obstacle(){
+		SkeletonHelper.writeOutMethodName();
+		SkeletonHelper.returnFromMethod();
+	}*/
 
-	}
+	/*public void finalize() throws Throwable {
 
-	public void finalize() throws Throwable {
-
-	}
+	}*/
 
 	/**
 	 * 
 	 * @param robi
 	 */
-	protected boolean CollisionDetectWithRobot(Robot robi){
-		return false;
-	}
+	protected abstract boolean CollisionDetectWithRobot(Robot robi);
 
 	/**
 	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
@@ -35,30 +34,26 @@ public class Obstacle implements GameObject {
 	 * 
 	 * @param robi
 	 */
-	public void CollisionWithRobot(Robot robi){
-
-	}
+	public abstract void CollisionWithRobot(Robot robi);
 
 	/**
 	 * 
 	 * @param g
 	 */
-	public void Draw(Graphics g){
+	/*public void Draw(Graphics g){
 
-	}
+	}*/
 
 	/**
 	 * 
 	 * @param g
 	 */
-	public void Update(Game g){
+	public abstract void Update(Game g);
 
-	}
-
-	@Override
+	/*@Override
 	public void Draw(Graphics g) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 }
