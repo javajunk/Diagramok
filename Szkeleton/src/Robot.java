@@ -2,11 +2,23 @@ import java.awt.Graphics;
 import java.util.Hashtable;
 
 
-
+/**************************************************************************************************************************** - TamÃ¡s
+ * HibÃ¡k:
+ * 		A lÃ¡thatÃ³sÃ¡gokra figyelj oda egyik adattag sem public csak setter getter metÃ³dusokon keresztÃ¼l elÃ©rhetÅ‘ek
+ * 		A static final adattagokhoz nem kell sem setter sem getter
+ * 		Javaban csak tÃ¶mbÃ¶kre mÃ¼kÃ¶dik a [] 
+ * 		A setStoredOil(oil - 1) Ã©s az ehez hasonlo metodusok nem kellenek a szkeletonba, 
+ * 			az objektumok belsÅ‘ Ã¡llapotÃ¡t nem szabad tÃ¡rolnunk (vagy valami ilyesmi).
+ * 
+ * Ãlj Ã¡t UTF-8-as kodolasra Edit->SetEncoding
+ * 
+ * 
+ * Ãœdv.: TamÃ¡s
+ **************************************************************************************************************************** - TamÃ¡s/
 /**
  * @author Lucy
  * @version 1.0
- * @created 19-márc.-2015 11:08:15
+ * @created 19-mï¿½rc.-2015 11:08:15
  */
 public class Robot implements GameObject {
 
@@ -35,15 +47,15 @@ public class Robot implements GameObject {
 	}*/
 
 	/**
-	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
-	 * Ha ütközik, akkor befolyásolhatja a robot viselkedését. (Pl. ragacs esetén
-	 * felezi a sebességet)
+	 * Megnï¿½zi, hogy a megvalï¿½sï¿½tï¿½ objektum ï¿½tkï¿½zik-e a paramï¿½terkï¿½nt kapott robottal.
+	 * Ha ï¿½tkï¿½zik, akkor befolyï¿½solhatja a robot viselkedï¿½sï¿½t. (Pl. ragacs esetï¿½n
+	 * felezi a sebessï¿½get)
 	 * 
 	 * @param robi
 	 */
 	public void CollisionWithRobot(Robot robi){
 		SkeletonHelper.writeOutMethodName();
-		boolean coll = SkeletonHelper.getBooleanAnswer("Ütközik a két robot?");
+		boolean coll = SkeletonHelper.getBooleanAnswer("ï¿½tkï¿½zik a kï¿½t robot?");
 		if(coll)
 		{
 			robi.KillHim();
@@ -54,7 +66,7 @@ public class Robot implements GameObject {
 
 	public boolean getcontrollable(){
 		SkeletonHelper.writeOutMethodName();
-		boolean contr = SkeletonHelper.getBooleanAnswer("Irányítható a robot?");
+		boolean contr = SkeletonHelper.getBooleanAnswer("Irï¿½nyï¿½thatï¿½ a robot?");
 		SkeletonHelper.returnFromMethod();
 		return contr;
 		//return controllable;
@@ -113,7 +125,7 @@ public class Robot implements GameObject {
 
 	public int getStoredGlue(){
 		SkeletonHelper.writeOutMethodName();
-		int glue = SkeletonHelper.getIntAnswer("Mennyi ragacs van még raktáron?", "darab");
+		int glue = SkeletonHelper.getIntAnswer("Mennyi ragacs van mï¿½g raktï¿½ron?", "darab");
 		SkeletonHelper.returnFromMethod();
 		return glue;
 		//return storedGlue;
@@ -121,7 +133,7 @@ public class Robot implements GameObject {
 
 	public int getStoredOil(){
 		SkeletonHelper.writeOutMethodName();
-		int oil = SkeletonHelper.getIntAnswer("Mennyi olajfolt van még raktáron?", "darab");
+		int oil = SkeletonHelper.getIntAnswer("Mennyi olajfolt van mï¿½g raktï¿½ron?", "darab");
 		SkeletonHelper.returnFromMethod();
 		return oil;
 		//return storedOil;
@@ -132,17 +144,17 @@ public class Robot implements GameObject {
 	}*/
 
 	/**
-	 * Élteben van-e a robot.
+	 * ï¿½lteben van-e a robot.
 	 */
 	public boolean isAlive(){
 		SkeletonHelper.writeOutMethodName();
-		boolean alive = SkeletonHelper.getBooleanAnswer("Életben van a robot?");
+		boolean alive = SkeletonHelper.getBooleanAnswer("ï¿½letben van a robot?");
 		SkeletonHelper.returnFromMethod();
 		return alive;
 	}
 
 	/**
-	 * Megöli a robotott (felrobantja...)
+	 * Megï¿½li a robotott (felrobantja...)
 	 */
 	public void KillHim(){
 		SkeletonHelper.writeOutMethodName();
@@ -150,11 +162,11 @@ public class Robot implements GameObject {
 	}
 
 	/**
-	 * A robot a földön van-e
+	 * A robot a fï¿½ldï¿½n van-e
 	 */
 	public boolean onTheGround(){
 		SkeletonHelper.writeOutMethodName();
-		boolean onTheGround = SkeletonHelper.getBooleanAnser("Földön van a robot?");
+		boolean onTheGround = SkeletonHelper.getBooleanAnser("Fï¿½ldï¿½n van a robot?");
 		SkeletonHelper.returnFromMethod();
 		return onTheGround;
 	}
@@ -167,11 +179,11 @@ public class Robot implements GameObject {
 		SkeletonHelper.writeOutMethodName();
 		if(newVal)
 		{
-			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot irányítható");
+			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot irï¿½nyï¿½thatï¿½");
 		}
 		else
 		{
-			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot nem irányítható");
+			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot nem irï¿½nyï¿½thatï¿½");
 		}
 		SkeletonHelper.returnFromMethod();
 		//controllable = newVal;
@@ -281,7 +293,7 @@ public class Robot implements GameObject {
 			if(glue > 0)
 			{
 				g.addObstacle(new Glue());
-				setStoredGlue(glue - 1); // jelenleg lehet fiktív érték is
+				setStoredGlue(glue - 1); // jelenleg lehet fiktï¿½v ï¿½rtï¿½k is
 			}
 		}
 		
@@ -291,7 +303,7 @@ public class Robot implements GameObject {
 			if(oil > 0)
 			{
 				g.addObstacle(new Oil());
-				setStoredOil(oil - 1); // jelenleg lehet fiktív érték is
+				setStoredOil(oil - 1); // jelenleg lehet fiktï¿½v ï¿½rtï¿½k is
 			}
 		}
 		
