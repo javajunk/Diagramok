@@ -1,11 +1,26 @@
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Hashtable;
 
 
 public abstract class SkeletonHelper {
 	static int t = 0;
 	static BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
+	static Hashtable<Integer, String> controlKeyNames = new Hashtable<Integer, String>();
+	
+	
+	public static void Init()
+	{
+		//UP,DOWN,LEFT,RIGHT,OIL,GLUE
+		controlKeyNames.put(KeyEvent.VK_UP,"Fel");
+		controlKeyNames.put(KeyEvent.VK_DOWN,"Le");
+		controlKeyNames.put(KeyEvent.VK_LEFT,"Balra");
+		controlKeyNames.put(KeyEvent.VK_RIGHT,"Jobra");
+		controlKeyNames.put(KeyEvent.VK_O,"Olaj");
+		controlKeyNames.put(KeyEvent.VK_G,"Ragacs");
+	}
 	
 	public static void writeOutMethodName ()
 	{
@@ -44,22 +59,36 @@ public abstract class SkeletonHelper {
 	 */
 	public static int getIntAnswer(String question, String unit)
 	{
-		//Miért folyton db-t fűz hozá?????????????????????? - Tamás
-		//????????????????????????????????????????????????? - Tamás
-		//????????????????????????????????????????????????? - Tamás
-		System.out.print(repeat("\t",t) + question + " (db) ");
-		try {
-			String line = br.readLine();
-			int c = Integer.parseInt(line);
-			if (c >= 0)
-				return c;
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException e) {
+		boolean badAnswer = false;
+		int re = 0;
+		do
+		{
+			if(badAnswer)
+				printInputWarning();
 			
-		}
-		SkeletonHelper.printInputWarning();
-		return getIntAnswer(question, unit);
+			System.out.print(repeat("\t",t) + question + " (" + unit + ") ");
+			
+			badAnswer = false;
+			
+			try {
+				
+				String str = br.readLine();
+				re = Integer.parseInt(str);
+				
+				if (re < 0)
+					badAnswer = true;
+					
+			} catch (IOException e) {
+				System.out.println(repeat("\t",t) + "Something went wrong :(");
+				badAnswer = true;
+			}
+			catch (NumberFormatException e) {
+				badAnswer = true;
+			}
+			
+		}while(badAnswer);
+		
+		return re;
 	}
 	
 	/**
@@ -70,7 +99,7 @@ public abstract class SkeletonHelper {
 	 */
 	public static boolean getBooleanAnswer (String question)
 	{
-		System.out.print(repeat("\t", t) + question + " (I/N): ");
+		System.out.print(repeat("\t", t) + question + "? (I/N): ");
 		try {
 			String line = br.readLine();
 			if (!line.equals(""))
@@ -122,6 +151,13 @@ public abstract class SkeletonHelper {
 		}
 		SkeletonHelper.printInputWarning();
 		return getMultipleChoiceAnswer(question, choices);
+	}
+	
+	
+
+	public static boolean getKeyState(Integer keyCode)
+	{
+		return getBooleanAnswer("Le van nyomva a "+ controlKeyNames.get(keyCode) +" billentyű");
 	}
 	
 }

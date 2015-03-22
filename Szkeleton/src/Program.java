@@ -1,12 +1,13 @@
 /**
- * @author Szendi Tamás
+ * @author Szendi Tamï¿½s
  * @version 1.0
- * @created 19-márc.-2015 11:07:42
+ * @created 19-mï¿½rc.-2015 11:07:42
  */
 
 public class Program {
 
 	public static void main(String[] args) {
+		SkeletonHelper.Init();
 		Game g = new Game();
 		g.Init();
 		g.Start();

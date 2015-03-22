@@ -32,7 +32,6 @@ public class Oil extends Obstacle {
 	public void Draw(Graphics g) {
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		
 	}
 	
 	public void Update(Game g){

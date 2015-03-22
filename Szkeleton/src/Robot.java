@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -197,16 +198,33 @@ public class Robot implements GameObject {
 		SkeletonHelper.writeOutMethodName();
 		if(onTheGround())
 		{
-			if(SkeletonHelper.getBooleanAnswer("Lerakjon a robot ragacsot?"))
+			if(SkeletonHelper.getKeyState(KeyEvent.VK_UP))
 			{
-				g.addObstacle(new Glue());
+				this.setSpeed(new Vector2D());
 			}
-			if(SkeletonHelper.getBooleanAnswer("Lerakjon a robot olajfoltot?"))
+			if(SkeletonHelper.getKeyState(KeyEvent.VK_DOWN))
 			{
-				g.addObstacle(new Oil());
+				this.setSpeed(new Vector2D());
+			}
+			if(SkeletonHelper.getKeyState(KeyEvent.VK_LEFT))
+			{
+				this.setSpeed(new Vector2D());
+			}
+			if(SkeletonHelper.getKeyState(KeyEvent.VK_RIGHT))
+			{
+				this.setSpeed(new Vector2D());
 			}
 		}
 		
+		if(SkeletonHelper.getKeyState(KeyEvent.VK_G))
+		{
+			g.addObstacle(new Glue());
+		}
+		
+		if(SkeletonHelper.getKeyState(KeyEvent.VK_O))
+		{
+			g.addObstacle(new Oil());
+		}
 		for(GameObject gObj : g.getGameObjects())
 		{
 			gObj.CollisionWithRobot(this);

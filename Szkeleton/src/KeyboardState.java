@@ -14,7 +14,7 @@ public class KeyboardState implements KeyListener {
 	 * @param keyCode
 	 */
 	public boolean isKeyDown(int keyCode){
-		return false;
+		return SkeletonHelper.getKeyState(keyCode);
 	}
 
 	@Override
