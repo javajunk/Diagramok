@@ -4,10 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Ez az objektum felelős a létrehozási, fő kirajzolási és frissítési metódusok meghívásáért, 
- * vezeti a játék időkezelését és figyeli, hogy életben vannak-e még a játékosok által vezérelt robotok.
- */
 public class Game extends JComponent implements Runnable {
 
 	private static final long serialVersionUID = 7845653460750690226L;
@@ -179,7 +175,7 @@ public class Game extends JComponent implements Runnable {
 	public void Start(){
 		SkeletonHelper.writeOutMethodName();
 		
-		if(!SkeletonHelper.getBooleanAnswer("Fut már egy verseny"))
+		if(!SkeletonHelper.getBooleanAnswer("Fut már egy verseny?"))
 			this.run();
 		
 		SkeletonHelper.returnFromMethod();
@@ -193,9 +189,9 @@ public class Game extends JComponent implements Runnable {
 	public void Update(){
 		SkeletonHelper.writeOutMethodName();
 		
-		for(GameObject gObj : this.gameObjects)
+		for(int i = 0; i < gameObjects.size(); i++)
 		{
-			gObj.Update(this);
+			gameObjects.get(i).Update(this);
 		}
 		
 		boolean allPlayerAlive = true;

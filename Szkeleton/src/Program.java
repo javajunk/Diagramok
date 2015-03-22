@@ -1,7 +1,9 @@
 /**
- * A program main metódusát tartalmazó osztály.
- * Feladata a teljes program indítása.
+ * @author Szendi Tam�s
+ * @version 1.0
+ * @created 19-m�rc.-2015 11:07:42
  */
+
 public class Program {
 
 	public static void main(String[] args) {
@@ -9,6 +11,8 @@ public class Program {
 		Game g = new Game();
 		g.Init();
 		g.Start();
+		
+		System.out.println("A program futása befejeződöt :'(");
 	}
 
 }
