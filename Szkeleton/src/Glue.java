@@ -1,8 +1,9 @@
+import java.awt.Graphics;
 
 
 /**
- * Az osztály feladata a ragacsfoltok képének, helyzetének és kiterjedésének tárolása, 
- * valamint a ragacsfoltok frissítése és kirajzolása is.
+ * Az osztï¿½ly feladata a ragacsfoltok kï¿½pï¿½nek, helyzetï¿½nek ï¿½s kiterjedï¿½sï¿½nek tï¿½rolï¿½sa, 
+ * valamint a ragacsfoltok frissï¿½tï¿½se ï¿½s kirajzolï¿½sa is.
  */
 public class Glue extends Obstacle {
 
@@ -23,13 +24,60 @@ public class Glue extends Obstacle {
 	}
 
 	/**
-	 * Beállítja a ragacs új pozícióját
-	 * @param newPos: új pozíciója
+	 * Beï¿½llï¿½tja a ragacs ï¿½j pozï¿½ciï¿½jï¿½t
+	 * @param newPos: ï¿½j pozï¿½ciï¿½ja
 	 */
 	public void setVector2D(Vector2D newPos){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 		position = newPos;
+	}
+
+
+	@Override
+	protected boolean CollisionDetectWithRobot(Robot robi) {
+		// TODO Auto-generated method stub
+		SkeletonHelper.writeOutMethodName();
+		
+		boolean collision = false;
+		if(robi.onTheGround())
+		{
+			collision = SkeletonHelper.getBooleanAnswer("RÃ¡ugrott a robot egy ragacsfoltra?");
+		}
+		
+		/*********************************************************************************************
+		 * Innen hÃ­vjam meg?
+		 *********************************************************************************************/
+		if(collision)
+		{
+			CollisionWithRobot(robi);
+		}
+		
+		SkeletonHelper.returnFromMethod();
+		return collision;
+	}
+
+
+	@Override
+	public void CollisionWithRobot(Robot robi) {
+		SkeletonHelper.writeOutMethodName();
+		SkeletonHelper.returnFromMethod();
+	}
+
+
+	@Override
+	public void Draw(Graphics g) {
+		SkeletonHelper.writeOutMethodName();
+		SkeletonHelper.returnFromMethod();
+		
+	}
+	
+	
+	@Override
+	public void Update(Game g) {
+		SkeletonHelper.writeOutMethodName();
+		SkeletonHelper.returnFromMethod();
+		
 	}
 
 }
