@@ -2,29 +2,31 @@ import java.awt.Graphics;
 
 
 /**
- * A GameObject interfész deklarálja a játékobjektumok közös függvényeit,
- * amit majd az implementáló osztályok definiálnak. Lehetõvé teszi, hogy 
- * a játékobjektumokat egy közös listában tudjuk tárolni.
+ * A GameObject interfÃ©sz deklarÃ¡lja a jÃ¡tÃ©kobjektumok kÃ¶zÃ¶s fÃ¼ggvÃ©nyeit,
+ * amit majd az implementÃ¡lÃ³ osztÃ¡lyok definiÃ¡lnak. LehetÅ‘vÃ© teszi, hogy 
+ * a jÃ¡tÃ©kobjektumokat egy kÃ¶zÃ¶s listÃ¡ban tudjuk tÃ¡rolni.
  */
 public interface GameObject extends Drawable {
 
 	/**
-	 * Akkor hívódik meg, amikor a robot ütközik egy objektummal.
-	 * Az objektumtól függõen más-más történik,
-	 * pl. ragacs esetén a robot sebessége megfelezõdik.
-	 * @param robi: az a robot, amelyiket érinti az ütközés
+	 * Akkor hÃ­vÃ³dik meg, amikor a robot Ã¼tkÃ¶zik egy objektummal.
+	 * Az objektumtÃ³l fÃ¼ggÅ‘en mÃ¡s-mÃ¡s tÃ¶rtÃ©nik,
+	 * pl. ragacs esetÃ©n a robot sebessÃ©ge megfelezÅ‘dik.
+	 * @param robi: az a robot, amelyiket Ã©rinti az Ã¼tkÃ¶zÃ©s
 	 */
 	public void CollisionWithRobot(Robot robi);
 
 	/**
+	 * Kirajzolja az adott objektumot.
 	 * 
-	 * @param g
+	 * @param g: a grafikus kÃ¶rnyezet, amiben a kirajzolÃ¡s tÃ¶rtÃ©nik.
 	 */
 	public void Draw(Graphics g);
 
 	/**
+	 * FrissÃ­ti az adott objektum Ã¡llapotÃ¡t.
 	 * 
-	 * @param g
+	 * @param g: az objektumot vezÃ©rlÅ‘ Game osztÃ¡ly
 	 */
 	public void Update(Game g);
 

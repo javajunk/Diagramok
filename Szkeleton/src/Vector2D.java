@@ -4,8 +4,8 @@ public class Vector2D {
 	private double y;
 
 	/**
-	 * Vektorosszeadas.
-	 * @param vec - A hozzaadando vektor.
+	 * Vektorösszeadás.
+	 * @param vec - A hozzáadandó vektor.
 	 */
 	public void Add(Vector2D vec){
 		SkeletonHelper.writeOutMethodName();
@@ -13,7 +13,7 @@ public class Vector2D {
 	}
 
 	/**
-	 * Visszaadja a vektor jelenlegi hosszat.
+	 * Visszaadja a vektor jelenlegi hosszát.
 	 * @return - A vektor hossza.
 	 */
 	public double Length(){
@@ -23,7 +23,7 @@ public class Vector2D {
 	}
 
 	/**
-	 * Normalizalja a vektort.
+	 * Normalizálja a vektort.
 	 */
 	public void Normalize(){
 		SkeletonHelper.writeOutMethodName();
@@ -31,8 +31,8 @@ public class Vector2D {
 	}
 
 	/**
-	 * Skalarszorzas. A parameterkent kapot skalarral megszorozza a vektort
-	 * @param s
+	 * Skalárszorzás. A paraméterként kapott skalárral megszorozza a vektort.
+	 * @param s - a skalár
 	 */
 	public void Scale(double s){
 		SkeletonHelper.writeOutMethodName();
@@ -40,8 +40,8 @@ public class Vector2D {
 	}
 
 	/**
-	 * Vektorkivonas.
-	 * @param vec - A kivonando vektor.
+	 * Vektorkivonás.
+	 * @param vec - A kivonandó vektor.
 	 */
 	public void Subtract(Vector2D vec){
 		SkeletonHelper.writeOutMethodName();

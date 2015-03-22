@@ -1,14 +1,13 @@
 import java.awt.Graphics;
 
-
 /**
- * Az osztály feladata a ragacsfoltok képének, helyzetének és kiterjedésének tárolása, valamint a 
- * ragacsfoltok frissítése és kirajzolása is.
+ * Az osztály feladata a ragacsfoltok képének, helyzetének és kiterjedésének tárolása,
+ * valamint a ragacsfoltok frissítése és kirajzolása is.
  */
 public class Glue extends Obstacle {
 
-	private static String glueImage = "/obstacles/glue.png"; //TODO
-	private static final double Radius = 1; //TODO
+	private static String glueImage = "/obstacles/glue.png";
+	private static final double Radius = 1;
 	private Vector2D position;
 
 	public Glue(){
@@ -17,11 +16,10 @@ public class Glue extends Obstacle {
 	}
 
 	/**
-	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
-	 * Ha ütközik, akkor befolyásolhatja a robot viselkedését. (Pl. ragacs esetén
-	 * felezi a sebességet)
+	 * Akkor hívódik meg, amikor a robot ütközik egy ragacsfolttal. 
+	 * Ilyenkor a robot sebessége megfeleződik.
 	 * 
-	 * @param robi
+	 * @param robi: a robot, amivel a ragacs ütközik
 	 */
 	@Override
 	public void CollisionWithRobot(Robot robi) {
@@ -37,9 +35,9 @@ public class Glue extends Obstacle {
 	}
 
 	/**
-	 * Kirajzolja az adott objektumot.
+	 * Kirajzolja a ragacsfoltot.
 	 * 
-	 * @param g A grafikus környezet amiben a kirajzolás történik.
+	 * @param g: a grafikus környezet, amiben a kirajzolás történik.
 	 */
 	@Override
 	public void Draw(Graphics g) {
@@ -48,9 +46,9 @@ public class Glue extends Obstacle {
 	}
 	
 	/**
-	 * Frissíti az adott objektumot állapotát.
+	 * Frissíti a ragacsfolt állapotát.
 	 * 
-	 * @param g Az objektumot vezérlő Game osztály.
+	 * @param g: az objektumot vezérlő Game osztály.
 	 */
 	@Override
 	public void Update(Game g) {
