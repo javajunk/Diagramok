@@ -3,14 +3,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-/**
- * @author Szendi Tamás
- * @version 1.0
- * @created 19-márc.-2015 11:07:53
- */
 public class Game extends JComponent implements Runnable {
 
 	private static final long serialVersionUID = 7845653460750690226L;
