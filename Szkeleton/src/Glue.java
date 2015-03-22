@@ -16,50 +16,16 @@ public class Glue extends Obstacle {
 		SkeletonHelper.returnFromMethod();
 	}
 
-
-	public Vector2D getVector2D(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		return position;
-	}
-
-	/**
-	 * Be�ll�tja a ragacs �j poz�ci�j�t
-	 * @param newPos: �j poz�ci�ja
-	 */
-	public void setVector2D(Vector2D newPos){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		position = newPos;
-	}
-
-
-	@Override
-	protected boolean CollisionDetectWithRobot(Robot robi) {
-		SkeletonHelper.writeOutMethodName();
-		
-		boolean collision = false;
-		if(robi.onTheGround())
-		{
-			collision = SkeletonHelper.getBooleanAnswer("Ráugrott a robot egy ragacsfoltra?");
-		}
-		
-		/*********************************************************************************************
-		 * Innen hívjam meg?
-		 *********************************************************************************************/
-		if(collision)
-		{
-			CollisionWithRobot(robi);
-		}
-		
-		SkeletonHelper.returnFromMethod();
-		return collision;
-	}
-
-
 	@Override
 	public void CollisionWithRobot(Robot robi) {
 		SkeletonHelper.writeOutMethodName();
+		
+		if(CollisionDetectWithRobot(robi))
+		{
+			robi.getSpeed();
+			robi.setSpeed(new Vector2D());
+		}
+		
 		SkeletonHelper.returnFromMethod();
 	}
 
@@ -68,7 +34,6 @@ public class Glue extends Obstacle {
 	public void Draw(Graphics g) {
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		
 	}
 	
 	
@@ -76,7 +41,6 @@ public class Glue extends Obstacle {
 	public void Update(Game g) {
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		
 	}
 
 }
