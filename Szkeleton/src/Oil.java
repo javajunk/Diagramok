@@ -3,7 +3,7 @@
 /**
  * @author Lucy
  * @version 1.0
- * @created 19-m·rc.-2015 11:08:14
+ * @created 19-m√°rc.-2015 11:08:14
  */
 public class Oil extends Obstacle {
 
@@ -44,15 +44,6 @@ public class Oil extends Obstacle {
 		super.finalize();
 	}*/
 
-	/*public string getoilImage(){
-		return oilImage;
-	}*/
-
-	public double getRadius(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		return Radius;
-	}
 
 	public Vector2D getVector2D(){
 		SkeletonHelper.writeOutMethodName();
@@ -60,29 +51,6 @@ public class Oil extends Obstacle {
 		return m_Vector2D;
 	}
 
-	public Vector2D getVector2D(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		return m_Vector2D;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	/*public void setoilImage(string newVal){
-		oilImage = newVal;
-	}*/
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRadius(double newVal){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		Radius = newVal;
-	}
 
 	/**
 	 * 
@@ -91,15 +59,7 @@ public class Oil extends Obstacle {
 	public void setVector2D(Vector2D newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		m_Vector2D = newVal;
+		//m_Vector2D = newVal;
 	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	/*public void setVector2D(Vector2D newVal){
-		m_Vector2D = newVal;
-	}*/
 
 }

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 /**
  * @author Lucy
  * @version 1.0
- * @created 19-márc.-2015 11:08:12
+ * @created 19-mÃ¡rc.-2015 11:08:12
  */
 public class Map implements GameObject {
 
@@ -22,9 +22,9 @@ public class Map implements GameObject {
 	}*/
 
 	/**
-	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
-	 * Ha ütközik, akkor befolyásolhatja a robot viselkedését. (Pl. ragacs esetén
-	 * felezi a sebességet)
+	 * MegnÃ©zi, hogy a megvalÃ³sÃ­tÃ³ objektum Ã¼tkÃ¶zik-e a paramÃ©terkÃ©nt kapott robottal.
+	 * Ha Ã¼tkÃ¶zik, akkor befolyÃ¡solhatja a robot viselkedÃ©sÃ©t. (Pl. ragacs esetÃ©n
+	 * felezi a sebessÃ©get)
 	 * 
 	 * @param robi
 	 */
@@ -44,25 +44,16 @@ public class Map implements GameObject {
 	 * @param g
 	 */
 	/*public void Draw(Graphics g){
-
-	}
-
-	public String getmapImage(){
-		return mapImage;
-	}
-
-	public String getoutOfTrackMaskFile(){
-		return outOfTrackMaskFile;
 	}*/
 
 	/**
-	 * Megmondja, hogy az adott pont kint van-e a pályából.
+	 * Megmondja, hogy az adott pont kint van-e a pÃ¡lyÃ¡bÃ³l.
 	 * 
 	 * @param pos
 	 */
 	public boolean isOutOfTrack(Vector2D pos){
 		SkeletonHelper.writeOutMethodName();
-		boolean out = SkeletonHelper.getBooleanAnswer("Kint van a pályáról?");
+		boolean out = SkeletonHelper.getBooleanAnswer("Kint van a pÃ¡lyÃ¡rÃ³l?");
 		SkeletonHelper.returnFromMethod();
 		return out;
 	}

@@ -1,6 +1,8 @@
 import java.awt.Graphics;
 import java.util.Hashtable;
 
+import javafx.scene.control.Control;
+
 
 /**************************************************************************************************************************** - Tamás
  * Hibák:
@@ -18,7 +20,7 @@ import java.util.Hashtable;
 /**
  * @author Lucy
  * @version 1.0
- * @created 19-m�rc.-2015 11:08:15
+ * @created 19-márc.-2015 11:08:15
  */
 public class Robot implements GameObject {
 
@@ -47,15 +49,15 @@ public class Robot implements GameObject {
 	}*/
 
 	/**
-	 * Megn�zi, hogy a megval�s�t� objektum �tk�zik-e a param�terk�nt kapott robottal.
-	 * Ha �tk�zik, akkor befoly�solhatja a robot viselked�s�t. (Pl. ragacs eset�n
-	 * felezi a sebess�get)
+	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
+	 * Ha ütközik, akkor befolyásolhatja a robot viselkedését. (Pl. ragacs esetén
+	 * felezi a sebességet)
 	 * 
 	 * @param robi
 	 */
 	public void CollisionWithRobot(Robot robi){
 		SkeletonHelper.writeOutMethodName();
-		boolean coll = SkeletonHelper.getBooleanAnswer("�tk�zik a k�t robot?");
+		boolean coll = SkeletonHelper.getBooleanAnswer("Ütközik a két robot?");
 		if(coll)
 		{
 			robi.KillHim();
@@ -64,60 +66,28 @@ public class Robot implements GameObject {
 		SkeletonHelper.returnFromMethod();
 	}
 
-	public boolean getcontrollable(){
+	public boolean getControllable(){
 		SkeletonHelper.writeOutMethodName();
-		boolean contr = SkeletonHelper.getBooleanAnswer("Ir�ny�that� a robot?");
+		boolean contr = SkeletonHelper.getBooleanAnswer("Irányítható a robot?");
 		SkeletonHelper.returnFromMethod();
 		return contr;
 		//return controllable;
 	}
 
-	public Vector2D getdistance(){
+	public Vector2D getDistance(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 		return distance;
 		//return distance;
 	}
 
-	public int getinitStoredObstacles(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		return initStoredObstacles;
-	}
-
-	public Hashtable<Control,Integer> getplayer1ControlKeys(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		return player1ControlKeys;
-	}
-
-	/*public String getplayer1RobotImage(){
-		return player1RobotImage;
-	}*/
-
-	public Hashtable<Control,Integer> getplayer2ControlKeys(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		return player2ControlKeys;
-	}
-
-	/*public String getplayer2RobotImage(){
-		return player2RobotImage;
-	}*/
-
-	public Vector2D getposition(){
+	public Vector2D getPosition(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 		return position;
 	}
 
-	public double getRadius(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		return Radius;
-	}
-
-	public Vector2D getspeed(){
+	public Vector2D getSpeed(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 		return speed;
@@ -125,7 +95,7 @@ public class Robot implements GameObject {
 
 	public int getStoredGlue(){
 		SkeletonHelper.writeOutMethodName();
-		int glue = SkeletonHelper.getIntAnswer("Mennyi ragacs van m�g rakt�ron?", "darab");
+		int glue = SkeletonHelper.getIntAnswer("Mennyi ragacs van még raktáron?", "darab");
 		SkeletonHelper.returnFromMethod();
 		return glue;
 		//return storedGlue;
@@ -133,7 +103,7 @@ public class Robot implements GameObject {
 
 	public int getStoredOil(){
 		SkeletonHelper.writeOutMethodName();
-		int oil = SkeletonHelper.getIntAnswer("Mennyi olajfolt van m�g rakt�ron?", "darab");
+		int oil = SkeletonHelper.getIntAnswer("Mennyi olajfolt van még raktáron?", "darab");
 		SkeletonHelper.returnFromMethod();
 		return oil;
 		//return storedOil;
@@ -144,17 +114,17 @@ public class Robot implements GameObject {
 	}*/
 
 	/**
-	 * �lteben van-e a robot.
+	 * Életben van-e a robot.
 	 */
 	public boolean isAlive(){
 		SkeletonHelper.writeOutMethodName();
-		boolean alive = SkeletonHelper.getBooleanAnswer("�letben van a robot?");
+		boolean alive = SkeletonHelper.getBooleanAnswer("Életben van a robot?");
 		SkeletonHelper.returnFromMethod();
 		return alive;
 	}
 
 	/**
-	 * Meg�li a robotott (felrobantja...)
+	 * Megöli a robotott (felrobantja...)
 	 */
 	public void KillHim(){
 		SkeletonHelper.writeOutMethodName();
@@ -162,7 +132,7 @@ public class Robot implements GameObject {
 	}
 
 	/**
-	 * A robot a f�ld�n van-e
+	 * A robot a földön van-e
 	 */
 	public boolean onTheGround(){
 		SkeletonHelper.writeOutMethodName();
@@ -179,11 +149,11 @@ public class Robot implements GameObject {
 		SkeletonHelper.writeOutMethodName();
 		if(newVal)
 		{
-			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot ir�ny�that�");
+			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot irányítható");
 		}
 		else
 		{
-			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot nem ir�ny�that�");
+			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot nem irányítható");
 		}
 		SkeletonHelper.returnFromMethod();
 		//controllable = newVal;
@@ -193,30 +163,10 @@ public class Robot implements GameObject {
 	 * 
 	 * @param newVal
 	 */
-	public void setdistance(Vector2D newVal){
+	public void setDistance(Vector2D newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		distance = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setinitStoredObstacles(int newVal){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		initStoredObstacles = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setplayer1ControlKeys(Hashtable<Control,Integer> newVal){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		player1ControlKeys = newVal;
+		//distance = newVal;
 	}
 
 	/**
@@ -236,7 +186,7 @@ public class Robot implements GameObject {
 	public void setSpeed(Vector2D newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		speed = newVal;
+		//speed = newVal;
 	}
 
 	/**
@@ -246,7 +196,7 @@ public class Robot implements GameObject {
 	public void setStoredGlue(int newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		storedGlue = newVal;
+		//storedGlue = newVal;
 	}
 
 	/**
@@ -256,7 +206,7 @@ public class Robot implements GameObject {
 	public void setStoredOil(int newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		storedOil = newVal;
+		//storedOil = newVal;
 	}
 
 	/**
@@ -265,45 +215,15 @@ public class Robot implements GameObject {
 	 */
 	public void Update(Game g){
 		SkeletonHelper.writeOutMethodName();
-		boolean onTheGround = onTheGround();
-		boolean upkey = g.keyboardState.isKeyDown(playerControlKeys[control.up]);
-		if(onTheGround && upkey)
+		if(onTheGround())
 		{
-			setSpeed(new Vector2D(0,0,0));
-		}
-		boolean downkey = g.keyboardState.isKeyDown(playerControlKeys[control.down]);
-		if(onTheGround && downkey)
-		{
-			setSpeed(new Vector2D(0,0,0));
-		}
-		boolean leftkey = g.keyboardState.isKeyDown(playerControlKeys[control.left]);
-		if(onTheGround && leftkey)
-		{
-			setSpeed(new Vector2D(0,0,0));
-		}
-		boolean rightkey = g.keyboardState.isKeyDown(playerControlKeys[control.right]);
-		if(onTheGround && rightkey)
-		{
-			setSpeed(new Vector2D(0,0,0));
-		}
-		
-		if(g.keyboardState.isKeyDown(playerControlKeys[control.glue])) // Itt nem vagyok biztos, hogy milyen controlkey-t kell figyelni
-		{
-			int glue = getStoredGlue();
-			if(glue > 0)
+			if(SkeletonHelper.getBooleanAnswer("Lerakjon a robot ragacsot?"))
 			{
 				g.addObstacle(new Glue());
-				setStoredGlue(glue - 1); // jelenleg lehet fikt�v �rt�k is
 			}
-		}
-		
-		if(g.keyboardState.isKeyDown(playerControlKeys[control.oil])) // Itt nem vagyok biztos, hogy milyen controlkey-t kell figyelni
-		{
-			int oil = getStoredOil();
-			if(oil > 0)
+			if(SkeletonHelper.getBooleanAnswer("Lerakjon a robot olajfoltot?"))
 			{
 				g.addObstacle(new Oil());
-				setStoredOil(oil - 1); // jelenleg lehet fikt�v �rt�k is
 			}
 		}
 		

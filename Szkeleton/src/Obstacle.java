@@ -5,7 +5,7 @@ import java.awt.Graphics;
 /**
  * @author Lucy
  * @version 1.0
- * @created 19-márc.-2015 11:08:13
+ * @created 19-mÃ¡rc.-2015 11:08:13
  */
 public abstract class Obstacle implements GameObject {
 
@@ -28,9 +28,9 @@ public abstract class Obstacle implements GameObject {
 	protected abstract boolean CollisionDetectWithRobot(Robot robi);
 
 	/**
-	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
-	 * Ha ütközik, akkor befolyásolhatja a robot viselkedését. (Pl. ragacs esetén
-	 * felezi a sebességet)
+	 * MegnÃ©zi, hogy a megvalÃ³sÃ­tÃ³ objektum Ã¼tkÃ¶zik-e a paramÃ©terkÃ©nt kapott robottal.
+	 * Ha Ã¼tkÃ¶zik, akkor befolyÃ¡solhatja a robot viselkedÃ©sÃ©t. (Pl. ragacs esetÃ©n
+	 * felezi a sebessÃ©get)
 	 * 
 	 * @param robi
 	 */
