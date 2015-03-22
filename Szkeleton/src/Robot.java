@@ -1,8 +1,12 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+/**
+ * Az osztály feladata a játékos által irányított robot legfontosabb paramétereinek a tárolása. 
+ * Ilyen például a robot pozíciója, sebessége, vagy a megtett távolság. 
+ * Ezen kívül az is a feladata, hogy frissítse és kirajzolja a robotot.
+ */
 public class Robot implements GameObject {
-
 
 	private double distance;
 	private Vector2D position;
@@ -32,6 +36,7 @@ public class Robot implements GameObject {
 
 	/**
 	 * Lekérdezi, hogy a verseny kezdetétől számítva mekkora távolságot tett meg az adott robot.
+	 * @return: megtett távolság
 	 */
 	public double getDistance(){
 		SkeletonHelper.writeOutMethodName();
@@ -40,7 +45,8 @@ public class Robot implements GameObject {
 	}
 
 	/**
-	 * Lekérdezi az adott robot aktuális állapotát
+	 * Lekérdezi az adott robot aktuális helyzetét
+	 * @return: a robot helyzete
 	 */
 	public Vector2D getPosition(){
 		SkeletonHelper.writeOutMethodName();
@@ -50,6 +56,7 @@ public class Robot implements GameObject {
 
 	/**
 	 * Lekérdezi az adott robot aktuális sebességét
+	 * @return: a robot sebessége
 	 */
 	public Vector2D getSpeed(){
 		SkeletonHelper.writeOutMethodName();
@@ -59,25 +66,29 @@ public class Robot implements GameObject {
 
 	/**
 	 * Lekérdezi az adott robot aktuális ragacskészletét
+	 * @return: ragacskészlet mérete
 	 */
 	public int getStoredGlue(){
 		SkeletonHelper.writeOutMethodName();
-		int glue = SkeletonHelper.getIntAnswer("Mennyi ragacs van még raktáron?", "darab");
+		int glue = SkeletonHelper.getIntAnswer("Mennyi ragacs van még raktáron", "darab");
 		SkeletonHelper.returnFromMethod();
 		return glue;
 	}
 	
 	/**
 	 * Lekérdezi az adott robot aktuális olajkészletét
+	 * @return: olajkészlet mérete
 	 */
 	public int getStoredOil(){
 		SkeletonHelper.writeOutMethodName();
-		int oil = SkeletonHelper.getIntAnswer("Mennyi olajfolt van még raktáron?", "darab");
+		int oil = SkeletonHelper.getIntAnswer("Mennyi olajfolt van még raktáron", "darab");
 		SkeletonHelper.returnFromMethod();
 		return oil;
 	}
 	/**
 	 * Megadja, hogy életben van-e a robot.
+	 * @return: true -> életben van
+	 * @return: false -> nincs már életben
 	 */
 	public boolean isAlive(){
 		SkeletonHelper.writeOutMethodName();
@@ -96,6 +107,8 @@ public class Robot implements GameObject {
 
 	/**
 	 * Megadja, hogy a robot a földön van-e
+	 * @return: true -> földön van
+	 * @return: false -> levegőben van
 	 */
 	public boolean onTheGround(){
 		SkeletonHelper.writeOutMethodName();

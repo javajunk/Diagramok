@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Hashtable;
 
-
+/**
+ * A szkeletonhoz használt segédosztály és segédmetódusai
+ */
 public abstract class SkeletonHelper {
 	static int t = 0;
 	static BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
@@ -13,7 +15,6 @@ public abstract class SkeletonHelper {
 	
 	public static void Init()
 	{
-		//UP,DOWN,LEFT,RIGHT,OIL,GLUE
 		controlKeyNames.put(KeyEvent.VK_UP,"Fel");
 		controlKeyNames.put(KeyEvent.VK_DOWN,"Le");
 		controlKeyNames.put(KeyEvent.VK_LEFT,"Balra");
@@ -22,6 +23,9 @@ public abstract class SkeletonHelper {
 		controlKeyNames.put(KeyEvent.VK_G,"Ragacs");
 	}
 	
+	/**
+	 * Egy metódus nevének kiírását megvalósító metódus
+	 */
 	public static void writeOutMethodName ()
 	{
 		final StackTraceElement[] ste = Thread.currentThread().getStackTrace();

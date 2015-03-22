@@ -1,5 +1,8 @@
 import java.awt.Graphics;
-
+/**
+ * Tárolja a pálya képét és a pályát meghatározó maskot. (Szkeletonban nem)
+ * Utóbbi segítségével állapítja meg, hogy az adott pozíció a pálya területén található-e.
+ */
 public class Map implements GameObject {
 
 	public Map(){
@@ -8,9 +11,8 @@ public class Map implements GameObject {
 	}
 
 	/**
-	 * Ha ütközik, akkor kinyírja a robotot. 
-	 * 
-	 * @param robi
+	 * A metódus feladata elpusztítani a robotot, ha az elhagyta a pályát
+	 * @param robi: a robot, amit vizsgálunk
 	 */
 	public void CollisionWithRobot(Robot robi){
 		SkeletonHelper.writeOutMethodName();
@@ -24,9 +26,9 @@ public class Map implements GameObject {
 	}
 	
 	/**
-	 * Megmondja, hogy az adott pont kint van-e a pályából.
+	 * Megállapítja, hogy az adott pont kint van-e a pályáról.
 	 * 
-	 * @param pos
+	 * @param pos: vizsgálandó pont
 	 */
 	public boolean isOutOfTrack(Vector2D pos){
 		SkeletonHelper.writeOutMethodName();
