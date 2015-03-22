@@ -6,9 +6,9 @@ import java.awt.Graphics;
  */
 public class Glue extends Obstacle {
 
-	private static String glueImage = "/obstacles/glue.png";
-	private static final double Radius = 1;
-	private Vector2D position;
+	//private static String glueImage = "/obstacles/glue.png";
+	//private static final double Radius = 1;
+	//private Vector2D position;
 
 	public Glue(){
 		SkeletonHelper.writeOutMethodName();

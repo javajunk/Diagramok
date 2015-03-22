@@ -124,19 +124,12 @@ public class Game extends JComponent implements Runnable {
 		this.map = new Map();
 		this.gameObjects.add(this.map);
 		
-		/****************************************************************************************
-		 * Melyik a jó?
-		 * this.robots.add(newPlayer); 
-		 * vagy
-		 * this.robots.add(new Robot());
-		 ****************************************************************************************/
-		
 		Robot newPlayer = new Robot();
 		this.robots.add(newPlayer); 
 		this.gameObjects.add(newPlayer);
 		
 		newPlayer =  new Robot();
-		this.robots.add(new Robot());
+		this.robots.add(newPlayer);
 		this.gameObjects.add(newPlayer);
 		
 		int obstacleCnt = SkeletonHelper.getIntAnswer("Mennyi akadály kerül a pályára kezdéskor", "darab");

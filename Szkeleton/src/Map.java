@@ -9,17 +9,13 @@ import java.awt.Graphics;
  */
 public class Map implements GameObject {
 
-	private static final String mapImage = "/map/map.png";
-	private static final String outOfTrackMaskFile = "/map/mapMask.png";
+	//private static final String mapImage = "/map/map.png";
+	//private static final String outOfTrackMaskFile = "/map/mapMask.png";
 
 	public Map(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
-
-	/*public void finalize() throws Throwable {
-
-	}*/
 
 	/**
 	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
