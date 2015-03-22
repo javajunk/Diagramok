@@ -1,17 +1,11 @@
 import java.awt.Graphics;
 
 
-
-/**
- * @author Lucy
- * @version 1.0
- * @created 19-márc.-2015 11:08:14
- */
 public class Oil extends Obstacle {
 
 	private static final String oilImage = "/obstacles/oil.png"; //TODO
 	private static final double Radius = 1; //TODO
-	private Vector2D m_Vector2D;
+	private Vector2D position;
 
 	public Oil(){
 		SkeletonHelper.writeOutMethodName();
@@ -21,25 +15,24 @@ public class Oil extends Obstacle {
 	
 	protected boolean CollisionDetectWithRobot(Robot robi){
 		SkeletonHelper.writeOutMethodName();
-		boolean coll = robi.onTheGround();
-		if(coll)
+		boolean collision = false;
+		if(robi.onTheGround())
 		{
-			coll = SkeletonHelper.getBooleanAnswer("Olajfolton van a robot?");
+			collision = SkeletonHelper.getBooleanAnswer("Ráugrott a robot egy ragacsfoltra?");
 		}
 		SkeletonHelper.returnFromMethod();
-		return coll;
+		return collision;
 	}
 	
 	public void CollisionWithRobot(Robot robi){
 		SkeletonHelper.writeOutMethodName();
-		boolean coll = CollisionDetectWithRobot(robi);
-		robi.setControllable(!coll);
 		SkeletonHelper.returnFromMethod();
 	}
 
 	@Override
 	public void Draw(Graphics g) {
-		// TODO Auto-generated method stub
+		SkeletonHelper.writeOutMethodName();
+		SkeletonHelper.returnFromMethod();
 		
 	}
 	
@@ -49,10 +42,10 @@ public class Oil extends Obstacle {
 	}
 
 
-	public Vector2D getVector2D(){
+	public Vector2D getPosition(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		return m_Vector2D;
+		return position;
 	}
 
 
@@ -60,10 +53,9 @@ public class Oil extends Obstacle {
 	 * 
 	 * @param newVal
 	 */
-	public void setVector2D(Vector2D newVal){
+	public void setPosition(Vector2D newPos){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		//m_Vector2D = newVal;
 	}
 
 
