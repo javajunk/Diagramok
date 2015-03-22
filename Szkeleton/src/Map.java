@@ -1,16 +1,6 @@
 import java.awt.Graphics;
 
-
-
-/**
- * @author Lucy
- * @version 1.0
- * @created 19-márc.-2015 11:08:12
- */
 public class Map implements GameObject {
-
-	//private static final String mapImage = "/map/map.png";
-	//private static final String outOfTrackMaskFile = "/map/mapMask.png";
 
 	public Map(){
 		SkeletonHelper.writeOutMethodName();
@@ -18,9 +8,7 @@ public class Map implements GameObject {
 	}
 
 	/**
-	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
-	 * Ha ütközik, akkor befolyásolhatja a robot viselkedését. (Pl. ragacs esetén
-	 * felezi a sebességet)
+	 * Ha ütközik, akkor kinyírja a robotot. 
 	 * 
 	 * @param robi
 	 */
@@ -34,14 +22,7 @@ public class Map implements GameObject {
 		}
 		SkeletonHelper.returnFromMethod();
 	}
-
-	/**
-	 * 
-	 * @param g
-	 */
-	/*public void Draw(Graphics g){
-	}*/
-
+	
 	/**
 	 * Megmondja, hogy az adott pont kint van-e a pályából.
 	 * 
@@ -49,23 +30,29 @@ public class Map implements GameObject {
 	 */
 	public boolean isOutOfTrack(Vector2D pos){
 		SkeletonHelper.writeOutMethodName();
-		boolean out = SkeletonHelper.getBooleanAnswer("Kint van a pályáról?");
+		boolean out = SkeletonHelper.getBooleanAnswer("Kint van a pályáról");
 		SkeletonHelper.returnFromMethod();
 		return out;
 	}
 
 	/**
+	 * Frissíti a térkép állapotát.
 	 * 
-	 * @param g
+	 * @param g: az objektumot vezérlő Game osztály.
 	 */
+	@Override
 	public void Update(Game g){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
-
+	
+	/**
+	 * Kirajzolja a térképet.
+	 * 
+	 * @param g: a grafikus környezet, amiben a kirajzolás történik.
+	 */
 	@Override
 	public void Draw(Graphics g) {
-		// TODO Auto-generated method stub
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
