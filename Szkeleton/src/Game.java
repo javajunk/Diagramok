@@ -189,12 +189,17 @@ public class Game extends JComponent implements Runnable {
 	}
 
 	/**
+	 * Meghívja a játéktér összes elemének az Update metódusát
 	 * Ellenőrzi, hogy véget ért-e a játék.
 	 * Ha a játék véget ért értesíti a feliratkozókat erről és szünetelteti a játékot.
-	 * Ha a játék nem ért véget, akkor meghívja a játéktér összes elemének az Update metódusát.
 	 */
 	public void Update(){
 		SkeletonHelper.writeOutMethodName();
+		
+		for(GameObject gObj : this.gameObjects)
+		{
+			gObj.Update(this);
+		}
 		
 		boolean allPlayerAlive = true;
 		for(Robot rob : this.getRobots())
@@ -212,11 +217,6 @@ public class Game extends JComponent implements Runnable {
 			}
 			
 			this.Pause();
-		}
-		
-		for(GameObject gObj : this.gameObjects)
-		{
-			gObj.Update(this);
 		}
 		
 		SkeletonHelper.returnFromMethod();

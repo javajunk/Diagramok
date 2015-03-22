@@ -6,7 +6,7 @@ import java.awt.Graphics;
  * amit majd az implementáló osztályok definiálnak. Lehetővé teszi, hogy 
  * a játékobjektumokat egy közös listában tudjuk tárolni.
  */
-public interface GameObject extends Drawable {
+public interface GameObject {
 
 	/**
 	 * Akkor hívódik meg, amikor a robot ütközik egy objektummal.

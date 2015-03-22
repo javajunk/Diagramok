@@ -1,17 +1,19 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
+/**
+* A billentyűzet aktuális állapotának lekérdezésére alkalmas osztály
+ * 	(Az átadott objektumnak kell focus-ban lennie)
+ */
 public class KeyboardState implements KeyListener {
 
 	public KeyboardState(){
 
 	}
 
-
 	/**
-	 * 
-	 * @param keyCode
+	 * Megadja hogy a paraméterül kapott billentyű le van-e nyomva.
+	 * @param keyCode Az ellenőrizendő billentyű kódja.
 	 */
 	public boolean isKeyDown(int keyCode){
 		return SkeletonHelper.getKeyState(keyCode);
