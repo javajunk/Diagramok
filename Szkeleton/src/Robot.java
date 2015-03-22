@@ -1,65 +1,31 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.Hashtable;
-import java.util.List;
 
-import javafx.scene.control.Control;
-
-
-/**************************************************************************************************************************** - Tamás
- * Hibák:
- * 		A láthatóságokra figyelj oda egyik adattag sem public csak setter getter metódusokon keresztül elérhetőek
- * 		A static final adattagokhoz nem kell sem setter sem getter
- * 		Javaban csak tömbökre müködik a [] 
- * 		A setStoredOil(oil - 1) és az ehez hasonlo metodusok nem kellenek a szkeletonba, 
- * 			az objektumok belső állapotát nem szabad tárolnunk (vagy valami ilyesmi).
- * 
- * Álj át UTF-8-as kodolasra Edit->SetEncoding
- * 
- * 
- * Üdv.: Tamás
- **************************************************************************************************************************** - Tamás/
-/**
- * @author Lucy
- * @version 1.0
- * @created 19-márc.-2015 11:08:15
- */
 public class Robot implements GameObject {
 
-	private boolean controllable;
-	private Vector2D distance;
-	//private static final int initStoredObstacles;
-	//private static final Hashtable<Control,Integer> player1ControlKeys;
-	private static final String player1RobotImage = "/robot1.png";
-	//private static final Hashtable<Control,Integer> player2ControlKeys;
-	private static final String player2RobotImage = "/robot1.png";
-	private Hashtable<Control,Integer> playerControlKeys;
+
+	private double distance;
 	private Vector2D position;
-	private static final double Radius = 0/*coming soon*/;
+	//private static final double Radius = 0/*coming soon*/;
 	private Vector2D speed;
-	private int storedGlue;
-	private int storedOil;
-	private Vector2D m_Vector2D;
+	//private int storedGlue;
+	//private int storedOil;
+	//private Vector2D m_Vector2D;
 
 	public Robot(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
 
-	/*public void finalize() throws Throwable {
-
-	}*/
 
 	/**
-	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
-	 * Ha ütközik, akkor befolyásolhatja a robot viselkedését. (Pl. ragacs esetén
-	 * felezi a sebességet)
+	 * Megnézi, hogy ütközik-e egymással a két robot.
 	 * 
-	 * @param robi
+	 * @param robi: a másik robot
 	 */
 	public void CollisionWithRobot(Robot robi){
 		SkeletonHelper.writeOutMethodName();
-		boolean coll = SkeletonHelper.getBooleanAnswer("Ütközik a két robot?");
+		boolean coll = SkeletonHelper.getBooleanAnswer("Ütközik a két robot");
 		if(coll)
 		{
 			robi.KillHim();
@@ -68,39 +34,46 @@ public class Robot implements GameObject {
 		SkeletonHelper.returnFromMethod();
 	}
 
-	public boolean getControllable(){
-		SkeletonHelper.writeOutMethodName();
-		boolean contr = SkeletonHelper.getBooleanAnswer("Irányítható a robot?");
-		SkeletonHelper.returnFromMethod();
-		return contr;
-		//return controllable;
-	}
-
-	public Vector2D getDistance(){
+	/**
+	 * Lekérdezi, hogy a verseny kezdetétől számítva mekkora távolságot tett meg az adott robot.
+	 */
+	public double getDistance(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 		return distance;
 	}
 
+	/**
+	 * Lekérdezi az adott robot aktuális állapotát
+	 */
 	public Vector2D getPosition(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 		return position;
 	}
 
+	/**
+	 * Lekérdezi az adott robot aktuális sebességét
+	 */
 	public Vector2D getSpeed(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 		return speed;
 	}
 
+	/**
+	 * Lekérdezi az adott robot aktuális ragacskészletét
+	 */
 	public int getStoredGlue(){
 		SkeletonHelper.writeOutMethodName();
 		int glue = SkeletonHelper.getIntAnswer("Mennyi ragacs van még raktáron?", "darab");
 		SkeletonHelper.returnFromMethod();
 		return glue;
 	}
-
+	
+	/**
+	 * Lekérdezi az adott robot aktuális olajkészletét
+	 */
 	public int getStoredOil(){
 		SkeletonHelper.writeOutMethodName();
 		int oil = SkeletonHelper.getIntAnswer("Mennyi olajfolt van még raktáron?", "darab");
@@ -108,17 +81,17 @@ public class Robot implements GameObject {
 		return oil;
 	}
 	/**
-	 * Életben van-e a robot.
+	 * Megadja, hogy életben van-e a robot.
 	 */
 	public boolean isAlive(){
 		SkeletonHelper.writeOutMethodName();
-		boolean alive = SkeletonHelper.getBooleanAnswer("Életben van a robot?");
+		boolean alive = SkeletonHelper.getBooleanAnswer("Életben van a robot");
 		SkeletonHelper.returnFromMethod();
 		return alive;
 	}
 
 	/**
-	 * Megöli a robotott (felrobantja...)
+	 * Megöli a robotot.
 	 */
 	public void KillHim(){
 		SkeletonHelper.writeOutMethodName();
@@ -126,7 +99,7 @@ public class Robot implements GameObject {
 	}
 
 	/**
-	 * A robot a földön van-e
+	 * Megadja, hogy a robot a földön van-e
 	 */
 	public boolean onTheGround(){
 		SkeletonHelper.writeOutMethodName();
@@ -136,63 +109,33 @@ public class Robot implements GameObject {
 	}
 
 	/**
+	 * Beállítja a robot állapotát, ami lehet irányítható, vagy irányíthatatlan
 	 * 
-	 * @param newVal
-	 */
-	public void setControllable(boolean newVal){
-		SkeletonHelper.writeOutMethodName();
-
-		SkeletonHelper.returnFromMethod();
-	}
-
-	/**
+	 * @param newState: az új állapot (true vagy false)
 	 * 
-	 * @param newVal
+	 * newState = true -> irányítható
+	 * newState = false -> irányíthatatlan
 	 */
-	public void setDistance(Vector2D newVal){
+	public void setControllable(boolean newState){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
 
+
 	/**
-	 * 
-	 * @param newVal
+	 * Beállítja az adott robot új sebességét
+	 * @param newSp: az új sebesség
 	 */
-	public void setPosition(Vector2D newVal){
+	public void setSpeed(Vector2D newSp){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSpeed(Vector2D newVal){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-	}
 
 	/**
+	 * Frissíti a robotok állapotát.
 	 * 
-	 * @param newVal
-	 */
-	public void setStoredGlue(int newVal){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStoredOil(int newVal){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-	}
-
-	/**
-	 * 
-	 * @param g
+	 * @param g: az objektumot vezérlő Game osztály.
 	 */
 	public void Update(Game g){
 		SkeletonHelper.writeOutMethodName();
@@ -227,12 +170,20 @@ public class Robot implements GameObject {
 		}
 		for(GameObject gObj : g.getGameObjects())
 		{
-			gObj.CollisionWithRobot(this);
+			if(gObj!=this)
+			{
+				gObj.CollisionWithRobot(this);
+			}
 		}
 		
 		SkeletonHelper.returnFromMethod();
 	}
 
+	/**
+	 * Kirajzolja a robotokat.
+	 * 
+	 * @param g: a grafikus környezet, amiben a kirajzolás történik.
+	 */
 	@Override
 	public void Draw(Graphics g) {
 		SkeletonHelper.writeOutMethodName();
