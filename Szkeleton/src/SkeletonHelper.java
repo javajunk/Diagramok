@@ -12,7 +12,9 @@ public abstract class SkeletonHelper {
 	static BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
 	static Hashtable<Integer, String> controlKeyNames = new Hashtable<Integer, String>();
 	
-	
+	/**
+	 * Összerendeli a verseny során használatos billentyűparancsokat a hozzájuk tartozó kóddal
+	 */
 	public static void Init()
 	{
 		controlKeyNames.put(KeyEvent.VK_UP,"Fel");
@@ -24,7 +26,7 @@ public abstract class SkeletonHelper {
 	}
 	
 	/**
-	 * Egy metódus nevének kiírását megvalósító metódus
+	 * Egy metódus nevének kiírását megvalósító függvény
 	 */
 	public static void writeOutMethodName ()
 	{
@@ -34,6 +36,12 @@ public abstract class SkeletonHelper {
 		t++;
 	}
 	
+	/**
+	 * A paraméterül kapott stringet ismétli meg n-szer
+	 * @param str: a szöveg
+	 * @param n: ismétlés száma
+	 * @return re: az előállított új szöveg
+	 */
 	private static String repeat(String str,int n)
 	{
 		String re = "";
@@ -45,15 +53,22 @@ public abstract class SkeletonHelper {
 		
 	}
 		
+	/**
+	 * Egy metódusból való visszatéréskor csökkenti a behúzás mértékét
+	 */
 	public static void returnFromMethod ()
 	{
 		t--;
 	}
 	
+	/**
+	 * Egy metódus, ami rossz bemenet esetén figyelmeztető üzenetet ír ki
+	 */
 	private static void printInputWarning ()
 	{
 		System.out.println(repeat("\t",t) + "Rossz bemenet, próbáld újra!");		
 	}
+	
 	/**
 	 * A paraméterben kapott kérdést kiírja stdout-ra és vár egy egész számot válaszként.
 	 * Értelmetlen válasz esetén figyelmeztet, majd újra felteszi a kérdést.
@@ -159,9 +174,14 @@ public abstract class SkeletonHelper {
 	
 	
 
+	/**
+	 * Megkérdezi, hogy a paraméterül kapott kódú billentyű le van-e nyomva.
+	 * @param keyCode: billentyűkód
+	 * @return: true -> le van nyomva (I)
+	 * @return: false -> nincs lenyomva (N)
+	 */
 	public static boolean getKeyState(Integer keyCode)
 	{
 		return getBooleanAnswer("Le van nyomva a "+ controlKeyNames.get(keyCode) +" billentyű");
 	}
-	
 }
