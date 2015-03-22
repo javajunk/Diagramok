@@ -1,7 +1,4 @@
 public class Vector2D {
-	private double x;
-	private double y;
-
 	/**
 	 * Vektorösszeadás.
 	 * @param vec - A hozzáadandó vektor.
