@@ -140,41 +140,7 @@ public abstract class SkeletonHelper {
 		SkeletonHelper.printInputWarning();
 		return getBooleanAnswer(question);
 	}
-	
-	/**
-	 * A paraméterben kapott kérdést kiírja stdout-ra. Válaszként egy számot vár.
-	 * Ha nem számot kap, hibát jelez és újra felteszi a kérdést.
-	 * @param question - A kérdés
-	 * @param choices - A lehetséges válaszok, max. 4 db
-	 * @return A válasz sorszáma
-	 */
-	public static int getMultipleChoiceAnswer (String question, String choices[])
-	{
-		System.out.print(repeat("\t", t) + question + " (");
-		for (int i = 0; i < 4 && i < choices.length; i++)
-		{
-			System.out.print((i+1) + ": " + choices[i] + "   ");
-		}
-		System.out.print("\b\b\b)\n" + repeat("\t", t));
-		try {
-			String line = br.readLine();
-			int c = Integer.parseInt(line);
-			if (c > choices.length || c < 0 || c > 4)
-				c = 0;
-			if (c != 0)
-			{
-				return c;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException e) {
-			
-		}
-		SkeletonHelper.printInputWarning();
-		return getMultipleChoiceAnswer(question, choices);
-	}
-	
-	
+
 	/**
 	 * Megkérdezi, hogy a paraméterül kapott kódú billentyű le van-e nyomva.
 	 * @param keyCode: billentyűkód
