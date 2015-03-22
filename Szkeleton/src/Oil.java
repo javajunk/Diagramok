@@ -13,19 +13,18 @@ public class Oil extends Obstacle {
 	}
 	
 	
-	protected boolean CollisionDetectWithRobot(Robot robi){
-		SkeletonHelper.writeOutMethodName();
-		boolean collision = false;
-		if(robi.onTheGround())
-		{
-			collision = SkeletonHelper.getBooleanAnswer("Ráugrott a robot egy ragacsfoltra?");
-		}
-		SkeletonHelper.returnFromMethod();
-		return collision;
-	}
-	
 	public void CollisionWithRobot(Robot robi){
 		SkeletonHelper.writeOutMethodName();
+		
+		if(CollisionDetectWithRobot(robi))
+		{
+			robi.setControllable(false);
+		}
+		else
+		{
+			robi.setControllable(true);
+		}
+		
 		SkeletonHelper.returnFromMethod();
 	}
 
@@ -40,24 +39,4 @@ public class Oil extends Obstacle {
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
-
-
-	public Vector2D getPosition(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		return position;
-	}
-
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPosition(Vector2D newPos){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-	}
-
-
-
 }
