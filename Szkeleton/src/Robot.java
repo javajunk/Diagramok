@@ -79,7 +79,6 @@ public class Robot implements GameObject {
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 		return distance;
-		//return distance;
 	}
 
 	public Vector2D getPosition(){
@@ -99,7 +98,6 @@ public class Robot implements GameObject {
 		int glue = SkeletonHelper.getIntAnswer("Mennyi ragacs van még raktáron?", "darab");
 		SkeletonHelper.returnFromMethod();
 		return glue;
-		//return storedGlue;
 	}
 
 	public int getStoredOil(){
@@ -107,13 +105,7 @@ public class Robot implements GameObject {
 		int oil = SkeletonHelper.getIntAnswer("Mennyi olajfolt van még raktáron?", "darab");
 		SkeletonHelper.returnFromMethod();
 		return oil;
-		//return storedOil;
 	}
-
-	/*public Vector2D getVector2D(){
-		return m_Vector2D;
-	}*/
-
 	/**
 	 * Életben van-e a robot.
 	 */
@@ -148,16 +140,8 @@ public class Robot implements GameObject {
 	 */
 	public void setControllable(boolean newVal){
 		SkeletonHelper.writeOutMethodName();
-		if(newVal)
-		{
-			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot irányítható");
-		}
-		else
-		{
-			System.out.println(SkeletonHelper.repeat("\t",SkeletonHelper.t) + "A robot nem irányítható");
-		}
+
 		SkeletonHelper.returnFromMethod();
-		//controllable = newVal;
 	}
 
 	/**
@@ -167,7 +151,6 @@ public class Robot implements GameObject {
 	public void setDistance(Vector2D newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		//distance = newVal;
 	}
 
 	/**
@@ -177,7 +160,6 @@ public class Robot implements GameObject {
 	public void setPosition(Vector2D newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		//position = newVal;
 	}
 
 	/**
@@ -187,7 +169,6 @@ public class Robot implements GameObject {
 	public void setSpeed(Vector2D newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		//speed = newVal;
 	}
 
 	/**
@@ -197,7 +178,6 @@ public class Robot implements GameObject {
 	public void setStoredGlue(int newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		//storedGlue = newVal;
 	}
 
 	/**
@@ -207,7 +187,6 @@ public class Robot implements GameObject {
 	public void setStoredOil(int newVal){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		//storedOil = newVal;
 	}
 
 	/**
@@ -228,10 +207,9 @@ public class Robot implements GameObject {
 			}
 		}
 		
-		List<GameObject> gameobjects = g.getGameObjects();
-		for(int i = 0; i < gameobjects.size(); i++)
+		for(GameObject gObj : g.getGameObjects())
 		{
-			gameobjects.get(i).CollisionWithRobot(this);
+			gObj.CollisionWithRobot(this);
 		}
 		
 		SkeletonHelper.returnFromMethod();
@@ -239,10 +217,8 @@ public class Robot implements GameObject {
 
 	@Override
 	public void Draw(Graphics g) {
-		// TODO Auto-generated method stub
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
-		
 	}
 
 }
