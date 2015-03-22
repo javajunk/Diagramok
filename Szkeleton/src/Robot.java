@@ -112,7 +112,7 @@ public class Robot implements GameObject {
 	 */
 	public boolean onTheGround(){
 		SkeletonHelper.writeOutMethodName();
-		boolean foldon = SkeletonHelper.getBooleanAnswer("Földön van a robot?");
+		boolean foldon = SkeletonHelper.getBooleanAnswer("Földön van a robot");
 		SkeletonHelper.returnFromMethod();
 		return foldon;
 	}
