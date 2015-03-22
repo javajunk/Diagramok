@@ -34,7 +34,7 @@ public class Map implements GameObject {
 		boolean out = isOutOfTrack(new Vector2D());
 		if(onGround && out)
 		{
-			robi.killHim();
+			robi.KillHim();
 		}
 		SkeletonHelper.returnFromMethod();
 	}

@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 
 
 /**
@@ -7,8 +9,8 @@
  */
 public class Oil extends Obstacle {
 
-	private static final string oilImage = /obstacles/oil.png;
-	private static final double Radius = /*coming soon*/;
+	private static final String oilImage = "/obstacles/oil.png"; //TODO
+	private static final double Radius = 1; //TODO
 	private Vector2D m_Vector2D;
 
 	public Oil(){
@@ -34,15 +36,17 @@ public class Oil extends Obstacle {
 		robi.setControllable(!coll);
 		SkeletonHelper.returnFromMethod();
 	}
+
+	@Override
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	public void Update(Game g){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
-
-	/*public void finalize() throws Throwable {
-		super.finalize();
-	}*/
 
 
 	public Vector2D getVector2D(){
@@ -61,5 +65,7 @@ public class Oil extends Obstacle {
 		SkeletonHelper.returnFromMethod();
 		//m_Vector2D = newVal;
 	}
+
+
 
 }

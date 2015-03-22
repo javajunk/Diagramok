@@ -36,7 +36,6 @@ public class Glue extends Obstacle {
 
 	@Override
 	protected boolean CollisionDetectWithRobot(Robot robi) {
-		// TODO Auto-generated method stub
 		SkeletonHelper.writeOutMethodName();
 		
 		boolean collision = false;
