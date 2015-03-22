@@ -17,7 +17,7 @@ public abstract class SkeletonHelper {
 		controlKeyNames.put(KeyEvent.VK_UP,"Fel");
 		controlKeyNames.put(KeyEvent.VK_DOWN,"Le");
 		controlKeyNames.put(KeyEvent.VK_LEFT,"Balra");
-		controlKeyNames.put(KeyEvent.VK_RIGHT,"Jobra");
+		controlKeyNames.put(KeyEvent.VK_RIGHT,"Jobbra");
 		controlKeyNames.put(KeyEvent.VK_O,"Olaj");
 		controlKeyNames.put(KeyEvent.VK_G,"Ragacs");
 	}
