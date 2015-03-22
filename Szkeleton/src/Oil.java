@@ -6,10 +6,6 @@ import java.awt.Graphics;
  */
 public class Oil extends Obstacle {
 
-	private static final String oilImage = "/obstacles/oil.png";
-	private static final double Radius = 1;
-	private Vector2D position;
-
 	public Oil(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();

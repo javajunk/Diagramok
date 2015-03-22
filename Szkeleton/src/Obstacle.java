@@ -1,20 +1,14 @@
-import java.awt.Graphics;
-
-
-
 /**
- * @author Lucy
- * @version 1.0
- * @created 19-márc.-2015 11:08:13
+ * Az Obstacle absztrakt osztály tartalmazza az akadályok közös attribútumait és metódusát.
+ * Az akadályok (Glue és Oil) őse.
+ * Az osztály fő feladata az ütközések detektálása egy robot és egy akadály között.
  */
-public abstract class Obstacle implements GameObject {
 
-	protected Vector2D position;
-	protected int radius;
+public abstract class Obstacle implements GameObject {
 
 	/**
 	 * Megnézi, hogy a megvalósító objektum ütközik-e a paraméterként kapott robottal.
-	 * @param robi
+	 * @param robi: a robot, amivel az adott objektum ütközik
 	 */
 	protected boolean CollisionDetectWithRobot(Robot robi)
 	{
