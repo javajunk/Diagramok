@@ -1,4 +1,5 @@
 import javax.swing.JComponent;
+
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,19 +7,15 @@ import java.util.List;
 public class Game extends JComponent implements Runnable {
 
 	private static final long serialVersionUID = 7845653460750690226L;
-	//private int gameStarted;
-	//private int gameTime;
-	//private boolean isRunning;
 	private KeyboardState keyboardState = new KeyboardState();
-	//private static final int targetFrameTime = 16;
 	private List<GameObject> gameObjects = new ArrayList<GameObject>();
-	//private HUD hud;
 	private Map map;
 	private List<Robot> robots = new ArrayList<Robot>();
 	private List<GameEndedListener> gameEndedListeners = new ArrayList<GameEndedListener>();
 	
 	public Game(){
 		SkeletonHelper.writeOutMethodName();
+		SkeletonHelper.returnFromMethod();
 	}
 	
 	/**
@@ -33,7 +30,7 @@ public class Game extends JComponent implements Runnable {
 	}
 
 	/**
-	 * Hozzáad egy akadályt a térkép és a robotok közzé.
+	 * Hozzáad egy akadályt a GameObject-es listához.
 	 * @param obs A hozzáadandó akadály.
 	 */
 	public void addObstacle(Obstacle obs){
@@ -68,7 +65,8 @@ public class Game extends JComponent implements Runnable {
 	}
 	
 	/**
-	 * @return KeyboardState objektumot, ami erre az objektumra figyel. 
+	 * Visszaad egy KeyboardState osztályt, amivel majd a billentyűzet aktuális állapotát fogjuk tudni lekérni.
+	 * @return: a billentyűzet állapotának vizsgálásra alkalmas osztály
 	 */
 	public KeyboardState getkeyboardState(){
 		SkeletonHelper.writeOutMethodName();
@@ -78,7 +76,8 @@ public class Game extends JComponent implements Runnable {
 	}
 	
 	/**
-	 * @return A játéktér térképe.
+	 * Lekéri a játéktér térképét
+	 * @return: térkép
 	 */
 	public Map getMap(){
 		SkeletonHelper.writeOutMethodName();
@@ -88,7 +87,8 @@ public class Game extends JComponent implements Runnable {
 	}
 	
 	/**
-	 * @return A játékból hátralévő idő.
+	 * Lekéri a játékból hátralévő időt
+	 * @return: maradék idő
 	 */
 	public int getRemainingTime(){
 		SkeletonHelper.writeOutMethodName();
@@ -98,7 +98,8 @@ public class Game extends JComponent implements Runnable {
 	}
 
 	/**
-	 * @return A játéktér összes robotja.
+	 * Egy lista, amiben a robotokat tároljuk.
+	 * @return: robotok listája
 	 */
 	public List<Robot> getRobots(){
 		SkeletonHelper.writeOutMethodName();
@@ -159,8 +160,8 @@ public class Game extends JComponent implements Runnable {
 	}
 
 	/**
-	 * Bealítja a játék maximális hosszát.
-	 * @param sec A játék maximális hossza másodpercben.
+	 * Beállítja a játék maximális hosszát.
+	 * @param sec: A játék maximális hossza másodpercben.
 	 */
 	public void setMaxGameTime(int sec){
 		SkeletonHelper.writeOutMethodName();
@@ -169,7 +170,7 @@ public class Game extends JComponent implements Runnable {
 	}
 	
 	/**
-	 * Létrehoz egy új szálat a játék számára és elindítja a játékot.
+	 * Létrehoz egy új szálat a verseny számára és elindítja.
 	 */
 	public void Start(){
 		SkeletonHelper.writeOutMethodName();
@@ -181,9 +182,9 @@ public class Game extends JComponent implements Runnable {
 	}
 
 	/**
-	 * Meghívja a játéktér összes elemének az Update metódusát
-	 * Ellenőrzi, hogy véget ért-e a játék.
-	 * Ha a játék véget ért értesíti a feliratkozókat erről és szünetelteti a játékot.
+	 * Meghívja a játéktér összes elemének az Update metódusát, valamint
+	 * ellenőrzi, hogy véget ért-e a játék.
+	 * Ha a játék véget ért, értesíti a feliratkozókat erről és szünetelteti a játékot.
 	 */
 	public void Update(){
 		SkeletonHelper.writeOutMethodName();
@@ -215,7 +216,7 @@ public class Game extends JComponent implements Runnable {
 	}
 	
 	/**
-	 * Elinditja a játékot.
+	 * Elindítja a játékot.
 	 */
 	@Override
 	public void run() {
