@@ -6,11 +6,7 @@ public class Robot implements GameObject {
 
 	private double distance;
 	private Vector2D position;
-	//private static final double Radius = 0/*coming soon*/;
 	private Vector2D speed;
-	//private int storedGlue;
-	//private int storedOil;
-	//private Vector2D m_Vector2D;
 
 	public Robot(){
 		SkeletonHelper.writeOutMethodName();
