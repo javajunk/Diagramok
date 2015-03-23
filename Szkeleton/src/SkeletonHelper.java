@@ -87,7 +87,7 @@ public abstract class SkeletonHelper {
 			if(badAnswer)
 				printInputWarning();
 			
-			System.out.print(repeat("\t",t) + question + " (" + unit + ") ");
+			System.out.print(repeat("\t",t) + question + "? (" + unit + ") ");
 			
 			badAnswer = false;
 			
