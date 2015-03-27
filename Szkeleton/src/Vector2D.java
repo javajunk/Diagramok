@@ -1,29 +1,122 @@
+/**
+ * Az osztály egy egyszerű 2 dimenziós vektort implementál.
+ */
 public class Vector2D {
+
+	private double x;
+	private double y;
+	
+	public Vector2D (double x, double y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+	
+	/**
+	 * Módosítja a vektor koordinátáit a paraméterként kapott értékekre.
+	 * @param x - Az új X koordináta érték.
+	 * @param y - Az új Y koordináta érték.
+	 */
+	public void setCoords (double x, double y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+	/**
+	 * Visszaadja a vektor X koordinátáját.
+	 * @return Az X koordináta értéke.
+	 */
+	public double getX ()
+	{
+		return x;
+	}
+	
+	/**
+	 * Módosítja a vektor X koordinátáját a paraméterként kapott értékre.
+	 * @param value - Az új X koordináta érték.
+	 */
+	public void setX (double value)
+	{
+		x = value;
+	}
+	
+	/**
+	 * Visszaadja a vektor Y koordinátáját.
+	 * @return Az Y koordináta értéke.
+	 */
+	public double getY ()
+	{
+		return y;
+	}
+	
+	/**
+	 * Módosítja a vektor Y koordinátáját a paraméterként kapott értékre.
+	 * @param value - Az új Y koordináta érték.
+	 */
+	public void setY (double value)
+	{
+		y = value;
+	}
+	
+	/**
+	 * Visszadja a vektor és x tengely által bezárt közötti szöget, 0 és 2 * PI közötti értékkel.
+	 * @return A bezárt szog.
+	 */
+	public double getAngle ()
+	{
+		double a = Math.atan2(y, x);
+		if (a < 0)
+			return Math.PI * 2 + a;
+		return a;
+	}
+	
+	/**
+	 * Módosítja a vektor x tengellyel bezárt szögét.
+	 * @param degrees - Az új szög, fokban.
+	 */
+	public void setDegreeAngle (double degrees)
+	{
+		double r = Length();
+		x = r * Math.cos(Math.toRadians(degrees));
+		y = r * Math.sin(Math.toRadians(degrees));
+	}
+	
+	/**
+	 * Módosítja a vektor x tengellyel bezárt szögét.
+	 * @param degrees - Az új szög, radiánban.
+	 */
+	public void setRadianAngle (double radians)
+	{
+		double r = Length();
+		x = r * Math.cos(radians);
+		y = r * Math.sin(radians);
+	}
+		
+	/**
+	 * Visszaadja a vektor jelenlegi hosszát.
+	 * @return A vektor hossza.
+	 */
+	public double Length(){
+		return Math.sqrt((x * x) + (y * y));
+	}
+
 	/**
 	 * Vektorösszeadás.
 	 * @param vec - A hozzáadandó vektor.
 	 */
 	public void Add(Vector2D vec){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-	}
-
-	/**
-	 * Visszaadja a vektor jelenlegi hosszát.
-	 * @return - A vektor hossza.
-	 */
-	public double Length(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
-		return 0;
+		x = x + vec.getX();
+		y = y + vec.getY();
 	}
 
 	/**
 	 * Normalizálja a vektort.
 	 */
 	public void Normalize(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+		if (Length() == 0)
+			return;
+		x = x / Length();
+		y = y / Length();
 	}
 
 	/**
@@ -31,8 +124,8 @@ public class Vector2D {
 	 * @param s - a skalár
 	 */
 	public void Scale(double s){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+		x = x * s;
+		y = y * s;
 	}
 
 	/**
@@ -40,7 +133,11 @@ public class Vector2D {
 	 * @param vec - A kivonandó vektor.
 	 */
 	public void Subtract(Vector2D vec){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+		x = x - vec.getX();
+		y = y - vec.getY();
+	}
+	
+	public String toString() {
+		return "(" + x + "," + y + ")";
 	}
 }
