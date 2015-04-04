@@ -6,7 +6,13 @@ public class Vector2D {
 	private double x;
 	private double y;
 	
-	public Vector2D (double x, double y)
+	public Vector2D ()
+	{
+		this.x = 1;
+		this.y = 0;
+	}
+	
+ 	public Vector2D (double x, double y)
 	{
 		this.x = x;
 		this.y = y;
@@ -22,6 +28,16 @@ public class Vector2D {
 		this.x = x;
 		this.y = y;
 	}
+	
+	/**
+	 * Visszaadja a vektor koordinátáit egy kettő elemű tömbben.
+	 * @return A vektor koordinátái egy tömbben, {x, y} sorrendben.
+	 */
+	public double[] getCoords ()
+	{
+		return new double[] {x, y};
+	}
+
 	/**
 	 * Visszaadja a vektor X koordinátáját.
 	 * @return Az X koordináta értéke.
@@ -59,7 +75,7 @@ public class Vector2D {
 	}
 	
 	/**
-	 * Visszadja a vektor és x tengely által bezárt közötti szöget, 0 és 2 * PI közötti értékkel.
+	 * Visszadja a vektor és x tengely által bezárt szöget, 0 és 2 * PI közötti értékkel.
 	 * @return A bezárt szog.
 	 */
 	public double getAngle ()
