@@ -1,0 +1,7 @@
+Robot1 (600, 594)
+Robot2 (600, 532)
+
+LittleBotEntryPoint (600,30)
+
+
+Random Obstacle 112,87;217,87;322,87;427,87;
