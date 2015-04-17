@@ -19,9 +19,13 @@ public class LittleBot extends Bot implements Dumpable {
 	public final static double Radius = 13;
 	private BufferedImage littleBotImage = null;
 	private Obstacle targetObstacle;
+	private int protoID;
+	private static int protoIdNext = 0;
 
 	LittleBot()
 	{
+		protoIdNext++;
+		protoID=protoIdNext;
 		try 
 		{
 		    littleBotImage = ImageIO.read(new File(littleBotPic));
@@ -99,15 +103,19 @@ public class LittleBot extends Bot implements Dumpable {
 
 	@Override
 	public int getProtoId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return protoID;
 	}
 
 
 	@Override
 	public Hashtable<String, String> dump() {
-		// TODO Auto-generated method stub
-		return null;
+		Hashtable<String,String> infos = new Hashtable<String,String>();
+		
+		infos.put("position", this.position.toString());
+		infos.put("speed", this.speed.toString());
+		infos.put("targetObstacle (Id)", this.targetObstacle.getProtoId);
+		
+		return infos;
 	}
 
 }
