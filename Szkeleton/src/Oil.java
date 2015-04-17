@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  * Az osztály feladata az olajfoltok képének, helyzetének és kiterjedésének tárolása, 
