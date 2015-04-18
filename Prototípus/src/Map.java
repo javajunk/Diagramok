@@ -7,8 +7,8 @@ public class Map implements GameObject {
 
 	//Kellene bele valami amivel le lehet kerdezni a terkep meretet.
 	public Map(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+		//SkeletonHelper.writeOutMethodName();
+		//SkeletonHelper.returnFromMethod();
 	}
 
 	/**
@@ -16,14 +16,14 @@ public class Map implements GameObject {
 	 * @param robi: a robot, amit vizsgálunk
 	 */
 	public void CollisionWithRobot(Robot robi){
-		SkeletonHelper.writeOutMethodName();
+		//SkeletonHelper.writeOutMethodName();
 		boolean onGround = robi.onTheGround();
 		boolean out = isOutOfTrack(new Vector2D());
 		if(onGround && out)
 		{
 			robi.KillHim();
 		}
-		SkeletonHelper.returnFromMethod();
+		//SkeletonHelper.returnFromMethod();
 	}
 	
 	/**
@@ -42,8 +42,8 @@ public class Map implements GameObject {
 	 */
 	@Override
 	public void Update(Game g){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+		//SkeletonHelper.writeOutMethodName();
+		//SkeletonHelper.returnFromMethod();
 	}
 	
 	/**
@@ -53,8 +53,8 @@ public class Map implements GameObject {
 	 */
 	@Override
 	public void Draw(Graphics g) {
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+		//SkeletonHelper.writeOutMethodName();
+		//SkeletonHelper.returnFromMethod();
 	}
 
 }

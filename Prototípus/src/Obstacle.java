@@ -29,12 +29,12 @@ public abstract class Obstacle implements GameObject, Dumpable {
 	 */
 	protected boolean CollisionDetectWithRobot(Robot robi)
 	{
-		SkeletonHelper.writeOutMethodName();
+		//SkeletonHelper.writeOutMethodName();
 		
 		boolean collision = robi.onTheGround();
 		robi.getPosition();
-		collision = collision && SkeletonHelper.getBooleanAnswer("Történt ütközés a robottal?");
-		SkeletonHelper.returnFromMethod();
+		//collision = collision && SkeletonHelper.getBooleanAnswer("Történt ütközés a robottal?");
+		//SkeletonHelper.returnFromMethod();
 		return collision;
 	}
 	

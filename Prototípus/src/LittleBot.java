@@ -19,6 +19,7 @@ public class LittleBot extends Bot implements Dumpable {
 	public final static double Radius = 13;
 	private BufferedImage littleBotImage = null;
 	private Obstacle targetObstacle;
+	private boolean alive = false;
 	private int protoID;
 	private static int protoIdNext = 0;
 
@@ -26,6 +27,7 @@ public class LittleBot extends Bot implements Dumpable {
 	{
 		protoIdNext++;
 		protoID=protoIdNext;
+		this.alive = true;
 		this.position = initPos;
 		this.speed = new Vector2D();
 		try 
@@ -58,7 +60,10 @@ public class LittleBot extends Bot implements Dumpable {
 	@Override
 	public void CollisionWithRobot(Robot robi) {
 		// TODO 
-		
+		if((this.position.Distance(robi.position)<(Robot.Radius+LittleBot.Radius))&&robi.onTheGround())
+		{
+			this.alive = false;
+		}
 	}
 	
 	/**
@@ -89,16 +94,25 @@ public class LittleBot extends Bot implements Dumpable {
 	 */
 	@Override
 	public void Update(Game g) {
-		List<Obstacle> obs = g.getObstacles();
 		
-		targetObstacle = obs.get(0);
-		
-		for(int i=1; i<obs.size(); i++)
+		if (this.alive)
 		{
-			if(this.position.Distance(obs.get(i).position)<this.position.Distance(targetObstacle.position))
+			List<Obstacle> obs = g.getObstacles();
+		
+			targetObstacle = obs.get(0);
+		
+			for(int i=1; i<obs.size(); i++)
 			{
-				targetObstacle = obs.get(i);
+				if(this.position.Distance(obs.get(i).position)<this.position.Distance(targetObstacle.position))
+				{
+					targetObstacle = obs.get(i);
+				}
 			}
+		}
+		else
+		{
+			g.addObstacle(new Oil(this.position));
+			g.removeLittleBot(this);
 		}
 		
 	}
