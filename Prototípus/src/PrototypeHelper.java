@@ -228,7 +228,7 @@ public class PrototypeHelper {
 		boolean conntinue = true;
 		do {
 			String[] commAndArgs = ReadCommandWithArguments();
-
+			
 			try
 			{
 				switch (commAndArgs[0]) {
@@ -256,6 +256,7 @@ public class PrototypeHelper {
 			{
 				System.out.println("NullPointerException, The Game object maybe not initialized.\nPlease use Init command");
 			}
+			
 		} while (conntinue);
 		System.out.print("Test Sequence Ended");
 	}

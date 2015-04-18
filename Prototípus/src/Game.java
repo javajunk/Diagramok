@@ -129,6 +129,9 @@ public class Game extends JComponent implements Runnable, Dumpable {
 		return gameTime-elapsedTime;
 	}
 	
+	public int getElapsedTime(){
+		return this.elapsedTime;
+	}
 	private Vector2D getRandomOnMapPostition()
 	{
 		//Vegtelen loop lehet ha szar erteket adnak meg

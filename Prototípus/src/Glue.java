@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 public class Glue extends Obstacle {
 	
 	private BufferedImage glueImage = null;
-	public static String gluePic = "/obstacles/glue.png";
+	public static String gluePic = "glue.png";
 	public static final double OnStepLifeDecrease = 25;
 	
 	public Glue(Vector2D pos){

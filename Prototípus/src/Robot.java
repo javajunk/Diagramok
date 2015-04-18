@@ -26,6 +26,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	public int storedGlue;
 	public int storedOil;
 	private boolean alive;
+	private boolean ontheGround = true;
 	
 	private int protoID;
 	private static int protoIdNext = 0;
@@ -36,10 +37,10 @@ public class Robot extends Bot implements GameObject, Dumpable {
 		protoID=protoIdNext;
 		controllable = true;
 		distance = 0;
-		storedGlue = initStoredObstacles / 2;
-		storedOil = initStoredObstacles / 2;
+		storedGlue = initStoredObstacles;
+		storedOil = initStoredObstacles;
 		alive = true;
-		
+		speed = new Vector2D(0,0);
 		playerControlKeys = params.getControlKeys();
 		position = params.getInitPosition();
 		
@@ -163,9 +164,9 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @return: true -> földön van
 	 * @return: false -> levegőben van
 	 */
-	public boolean onTheGround(Game g){
+	public boolean onTheGround(){
 
-		return ((g.getElapsedTime() % inAirTime) == 0);
+		return this.ontheGround;
 	}
 
 	/**
@@ -197,12 +198,14 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * 
 	 * @param g: az objektumot vezérlő Game osztály.
 	 */
-	public void Update(Game g){
-
+	public void Update(Game g)
+	{
+		
 		if(alive)
 		{
+			ontheGround = g.getElapsedTime() % inAirTime == 0;
 			KeyboardState kb = g.getkeyboardState();
-			if(onTheGround(g))
+			if(onTheGround())
 			{
 				if(kb.isKeyDown(playerControlKeys.get(Control.UP)) && controllable)
 				{
@@ -223,6 +226,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 				
 				position.Add(speed);
 			}
+			
 			if(kb.isKeyDown(playerControlKeys.get(Control.GLUE)) && storedGlue > 0)
 			{
 				g.addObstacle(new Glue(position));
