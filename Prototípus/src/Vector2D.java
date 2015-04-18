@@ -131,11 +131,8 @@ public class Vector2D {
 	public void Normalize(){
 		if (Length() == 0)
 			return;
-		
-		double length = Length();
-		
-		x = x / length;
-		y = y / length;
+		x = x / Length();
+		y = y / Length();
 	}
 
 	/**

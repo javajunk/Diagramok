@@ -32,9 +32,6 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	private int protoID;
 	private static int protoIdNext = 0;
 
-	private boolean glueBtnLastState = false; 	//A cuccok lerakasa false -> true atmenetre
-	private boolean oilBtnLastState = false;	//
-	
 	public Robot(PlayerInitParams params) {
 		
 		protoIdNext++;
@@ -70,7 +67,10 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @param robi: a másik robot
 	 */
 	public void CollisionWithRobot(Robot robi){
-		if(this.position.Distance(robi.getPosition()) < 2 * Radius)
+		Vector2D dist = this.getPosition();
+		dist.Subtract(robi.getPosition());
+		
+		if(dist.Length() < 2 * Radius)
 		{
 			double r1Speed = this.getSpeed().Length();
 			double r2Speed = robi.getSpeed().Length();
@@ -225,28 +225,19 @@ public class Robot extends Bot implements GameObject, Dumpable {
 					speed.Add(new Vector2D(1, 0));
 				}
 				
-				
+				position.Add(speed);
 			}
-			speed.Normalize();
-			position.Add(speed);
 			
-			
-			boolean glueBtnState = kb.isKeyDown(playerControlKeys.get(Control.GLUE));
-			if(!glueBtnLastState && glueBtnState && storedGlue > 0)
+			if(kb.isKeyDown(playerControlKeys.get(Control.GLUE)) && storedGlue > 0)
 			{
 				g.addObstacle(new Glue(position));
 				storedGlue--;
 			}
-			glueBtnLastState = glueBtnState;
-			
-			boolean oilBtnState = kb.isKeyDown(playerControlKeys.get(Control.OIL));
-			if(!oilBtnLastState && oilBtnState && storedOil > 0)
+			if(kb.isKeyDown(playerControlKeys.get(Control.OIL)) && storedOil > 0)
 			{
 				g.addObstacle(new Oil(position));
 				storedOil--;
 			}
-			oilBtnLastState = oilBtnState;
-			
 			for(GameObject gObj : g.getRobots())
 			{
 				if(gObj!=this)

@@ -32,7 +32,7 @@ public class PrototypeHelper {
 		controlKeyNames.put("É", 39);
 		controlKeyNames.put("Á", 40);
 		controlKeyNames.put("O", KeyEvent.VK_O);
-		controlKeyNames.put("Ő", 26);
+		controlKeyNames.put("Ö", 26);
 	}
 
 	private static void StupidUserMessage() {
