@@ -29,6 +29,10 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	private boolean alive;
 	private boolean ontheGround = true;
 	
+
+	private boolean glueBtnLastState = false; 	//A cuccok lerakasa false -> true atmenetre
+	private boolean oilBtnLastState = false;	//
+	
 	private int protoID;
 	private static int protoIdNext = 0;
 
@@ -67,28 +71,35 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @param robi: a másik robot
 	 */
 	public void CollisionWithRobot(Robot robi){
-		Vector2D dist = this.getPosition();
+		/*Vector2D dist = this.getPosition();
+		dist.Subtract(robi.getPosition());*/
+		Vector2D dist = new Vector2D(position.getX(), position.getY());
 		dist.Subtract(robi.getPosition());
 		
-		if(dist.Length() < 2 * Radius)
+		if(dist.Length() < 2 * Radius && robi.isAlive() && alive)
 		{
 			double r1Speed = this.getSpeed().Length();
 			double r2Speed = robi.getSpeed().Length();
+			Vector2D newSp = new Vector2D((speed.getX() + robi.getSpeed().getX()) / 2, (speed.getY() + robi.getSpeed().getY()) / 2);
 			if(r1Speed < r2Speed)
 			{
-				Vector2D newSpeed = this.getSpeed();
+				/*Vector2D newSpeed = this.getSpeed();
 				newSpeed.Add(robi.getSpeed());
 				newSpeed.Scale(0.5);
 				robi.setSpeed(newSpeed);
+				this.KillHim();*/
+				robi.setSpeed(newSp);
 				this.KillHim();
 			}
 			else if(r1Speed > r2Speed)
 			{
-				Vector2D newSpeed = this.getSpeed();
+				/*Vector2D newSpeed = this.getSpeed();
 				newSpeed.Add(robi.getSpeed());
 				newSpeed.Scale(0.5);
 				robi.KillHim();
-				this.setSpeed(newSpeed);
+				this.setSpeed(newSpeed);*/
+				this.setSpeed(newSp);
+				robi.KillHim();
 			}
 			else
 			{
@@ -224,20 +235,31 @@ public class Robot extends Bot implements GameObject, Dumpable {
 				{
 					speed.Add(new Vector2D(1, 0));
 				}
-				
-				position.Add(speed);
 			}
 			
-			if(kb.isKeyDown(playerControlKeys.get(Control.GLUE)) && storedGlue > 0)
+			//Majdnem joo volt csak 2 sorral lejebb kellet volna ---- Tamas
+			speed.Normalize();
+			position.Add(speed);
+			distance += speed.Length(); // Ez így jó? 
+			
+			
+			
+			boolean glueBtnState = kb.isKeyDown(playerControlKeys.get(Control.GLUE));
+			if(!glueBtnLastState && glueBtnState && storedGlue > 0)
 			{
 				g.addObstacle(new Glue(position));
 				storedGlue--;
 			}
-			if(kb.isKeyDown(playerControlKeys.get(Control.OIL)) && storedOil > 0)
+			glueBtnLastState = glueBtnState;
+			
+			boolean oilBtnState = kb.isKeyDown(playerControlKeys.get(Control.OIL));
+			if(!oilBtnLastState && oilBtnState && storedOil > 0)
 			{
 				g.addObstacle(new Oil(position));
 				storedOil--;
 			}
+			oilBtnLastState = oilBtnState;
+			
 			for(GameObject gObj : g.getRobots())
 			{
 				if(gObj!=this)

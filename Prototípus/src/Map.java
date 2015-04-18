@@ -32,10 +32,7 @@ public class Map implements GameObject {
 	 * @param pos: vizsgálandó pont
 	 */
 	public boolean isOutOfTrack(Vector2D pos){
-		SkeletonHelper.writeOutMethodName();
-		boolean out = SkeletonHelper.getBooleanAnswer("Kint van a pályáról");
-		SkeletonHelper.returnFromMethod();
-		return out;
+		return false;
 	}
 
 	/**
