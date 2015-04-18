@@ -1,13 +1,36 @@
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Hashtable;
+
+import javax.imageio.ImageIO;
 
 /**
  * Az osztály feladata a ragacsfoltok képének, helyzetének és kiterjedésének tárolása,
  * valamint a ragacsfoltok frissítése és kirajzolása is.
  */
 public class Glue extends Obstacle {
-
+	
+	private BufferedImage glueImage = null;
+	public static String gluePic = "/obstacles/glue.png";
+	public static final double OnStepLifeDecrease = 25;
+	
 	public Glue(Vector2D pos){
 		super(pos);
+		try {
+			glueImage = ImageIO.read(new File(gluePic));
+		}
+		catch (IOException e) 
+		{
+			e.getStackTrace();
+			System.err.println(e);
+		}
+		catch (Exception e)
+		{
+			e.getStackTrace();
+			System.err.println(e);
+		}
 	}
 
 	/**
@@ -18,15 +41,15 @@ public class Glue extends Obstacle {
 	 */
 	@Override
 	public void CollisionWithRobot(Robot robi) {
-		SkeletonHelper.writeOutMethodName();
 		
 		if(CollisionDetectWithRobot(robi))
 		{
-			robi.getSpeed();
-			robi.setSpeed(new Vector2D());
+			Vector2D sp = robi.getSpeed();
+			sp.Scale(0.5);
+			robi.setSpeed(sp);
+			
+			DecreaseLife(OnStepLifeDecrease);
 		}
-		
-		SkeletonHelper.returnFromMethod();
 	}
 
 	/**
@@ -35,9 +58,8 @@ public class Glue extends Obstacle {
 	 * @param g: a grafikus környezet, amiben a kirajzolás történik.
 	 */
 	@Override
-	public void Draw(Graphics g) {
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+	public void Draw(Graphics g) { //TODO
+
 	}
 	
 	/**
@@ -47,7 +69,21 @@ public class Glue extends Obstacle {
 	 */
 	@Override
 	public void Update(Game g) {
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+
+	}
+	
+	@Override
+	public int getProtoId() {
+
+		return protoID;
+	}
+
+
+	@Override
+	public Hashtable<String, String> dump() {
+		Hashtable<String,String> infos = new Hashtable<String,String>();
+		infos.put("position", position.toString());
+		infos.put("life", String.valueOf(life));
+		return infos;
 	}
 }

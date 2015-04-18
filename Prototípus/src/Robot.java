@@ -1,6 +1,11 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Hashtable;
+
+import javax.imageio.ImageIO;
 
 /**
  * Az osztály feladata a játékos által irányított robot legfontosabb paramétereinek a tárolása. 
@@ -9,13 +14,48 @@ import java.util.Hashtable;
  */
 public class Robot extends Bot implements GameObject, Dumpable {
 
+	/*private Vector2D position;
+	private Vector2D speed;*/
+	public boolean controllable;
 	private double distance;
-	private Vector2D position;
-	private Vector2D speed;
+	private static final int inAirTime = 3;
+	public static final int initStoredObstacles = 8;
+	private Hashtable<Control, Integer> playerControlKeys = new Hashtable<Control, Integer>();
+	public static final double Radius = 21;
+	private BufferedImage robotImage;
+	public int storedGlue;
+	public int storedOil;
+	private boolean alive;
+	
+	private int protoID;
+	private static int protoIdNext = 0;
 
-	public Robot(PlayerInitParams params){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+	public Robot(PlayerInitParams params) {
+		
+		protoIdNext++;
+		protoID=protoIdNext;
+		controllable = true;
+		distance = 0;
+		storedGlue = initStoredObstacles / 2;
+		storedOil = initStoredObstacles / 2;
+		alive = true;
+		
+		playerControlKeys = params.getControlKeys();
+		position = params.getInitPosition();
+		
+		try {
+			robotImage = ImageIO.read(new File(params.getImageSrc()));
+		}
+		catch (IOException e) 
+		{
+			e.getStackTrace();
+			System.err.println(e);
+		}
+		catch (Exception e)
+		{
+			e.getStackTrace();
+			System.err.println(e);
+		}
 	}
 
 
@@ -25,14 +65,35 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @param robi: a másik robot
 	 */
 	public void CollisionWithRobot(Robot robi){
-		SkeletonHelper.writeOutMethodName();
-		boolean coll = SkeletonHelper.getBooleanAnswer("Ütközik a két robot");
-		if(coll)
+		Vector2D dist = this.getPosition();
+		dist.Subtract(robi.getPosition());
+		
+		if(dist.Length() < 2 * Radius)
 		{
-			robi.KillHim();
-			KillHim();
+			double r1Speed = this.getSpeed().Length();
+			double r2Speed = robi.getSpeed().Length();
+			if(r1Speed < r2Speed)
+			{
+				Vector2D newSpeed = this.getSpeed();
+				newSpeed.Add(robi.getSpeed());
+				newSpeed.Scale(0.5);
+				robi.setSpeed(newSpeed);
+				this.KillHim();
+			}
+			else if(r1Speed > r2Speed)
+			{
+				Vector2D newSpeed = this.getSpeed();
+				newSpeed.Add(robi.getSpeed());
+				newSpeed.Scale(0.5);
+				robi.KillHim();
+				this.setSpeed(newSpeed);
+			}
+			else
+			{
+				robi.KillHim();
+				this.KillHim();
+			}
 		}
-		SkeletonHelper.returnFromMethod();
 	}
 
 	/**
@@ -40,8 +101,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @return: megtett távolság
 	 */
 	public double getDistance(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+
 		return distance;
 	}
 
@@ -50,8 +110,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @return: a robot helyzete
 	 */
 	public Vector2D getPosition(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+
 		return position;
 	}
 
@@ -60,8 +119,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @return: a robot sebessége
 	 */
 	public Vector2D getSpeed(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+
 		return speed;
 	}
 
@@ -70,10 +128,8 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @return: ragacskészlet mérete
 	 */
 	public int getStoredGlue(){
-		SkeletonHelper.writeOutMethodName();
-		int glue = SkeletonHelper.getIntAnswer("Mennyi ragacs van még raktáron", "darab");
-		SkeletonHelper.returnFromMethod();
-		return glue;
+		
+		return storedGlue;
 	}
 	
 	/**
@@ -81,10 +137,8 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @return: olajkészlet mérete
 	 */
 	public int getStoredOil(){
-		SkeletonHelper.writeOutMethodName();
-		int oil = SkeletonHelper.getIntAnswer("Mennyi olajfolt van még raktáron", "darab");
-		SkeletonHelper.returnFromMethod();
-		return oil;
+
+		return storedOil;
 	}
 	/**
 	 * Megadja, hogy életben van-e a robot.
@@ -92,9 +146,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @return: false -> nincs már életben
 	 */
 	public boolean isAlive(){
-		SkeletonHelper.writeOutMethodName();
-		boolean alive = SkeletonHelper.getBooleanAnswer("Életben van a robot");
-		SkeletonHelper.returnFromMethod();
+
 		return alive;
 	}
 
@@ -102,8 +154,8 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * Megöli a robotot.
 	 */
 	public void KillHim(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+
+		alive = false;
 	}
 
 	/**
@@ -111,11 +163,9 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @return: true -> földön van
 	 * @return: false -> levegőben van
 	 */
-	public boolean onTheGround(){
-		SkeletonHelper.writeOutMethodName();
-		boolean foldon = SkeletonHelper.getBooleanAnswer("Földön van a robot");
-		SkeletonHelper.returnFromMethod();
-		return foldon;
+	public boolean onTheGround(Game g){
+
+		return ((g.getElapsedTime() % inAirTime) == 0);
 	}
 
 	/**
@@ -127,8 +177,8 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * newState = false -> irányíthatatlan
 	 */
 	public void setControllable(boolean newState){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+
+		controllable = newState;
 	}
 
 
@@ -137,8 +187,8 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @param newSp: az új sebesség
 	 */
 	public void setSpeed(Vector2D newSp){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+		
+		speed = newSp;
 	}
 
 
@@ -148,48 +198,57 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @param g: az objektumot vezérlő Game osztály.
 	 */
 	public void Update(Game g){
-		SkeletonHelper.writeOutMethodName();
-		if(onTheGround())
+
+		if(alive)
 		{
-			if(SkeletonHelper.getKeyState(KeyEvent.VK_UP))
+			KeyboardState kb = g.getkeyboardState();
+			if(onTheGround(g))
 			{
-				this.setSpeed(new Vector2D());
+				if(kb.isKeyDown(playerControlKeys.get(Control.UP)) && controllable)
+				{
+					speed.Add(new Vector2D(0, -1));
+				}
+				if(kb.isKeyDown(playerControlKeys.get(Control.DOWN)) && controllable)
+				{
+					speed.Add(new Vector2D(0, 1));
+				}
+				if(kb.isKeyDown(playerControlKeys.get(Control.LEFT)) && controllable)
+				{
+					speed.Add(new Vector2D(-1, 0));
+				}
+				if(kb.isKeyDown(playerControlKeys.get(Control.RIGHT)) && controllable)
+				{
+					speed.Add(new Vector2D(1, 0));
+				}
+				
+				position.Add(speed);
 			}
-			if(SkeletonHelper.getKeyState(KeyEvent.VK_DOWN))
+			if(kb.isKeyDown(playerControlKeys.get(Control.GLUE)) && storedGlue > 0)
 			{
-				this.setSpeed(new Vector2D());
+				g.addObstacle(new Glue(position));
+				storedGlue--;
 			}
-			if(SkeletonHelper.getKeyState(KeyEvent.VK_LEFT))
+			if(kb.isKeyDown(playerControlKeys.get(Control.OIL)) && storedOil > 0)
 			{
-				this.setSpeed(new Vector2D());
+				g.addObstacle(new Oil(position));
+				storedOil--;
 			}
-			if(SkeletonHelper.getKeyState(KeyEvent.VK_RIGHT))
+			for(GameObject gObj : g.getRobots())
 			{
-				this.setSpeed(new Vector2D());
+				if(gObj!=this)
+				{
+					gObj.CollisionWithRobot(this);
+				}
 			}
-		}
-		/*
-		if(SkeletonHelper.getKeyState(KeyEvent.VK_G))
-		{
-			g.addObstacle(new Glue());
-		}
-		
-		if(SkeletonHelper.getKeyState(KeyEvent.VK_O))
-		{
-			g.addObstacle(new Oil());
-		}
-		*/
-		/*
-		for(GameObject gObj : g.getGameObjects())
-		{
-			if(gObj!=this)
+			for(GameObject gObj : g.getObstacles())
 			{
 				gObj.CollisionWithRobot(this);
 			}
-		}
-		*/
-		
-		SkeletonHelper.returnFromMethod();
+			for(GameObject gObj : g.getLittleBots())
+			{
+				gObj.CollisionWithRobot(this);
+			}
+		}		
 	}
 
 	/**
@@ -199,22 +258,35 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 */
 	@Override
 	public void Draw(Graphics g) {
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+		
 	}
 
 
 	@Override
 	public int getProtoId() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return protoID;
 	}
 
 
 	@Override
 	public Hashtable<String, String> dump() {
 		Hashtable<String,String> infos = new Hashtable<String,String>();
-		infos.put("Not implemented", "");
+		infos.put("speed", speed.toString());
+		infos.put("position", position.toString());
+		infos.put("alive", String.valueOf(alive));
+		infos.put("controllable", String.valueOf(controllable));
+		infos.put("distance", String.valueOf(distance));
+		infos.put("storedGlue", String.valueOf(storedGlue));
+		infos.put("storedOil", String.valueOf(storedOil));
+		if(playerControlKeys.get(Control.UP) == KeyEvent.VK_W) // Nem a legelegánsabb, de rövid és egyszerű
+		{
+			infos.put("playerControlKeys", "(Up:W,Down:S,Left:A,Right:D,Glue:Q,Oil:E)");
+		}
+		else
+		{
+			infos.put("playerControlKeys", "(Up:P,Down:É,Left:L,Right:Á,Glue:Ő,Oil:O)");
+		}
 		return infos;
 	}
 
