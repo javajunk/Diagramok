@@ -71,19 +71,4 @@ public class Glue extends Obstacle {
 	public void Update(Game g) {
 
 	}
-	
-	@Override
-	public int getProtoId() {
-
-		return protoID;
-	}
-
-
-	@Override
-	public Hashtable<String, String> dump() {
-		Hashtable<String,String> infos = new Hashtable<String,String>();
-		infos.put("position", position.toString());
-		infos.put("life", String.valueOf(life));
-		return infos;
-	}
 }

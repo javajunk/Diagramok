@@ -1,4 +1,4 @@
-import java.util.Hashtable;
+import java.util.LinkedHashMap;
 
 public interface Dumpable {
 	/**
@@ -11,5 +11,5 @@ public interface Dumpable {
 	 * 
 	 * @return Kulcs - adattag, Érték - adattag értéke
 	 */
-	public Hashtable<String,String> dump();
+	public LinkedHashMap<String,String> dump();
 }

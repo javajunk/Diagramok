@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -258,8 +259,8 @@ public class Game extends JComponent implements Runnable, Dumpable {
 	}
 
 	@Override
-	public Hashtable<String, String> dump() {
-		Hashtable<String,String> infos = new Hashtable<String,String>();
+	public LinkedHashMap<String, String> dump() {
+		LinkedHashMap<String,String> infos = new LinkedHashMap<String,String>();
 		
 		infos.put("gameTime", String.valueOf(gameTime));
 		infos.put("elapsedTime", String.valueOf(elapsedTime));

@@ -1,4 +1,5 @@
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 
 /**
  * Az Obstacle absztrakt osztály tartalmazza az akadályok közös attribútumait és metódusát.
@@ -48,8 +49,8 @@ public abstract class Obstacle implements GameObject, Dumpable {
 	}
 
 	@Override
-	public Hashtable<String, String> dump() {
-		Hashtable<String,String> infos = new Hashtable<String,String>();
+	public LinkedHashMap<String, String> dump() {
+		LinkedHashMap<String,String> infos = new LinkedHashMap<String,String>();
 		infos.put("position", position.toString());
 		infos.put("life", String.valueOf(PrototypeHelper.LeaveDotZeroOr3Digit(life)));
 		return infos;

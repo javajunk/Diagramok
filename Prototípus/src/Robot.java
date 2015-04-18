@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 
 import javax.imageio.ImageIO;
 
@@ -274,8 +275,8 @@ public class Robot extends Bot implements GameObject, Dumpable {
 
 
 	@Override
-	public Hashtable<String, String> dump() {
-		Hashtable<String,String> infos = new Hashtable<String,String>();
+	public LinkedHashMap<String, String> dump() {
+		LinkedHashMap<String,String> infos = new LinkedHashMap<String,String>();
 		infos.put("speed", speed.toString());
 		infos.put("position", position.toString());
 		infos.put("alive", String.valueOf(alive));
