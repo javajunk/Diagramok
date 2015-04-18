@@ -95,6 +95,7 @@ public class PrototypeHelper {
 
 	private static void Init(String[] commAndArgs) {
 		game.Init();
+		System.out.println("Init Success");
 	}
 
 	public static void DumpDumpable(Dumpable d, String name) {
@@ -105,7 +106,7 @@ public class PrototypeHelper {
 		}
 
 		System.out.println(repeat("-", 24));
-
+		
 	}
 
 	public static <S extends Dumpable> void FindAndDump(List<S> list,
