@@ -3,6 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -110,8 +111,8 @@ public class LittleBot extends Bot implements Dumpable {
 
 
 	@Override
-	public Hashtable<String, String> dump() {
-		Hashtable<String,String> infos = new Hashtable<String,String>();
+	public LinkedHashMap<String, String> dump() {
+		LinkedHashMap<String,String> infos = new LinkedHashMap<String,String>();
 		
 		infos.put("position", this.position.toString());
 		infos.put("speed", this.speed.toString());
