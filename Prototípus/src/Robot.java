@@ -67,28 +67,35 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	 * @param robi: a másik robot
 	 */
 	public void CollisionWithRobot(Robot robi){
-		Vector2D dist = this.getPosition();
+		/*Vector2D dist = this.getPosition();
+		dist.Subtract(robi.getPosition());*/
+		Vector2D dist = new Vector2D(position.getX(), position.getY());
 		dist.Subtract(robi.getPosition());
 		
-		if(dist.Length() < 2 * Radius)
+		if(dist.Length() < 2 * Radius && robi.isAlive() && alive)
 		{
 			double r1Speed = this.getSpeed().Length();
 			double r2Speed = robi.getSpeed().Length();
+			Vector2D newSp = new Vector2D((speed.getX() + robi.getSpeed().getX()) / 2, (speed.getY() + robi.getSpeed().getY()) / 2);
 			if(r1Speed < r2Speed)
 			{
-				Vector2D newSpeed = this.getSpeed();
+				/*Vector2D newSpeed = this.getSpeed();
 				newSpeed.Add(robi.getSpeed());
 				newSpeed.Scale(0.5);
 				robi.setSpeed(newSpeed);
+				this.KillHim();*/
+				robi.setSpeed(newSp);
 				this.KillHim();
 			}
 			else if(r1Speed > r2Speed)
 			{
-				Vector2D newSpeed = this.getSpeed();
+				/*Vector2D newSpeed = this.getSpeed();
 				newSpeed.Add(robi.getSpeed());
 				newSpeed.Scale(0.5);
 				robi.KillHim();
-				this.setSpeed(newSpeed);
+				this.setSpeed(newSpeed);*/
+				this.setSpeed(newSp);
+				robi.KillHim();
 			}
 			else
 			{
@@ -226,6 +233,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 				}
 				
 				position.Add(speed);
+				distance += speed.Length(); // Ez így jó? 
 			}
 			
 			if(kb.isKeyDown(playerControlKeys.get(Control.GLUE)) && storedGlue > 0)
