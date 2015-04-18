@@ -98,7 +98,6 @@ public class LittleBot extends Bot implements Dumpable {
 		if (this.alive)
 		{
 			List<Obstacle> obs = g.getObstacles();
-		
 			targetObstacle = obs.get(0);
 		
 			for(int i=1; i<obs.size(); i++)
@@ -108,6 +107,8 @@ public class LittleBot extends Bot implements Dumpable {
 					targetObstacle = obs.get(i);
 				}
 			}
+			
+			
 		}
 		else
 		{
