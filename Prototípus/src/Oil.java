@@ -16,7 +16,8 @@ public class Oil extends Obstacle {
 	public final static String oilPic = "oil.png";
 	private BufferedImage oilImage = null;
 
-	public Oil(){
+	public Oil(Vector2D pos){
+		super(pos);
 		try 
 		{
 		    oilImage = ImageIO.read(new File(oilPic));

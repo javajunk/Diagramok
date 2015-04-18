@@ -170,13 +170,13 @@ public class Vector2D {
 	 */
 	public Vector2D Rotate270 ()
 	{
-		Vector2D newspeed = null;
+		Vector2D newspeed = new Vector2D();
 		newspeed.setX(this.y);
 		newspeed.setY(this.x*-1);
 		return newspeed;
 	}
 	
 	public String toString() {
-		return "(" + x + "," + y + ")";
+		return "(" + PrototypeHelper.LeaveDotZeroOr3Digit(x) + "," + PrototypeHelper.LeaveDotZeroOr3Digit(y) + ")";
 	}
 }

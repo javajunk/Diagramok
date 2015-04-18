@@ -1,18 +1,19 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.util.Hashtable;
 
 /**
  * Az osztály feladata a játékos által irányított robot legfontosabb paramétereinek a tárolása. 
  * Ilyen például a robot pozíciója, sebessége, vagy a megtett távolság. 
  * Ezen kívül az is a feladata, hogy frissítse és kirajzolja a robotot.
  */
-public class Robot extends Bot implements GameObject {
+public class Robot extends Bot implements GameObject, Dumpable {
 
 	private double distance;
 	private Vector2D position;
 	private Vector2D speed;
 
-	public Robot(){
+	public Robot(PlayerInitParams params){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
@@ -167,7 +168,7 @@ public class Robot extends Bot implements GameObject {
 				this.setSpeed(new Vector2D());
 			}
 		}
-		
+		/*
 		if(SkeletonHelper.getKeyState(KeyEvent.VK_G))
 		{
 			g.addObstacle(new Glue());
@@ -177,6 +178,8 @@ public class Robot extends Bot implements GameObject {
 		{
 			g.addObstacle(new Oil());
 		}
+		*/
+		/*
 		for(GameObject gObj : g.getGameObjects())
 		{
 			if(gObj!=this)
@@ -184,6 +187,7 @@ public class Robot extends Bot implements GameObject {
 				gObj.CollisionWithRobot(this);
 			}
 		}
+		*/
 		
 		SkeletonHelper.returnFromMethod();
 	}
@@ -197,6 +201,21 @@ public class Robot extends Bot implements GameObject {
 	public void Draw(Graphics g) {
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
+	}
+
+
+	@Override
+	public int getProtoId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public Hashtable<String, String> dump() {
+		Hashtable<String,String> infos = new Hashtable<String,String>();
+		infos.put("Not implemented", "");
+		return infos;
 	}
 
 }

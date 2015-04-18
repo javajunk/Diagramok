@@ -1,7 +1,9 @@
 import javax.swing.JComponent;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -9,19 +11,55 @@ import java.util.List;
  * vezeti a játék időkezelését és figyeli, hogy életben vannak-e még a játékosok által vezérelt robotok.
  */
 
-public class Game extends JComponent implements Runnable {
+public class Game extends JComponent implements Runnable, Dumpable {
 
+	private static final int initialPlacedObstacles = 2;
+	private static final Vector2D littleBotsEntryPosition = new Vector2D(600,30);
+	private static final int littleBotEntryPeriod = 5;
+	private static final PlayerInitParams[] PlayersInitParams = new PlayerInitParams[2];
+	private static final int targetFrameTime = 16;
 	private static final long serialVersionUID = 7845653460750690226L;
-	private KeyboardState keyboardState = new KeyboardState();
-	private List<GameObject> gameObjects = new ArrayList<GameObject>();
-	private List<Obstacle> obstacles = new ArrayList<Obstacle>();
+	
+	static {
+		Hashtable<Control,Integer> p1Control = new Hashtable<Control,Integer>();
+		p1Control.put(Control.UP, KeyEvent.VK_W);
+		p1Control.put(Control.DOWN,  KeyEvent.VK_S);
+		p1Control.put(Control.LEFT,  KeyEvent.VK_A);
+		p1Control.put(Control.RIGHT,  KeyEvent.VK_D);
+		p1Control.put(Control.GLUE,  KeyEvent.VK_Q);
+		p1Control.put(Control.OIL,  KeyEvent.VK_E);
+		
+		PlayersInitParams[0] = new PlayerInitParams(p1Control,"p1Rob.png",new Vector2D(600,594));
+		
+		Hashtable<Control,Integer> p2Control = new Hashtable<Control,Integer>();
+		p2Control.put(Control.UP, KeyEvent.VK_P);
+		p2Control.put(Control.DOWN,  39);
+		p2Control.put(Control.LEFT,  KeyEvent.VK_L);
+		p2Control.put(Control.RIGHT,  40);
+		p2Control.put(Control.GLUE,  26);
+		p2Control.put(Control.OIL,  KeyEvent.VK_O);
+		
+		PlayersInitParams[1] = new PlayerInitParams(p2Control,"p2Rob.png",new Vector2D(600,532));
+	}
+	
+	private int elapsedTime = 0;
+	private int gameTime = 0;
+	private boolean isRunning = false;
+
 	private Map map;
+	private List<LittleBot> littleBots = new ArrayList<LittleBot>();
 	private List<Robot> robots = new ArrayList<Robot>();
+	private List<Obstacle> obstacles = new ArrayList<Obstacle>();
+
+	private KeyboardState keyboardState = new KeyboardState();
 	private List<GameEndedListener> gameEndedListeners = new ArrayList<GameEndedListener>();
 	
+	private int protoID;
+	private static int protoIdNext = 0;
+	
 	public Game(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+		protoIdNext++;
+		protoID = protoIdNext;
 	}
 	
 	/**
@@ -30,9 +68,7 @@ public class Game extends JComponent implements Runnable {
 	 * @param listener A feliratkoztatott listener.
 	 */
 	public void addGameEndedListener(GameEndedListener listener){
-		SkeletonHelper.writeOutMethodName();
 		gameEndedListeners.add(listener);
-		SkeletonHelper.returnFromMethod();
 	}
 
 	/**
@@ -40,9 +76,7 @@ public class Game extends JComponent implements Runnable {
 	 * @param obs A hozzáadandó akadály.
 	 */
 	public void addObstacle(Obstacle obs){
-		SkeletonHelper.writeOutMethodName();
 		this.obstacles.add(obs);
-		SkeletonHelper.returnFromMethod();
 	}
 
 	/**
@@ -50,24 +84,7 @@ public class Game extends JComponent implements Runnable {
 	 * @param g A grafikus környezet amiben a kirajzolás történik.
 	 */
 	public void Draw(Graphics g){
-		SkeletonHelper.writeOutMethodName();
-		for(GameObject gObj : gameObjects)
-		{
-			gObj.Draw(g);
-		}
-		
-		SkeletonHelper.returnFromMethod();
-	}
 
-	/**
-	 * Visszaadja a játéktér összes objektumát.
-	 * @return A játéktér összes objektuma.
-	 */
-	public List<GameObject> getGameObjects(){
-		SkeletonHelper.writeOutMethodName();
-		
-		SkeletonHelper.returnFromMethod();
-		return gameObjects;
 	}
 	
 	/**
@@ -75,9 +92,6 @@ public class Game extends JComponent implements Runnable {
 	 * @return: a billentyűzet állapotának vizsgálásra alkalmas osztály
 	 */
 	public KeyboardState getkeyboardState(){
-		SkeletonHelper.writeOutMethodName();
-		
-		SkeletonHelper.returnFromMethod();
 		return keyboardState;
 	}
 	
@@ -86,10 +100,25 @@ public class Game extends JComponent implements Runnable {
 	 * @return: térkép
 	 */
 	public Map getMap(){
-		SkeletonHelper.writeOutMethodName();
-		
-		SkeletonHelper.returnFromMethod();
 		return map;
+	}
+	
+	public List<Obstacle> getObstacles()
+	{
+		return obstacles;
+	}
+	
+	public List<LittleBot> getLittleBots()
+	{
+		return littleBots;
+	}
+	
+	/**
+	 * Egy lista, amiben a robotokat tároljuk.
+	 * @return: robotok listája
+	 */
+	public List<Robot> getRobots(){
+		return robots;
 	}
 	
 	/**
@@ -97,72 +126,55 @@ public class Game extends JComponent implements Runnable {
 	 * @return: maradék idő
 	 */
 	public int getRemainingTime(){
-		SkeletonHelper.writeOutMethodName();
-		int i = SkeletonHelper.getIntAnswer("Mennyi idő van hátra a játékból", "másodperc");
-		SkeletonHelper.returnFromMethod();
-		return i;
+		return gameTime-elapsedTime;
 	}
-
-	/**
-	 * Egy lista, amiben a robotokat tároljuk.
-	 * @return: robotok listája
-	 */
-	public List<Robot> getRobots(){
-		SkeletonHelper.writeOutMethodName();
-
-		SkeletonHelper.returnFromMethod();
-		return robots;
+	
+	private Vector2D getRandomOnMapPostition()
+	{
+		//Vegtelen loop lehet ha szar erteket adnak meg
+		boolean isOut = true;
+		Vector2D pos;
+		do
+		{
+			pos = new Vector2D(PrototypeHelper.getNextRandomCodrinatePart(),
+					PrototypeHelper.getNextRandomCodrinatePart());
+			isOut = map.isOutOfTrack(pos);
+		} while(isOut);
+		return pos;
 	}
-
+	
 	/**
 	 * Inicializál egy új játékot.
 	 */
-	public void Init(){
-		SkeletonHelper.writeOutMethodName();
+	public void Init() {
+		this.elapsedTime = 0;
+		this.obstacles.clear();
+		this.robots.clear();
+		this.littleBots.clear();
 		
 		this.map = new Map();
-		this.gameObjects.add(this.map);
 		
-		Robot newPlayer = new Robot();
-		this.robots.add(newPlayer); 
-		this.gameObjects.add(newPlayer);
+		for(PlayerInitParams param : PlayersInitParams)
+			robots.add(new Robot(param));
 		
-		newPlayer =  new Robot();
-		this.robots.add(newPlayer);
-		this.gameObjects.add(newPlayer);
-		
-		int obstacleCnt = SkeletonHelper.getIntAnswer("Mennyi akadály kerül a pályára kezdéskor", "darab");
-		for(int i = 0; i < obstacleCnt; i++)
+		for(int i = 0; i < initialPlacedObstacles; i++)
 		{
-			boolean isOut = true;
-			
-			do
-			{
-				Vector2D obsPosition = new Vector2D();
-				isOut = map.isOutOfTrack(obsPosition);
-			} while(isOut);
-			
-			this.addObstacle(new Glue());
-			
-			do
-			{
-				Vector2D obsPosition = new Vector2D();
-				isOut = map.isOutOfTrack(obsPosition);
-			} while(isOut);
-			
-			this.addObstacle(new Oil());
+			this.addObstacle(new Glue(getRandomOnMapPostition()));
 		}
 		
-		SkeletonHelper.returnFromMethod();
+		for(int i = 0; i < initialPlacedObstacles; i++)
+		{
+			this.addObstacle(new Oil(getRandomOnMapPostition()));
+		}
+		
+		Start();
 	}
 
 	/**
 	 * Szünetelteti a játék futását.
 	 */
 	public void Pause(){
-		SkeletonHelper.writeOutMethodName();
-		
-		SkeletonHelper.returnFromMethod();
+		isRunning = false;
 	}
 
 	/**
@@ -170,21 +182,14 @@ public class Game extends JComponent implements Runnable {
 	 * @param sec: A játék maximális hossza másodpercben.
 	 */
 	public void setMaxGameTime(int sec){
-		SkeletonHelper.writeOutMethodName();
-		
-		SkeletonHelper.returnFromMethod();
+		gameTime = sec*1000/targetFrameTime;
 	}
 	
 	/**
 	 * Létrehoz egy új szálat a verseny számára és elindítja.
 	 */
 	public void Start(){
-		SkeletonHelper.writeOutMethodName();
-		
-		if(!SkeletonHelper.getBooleanAnswer("Fut már egy verseny"))
-			this.run();
-		
-		SkeletonHelper.returnFromMethod();
+		isRunning = true;
 	}
 
 	/**
@@ -193,32 +198,47 @@ public class Game extends JComponent implements Runnable {
 	 * Ha a játék véget ért, értesíti a feliratkozókat erről és szünetelteti a játékot.
 	 */
 	public void Update(){
-		SkeletonHelper.writeOutMethodName();
-		
-		for(int i = 0; i < gameObjects.size(); i++)
+
+		if(elapsedTime % littleBotEntryPeriod == 0)
 		{
-			gameObjects.get(i).Update(this);
+			littleBots.add(new LittleBot(littleBotsEntryPosition));
 		}
 		
-		boolean allPlayerAlive = true;
+		map.Update(this);
+		
+		for(int i = 0; i < obstacles.size(); i++)
+		{
+			obstacles.get(i).Update(this);
+		}
+		
+		for(int i = 0; i < littleBots.size(); i++)
+		{
+			littleBots.get(i).Update(this);
+		}
+		
+		for(int i = 0; i < robots.size(); i++)
+		{
+			robots.get(i).Update(this);
+		}
+				
+		boolean onePlayerAlive = false;
 		for(Robot rob : this.getRobots())
 		{
-			allPlayerAlive = allPlayerAlive && rob.isAlive();
+			onePlayerAlive = onePlayerAlive || rob.isAlive();
 		}
 		
 		boolean gameTimeExpired = this.getRemainingTime() <= 0;
 		
-		if(!allPlayerAlive || gameTimeExpired)
+		if(!onePlayerAlive || gameTimeExpired)
 		{
+			this.Pause();
 			for(GameEndedListener gEndLis : gameEndedListeners)
 			{
 				gEndLis.GameEnded();
 			}
-			
-			this.Pause();
 		}
 		
-		SkeletonHelper.returnFromMethod();
+		elapsedTime++;
 	}
 	
 	/**
@@ -226,18 +246,22 @@ public class Game extends JComponent implements Runnable {
 	 */
 	@Override
 	public void run() {
-		SkeletonHelper.writeOutMethodName();
 		
-		while(!SkeletonHelper.getBooleanAnswer("Véget ért a játék"))
-		{
-			this.Update();
-			this.Draw(this.getGraphics());
-		}
-				
-		SkeletonHelper.returnFromMethod();
 	}
 
-	public List<Obstacle> getObstacles() {
-		return obstacles;
+	@Override
+	public int getProtoId() {
+		return protoID;
+	}
+
+	@Override
+	public Hashtable<String, String> dump() {
+		Hashtable<String,String> infos = new Hashtable<String,String>();
+		
+		infos.put("gameTime", String.valueOf(gameTime));
+		infos.put("elapsedTime", String.valueOf(elapsedTime));
+		infos.put("isRuning", String.valueOf(isRunning));
+		
+		return infos;
 	}
 }

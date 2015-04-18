@@ -6,9 +6,8 @@ import java.awt.Graphics;
  */
 public class Glue extends Obstacle {
 
-	public Glue(){
-		SkeletonHelper.writeOutMethodName();
-		SkeletonHelper.returnFromMethod();
+	public Glue(Vector2D pos){
+		super(pos);
 	}
 
 	/**
@@ -51,5 +50,4 @@ public class Glue extends Obstacle {
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
 	}
-
 }

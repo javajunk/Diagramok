@@ -5,6 +5,7 @@ import java.awt.Graphics;
  */
 public class Map implements GameObject {
 
+	//Kellene bele valami amivel le lehet kerdezni a terkep meretet.
 	public Map(){
 		SkeletonHelper.writeOutMethodName();
 		SkeletonHelper.returnFromMethod();
