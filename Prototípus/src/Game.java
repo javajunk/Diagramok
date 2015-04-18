@@ -114,6 +114,16 @@ public class Game extends JComponent implements Runnable, Dumpable {
 		return littleBots;
 	}
 	
+	public void removeLittleBot(LittleBot ltb)
+	{
+		littleBots.remove(ltb);
+	}
+	
+	public void removeObstacle(Obstacle obst)
+	{
+		obstacles.remove(obst);
+	}
+	
 	/**
 	 * Egy lista, amiben a robotokat tároljuk.
 	 * @return: robotok listája
