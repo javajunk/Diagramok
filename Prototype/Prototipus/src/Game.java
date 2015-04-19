@@ -234,7 +234,7 @@ public class Game extends JComponent implements Runnable, Dumpable {
 		{
 			robots.get(i).Update(this);
 		}
-				
+
 		boolean onePlayerAlive = false;
 		for(Robot rob : this.getRobots())
 		{

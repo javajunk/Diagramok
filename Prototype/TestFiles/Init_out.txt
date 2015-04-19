@@ -14,4 +14,3 @@ position: (112,87)
 life:    100
 ----------------------
 Test Sequence Ended
-
