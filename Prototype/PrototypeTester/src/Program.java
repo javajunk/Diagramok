@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 public class Program {
 
 	public static void main(String[] args) throws IOException {
-		System.setOut(new java.io.PrintStream(System.out, true, "UTF8"));
+		System.setOut(new java.io.PrintStream(System.out, true, "cp852"));
 		
 		if(args.length < 3)
 		{
