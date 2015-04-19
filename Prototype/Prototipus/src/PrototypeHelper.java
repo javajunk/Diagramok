@@ -230,8 +230,8 @@ public class PrototypeHelper {
 		do {
 			String[] commAndArgs = ReadCommandWithArguments();
 			
-			try
-			{
+			/*try
+			{*/
 				switch (commAndArgs[0]) {
 				case "update":
 					Update(commAndArgs);
@@ -252,11 +252,11 @@ public class PrototypeHelper {
 					StupidUserMessage();
 					break;
 				}
-			}
+			/*}
 			catch (NullPointerException exp)
 			{
 				System.out.println("NullPointerException, The Game object maybe not initialized.\nPlease use Init command");
-			}
+			}*/
 			
 		} while (conntinue);
 		System.out.print("Test Sequence Ended");
@@ -303,6 +303,7 @@ public class PrototypeHelper {
 
 	public static String LeaveDotZeroOr3Digit(Double d) {
 		NumberFormat numForm = NumberFormat.getInstance(Locale.ENGLISH);
+		numForm.setGroupingUsed(false);
 		numForm.setMinimumFractionDigits(0);
 		numForm.setMaximumFractionDigits(3);
 

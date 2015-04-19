@@ -1,13 +1,15 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
 import javax.imageio.ImageIO;
 /**
- * Tárolja a pálya képés és a pályát meghatározó maskot.
- * Utóbbi segítségével állapítja meg, hogy az adott pozíció a pálya területén található-e.
+ * Tï¿½rolja a pï¿½lya kï¿½pï¿½s ï¿½s a pï¿½lyï¿½t meghatï¿½rozï¿½ maskot.
+ * Utï¿½bbi segï¿½tsï¿½gï¿½vel ï¿½llapï¿½tja meg, hogy az adott pozï¿½ciï¿½ a pï¿½lya terï¿½letï¿½n talï¿½lhatï¿½-e.
  */
 public class Map implements GameObject {
 
@@ -22,8 +24,8 @@ public class Map implements GameObject {
 	public String outOfTrackMaskFile=null;
 
 	/**
-	 * A Map osztály paraméter nélküli konstruktora.
-	 * Ez a konstruktor a relatív "map.png" és "mask.png" útvonalakról tölti be a fájlokat
+	 * A Map osztï¿½ly paramï¿½ter nï¿½lkï¿½li konstruktora.
+	 * Ez a konstruktor a relatï¿½v "map.png" ï¿½s "mask.png" ï¿½tvonalakrï¿½l tï¿½lti be a fï¿½jlokat
 	 */
 
 	//Kellene bele valami amivel le lehet kerdezni a terkep meretet.
@@ -42,15 +44,15 @@ public class Map implements GameObject {
 		protoIDNext++;
 		protoID=protoIDNext;
 		try {
-		    mapScenery = ImageIO.read(new File(mappath));
+		    //mapScenery = ImageIO.read(new File(mappath));
 		    mask = ImageIO.read(new File(maskpath));
-		    trackLine=ImageIO.read(new File(tracklinepath));
+		    //trackLine=ImageIO.read(new File(tracklinepath));
 		    
 		    mapImage=mappath;
 		    outOfTrackMaskFile=mappath;
 		  
 		} catch (IOException e) {
-			
+			System.out.println("Map masknot found!");			
 		}
 		
 	}
@@ -76,9 +78,12 @@ public class Map implements GameObject {
 	public boolean isOutOfTrack(Vector2D pos){
 		int X=(int)pos.getX();
 		int Y=(int)pos.getY();
-		int A=mask.getRGB(X, Y) >> 24 & 0xFF;
-		if(A==0){return true;}
-		else{return false;}
+		
+		if(Y < 0 || mask.getHeight() < Y ||
+				X < 0 || mask.getWidth() < X)
+			return true;
+		
+		return mask.getRGB(X, Y) == Color.WHITE.getRGB();
 	}
 
 	/*public Vector2D[] getTrackLine(){
@@ -105,17 +110,4 @@ public class Map implements GameObject {
 	public void Draw(Graphics g) {
 	
 	}
-	
-	@Override
-	public int getProtoId() {
-		return protoID;
-	}
-
-	@Override
-	public LinkedHashMap<String, String> dump() {
-		LinkedHashMap<String,String> result=new LinkedHashMap<String,String>(){{put("protoID",String.valueOf(protoID));}};
-		return result;
-	}
-
-
 }
