@@ -1,0 +1,32 @@
+Veletlen ertekek az akadalyok szamara
+(ha nincs megadva, veletlen lesz):
+Random values: (600,594;427,87;112,87;217,87)
+Init Success
+Available Glue Ids: (1,2)
+Glue 1
+----------------------
+position: (600,594)
+life: 100
+----------------------
+Update () Success
+Glue 1
+----------------------
+position: (600,594)
+life: 75
+----------------------
+Update () Success
+Update () Success
+Update () Success
+Glue 1
+----------------------
+position: (600,594)
+life: 50
+----------------------
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Available Glue Ids: (2)
+Test Sequence Ended

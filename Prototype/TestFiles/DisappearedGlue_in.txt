@@ -1,0 +1,18 @@
+600,594;427,87;112,87;217,87
+Init
+listId Glue
+dump Glue 1
+Update	//elapsedTime = 0
+dump Glue 1
+Update	//elapsedTime = 1
+Update	//elapsedTime = 2
+Update 	//megint lent van a robi //elapsedTime = 3
+dump Glue 1
+Update	//elapsedTime = 4
+Update	//elapsedTime = 5
+Update 	//megint lent van a robi //elapsedTime = 6
+Update	//elapsedTime = 7
+Update	//elapsedTime = 8
+Update 	//megint lent van a robi //elapsedTime = 9
+listId Glue
+exit

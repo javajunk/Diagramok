@@ -1,0 +1,23 @@
+322,87;427,87;112,87;217,87
+Init
+listId Oil
+dump Oil 3
+Update
+dump Oil 3
+Update
+Update
+Update
+Update
+Update
+Update
+Update
+Update
+Update
+Update
+dump Oil 3
+Update
+Update
+Update
+Update
+listId Oil
+exit

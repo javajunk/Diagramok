@@ -1,0 +1,37 @@
+Veletlen ertekek az akadalyok szamara
+(ha nincs megadva, veletlen lesz):
+Random values: (322,87;427,87;112,87;217,87)
+Init Success
+Available Oil Ids: (3,4)
+Oil 3
+----------------------
+position: (112,87)
+life: 100
+----------------------
+Update () Success
+Oil 3
+----------------------
+position: (112,87)
+life: 93.333
+----------------------
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Oil 3
+----------------------
+position: (112,87)
+life: 26.667
+----------------------
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Available Oil Ids: ()
+Test Sequence Ended

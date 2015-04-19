@@ -1,0 +1,8 @@
+322,87;427,87;112,87;217,87
+Init
+Update
+listId LittleBot
+listId Obstacle
+Update
+dump LittleBot 1
+exit

@@ -1,0 +1,8 @@
+322,87;427,87;112,87;217,87
+Init
+listId Glue
+Update Q
+dump Robot 1
+listId Glue
+dump Glue 5
+exit

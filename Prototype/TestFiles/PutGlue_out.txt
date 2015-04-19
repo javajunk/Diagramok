@@ -1,0 +1,24 @@
+Veletlen ertekek az akadalyok szamara
+(ha nincs megadva, veletlen lesz):
+Random values: (322,87;427,87;112,87;217,87)
+Init Success
+Available Glue Ids: (1,2)
+Update (Q) Success
+Robot 1
+----------------------
+speed: (0,0)
+position: (600,594)
+alive: true
+controllable: true
+distance: 0
+storedGlue: 7
+storedOil: 8
+playerControlKeys: (Up:W,Down:S,Left:A,Right:D,Glue:Q,Oil:E)
+----------------------
+Available Glue Ids: (1,2,5)
+Glue 5
+----------------------
+position: (600,594)
+life: 100
+----------------------
+Test Sequence Ended
