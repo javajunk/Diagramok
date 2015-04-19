@@ -220,11 +220,6 @@ public class Game extends JComponent implements Runnable, Dumpable {
 		
 		map.Update(this);
 		
-		for(int i = 0; i < obstacles.size(); i++)
-		{
-			obstacles.get(i).Update(this);
-		}
-		
 		for(int i = 0; i < littleBots.size(); i++)
 		{
 			littleBots.get(i).Update(this);
@@ -235,6 +230,12 @@ public class Game extends JComponent implements Runnable, Dumpable {
 			robots.get(i).Update(this);
 		}
 
+		for(int i = 0; i < obstacles.size(); i++)
+		{
+			obstacles.get(i).Update(this);
+		}
+		
+		
 		boolean onePlayerAlive = false;
 		for(Robot rob : this.getRobots())
 		{

@@ -3,6 +3,7 @@ Veletlen ertekek az akadalyok szamara
 Random values: (322,87;427,87;112,87;217,87)
 Init Success
 Available Glue Ids: (1,2)
+Update () Success
 Update (Q) Success
 Robot 1
 ----------------------

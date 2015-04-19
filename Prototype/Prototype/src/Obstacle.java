@@ -37,6 +37,12 @@ public abstract class Obstacle implements GameObject, Dumpable {
 		this.life -= d;
 	}
 	
+	public void Update(Game g)
+	{
+		if(life <= 0)
+			g.removeObstacle(this);
+	}
+	
 	@Override
 	public int getProtoId() {
 		return protoID;

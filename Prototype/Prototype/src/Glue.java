@@ -48,14 +48,4 @@ public class Glue extends Obstacle {
 	public void Draw(Graphics g) { //TODO
 
 	}
-	
-	/**
-	 * Frissíti a ragacsfolt állapotát.
-	 * 
-	 * @param g: az objektumot vezérlő Game osztály.
-	 */
-	@Override
-	public void Update(Game g) {
-
-	}
 }
