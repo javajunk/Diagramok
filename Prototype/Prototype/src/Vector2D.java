@@ -166,19 +166,6 @@ public class Vector2D {
 		return Math.sqrt((v1.x-this.x)*(v1.x-this.x)+(v1.y-this.y)*(v1.y-this.y));
 	}
 	
-	/**
-	 * Ha két kisrobot ütközik egymással, lepattannak egymásról és irányt váltanak.
-	 * Az eredeti irányvektorukat -90 fokkal (= 270 fokkal) módosítjuk. 
-	 * @return az új irány
-	 */
-	public Vector2D Rotate270 ()
-	{
-		Vector2D newspeed = new Vector2D();
-		newspeed.setX(this.y);
-		newspeed.setY(this.x*-1);
-		return newspeed;
-	}
-	
 	public String toString() {
 		return "(" + PrototypeHelper.LeaveDotZeroOr3Digit(x) + "," + PrototypeHelper.LeaveDotZeroOr3Digit(y) + ")";
 	}

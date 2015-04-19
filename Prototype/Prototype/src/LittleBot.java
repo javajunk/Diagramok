@@ -49,10 +49,11 @@ public class LittleBot extends Bot implements Dumpable {
 	 */
 	public void CollisionWithLittleBot(LittleBot lbot)
 	{
+		
 		if(this.position.Distance(lbot.position)<2*LittleBot.Radius)
 		{
-			this.speed.Rotate270();
-			lbot.speed.Rotate270();
+			this.speed.setDegreeAngle(-90.0);
+			lbot.speed.setDegreeAngle(-90.0);
 		}
 	}
 

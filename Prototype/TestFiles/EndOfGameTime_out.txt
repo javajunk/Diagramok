@@ -1,0 +1,76 @@
+Init Success
+Available Game Ids: (1)
+Game 1
+----------------------
+gameTime: 60
+elapsedTime: 0
+isRunning: true
+----------------------
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Update () Success
+Game 1
+----------------------
+gameTime: 60
+elapsedTime: 60
+isRunning: false
+----------------------
+Test Sequence Ended

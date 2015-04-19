@@ -1,0 +1,19 @@
+322,87;427,87;112,87;217,87
+Init
+listId Robot
+dump Robot 1
+Update S		//Foldon	Pos:(600,595)
+Update		//Levegoben	Pos:(600,596)
+Update		//Levegoben	Pos:(600,597)
+Update S		//Foldon	Pos:(600,599)
+Update 		//Levegoben	Pos:(600,601)
+Update 		//Levegoben	Pos:(600,603)
+Update S		//Foldon	Pos:(600,606)
+Update 		//Levegoben	Pos:(600,609)
+Update 		//Levegoben	Pos:(600,612)
+Update S		//Foldon	Pos:(600,616)
+Update 		//Levegoben	Pos:(600,620)
+Update 		//Levegoben	Pos:(600,624)
+Update S		//Foldon	Pos:(600,629)
+dump Robot 1
+exit
