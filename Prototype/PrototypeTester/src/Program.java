@@ -42,7 +42,7 @@ public class Program {
 		try {
 			inputFileReader = new BufferedReader(new FileReader(inputFile));
 		} catch (FileNotFoundException e) {
-			System.out.println("Nem sikerult megnyitni a bemenetett tartalmazofilet!");
+			System.out.println("Nem sikerult megnyitni a bemenetet tartalmazo filet!");
 			return;
 		}
 		
@@ -50,7 +50,7 @@ public class Program {
 		try {
 			compFileReader = new BufferedReader(new FileReader(compFile));
 		} catch (FileNotFoundException e) {
-			System.out.println("Nem sikerult megnyitni a kimenetet tartalmazofilet!");
+			System.out.println("Nem sikerult megnyitni a kimenetet tartalmazo filet!");
 			return;
 		}
 		
@@ -85,16 +85,16 @@ public class Program {
 		
 		if(outputLine == null && compFileLine == null)
 		{
-			System.out.println("A kiemenet megegyezik az elvart kiemenettel.");
+			System.out.println("A kimenet megegyezik az elvart kimenettel.");
 		}
 		else if(outputLine == null && compFileLine != null)
 		{
 			
-			System.out.println("Az elvart kiemenet hosszab a kiemenetnel.");
+			System.out.println("Az elvart kimenet hosszabb a kimenetnel.");
 		}
 		else if(outputLine != null && compFileLine == null)
 		{
-			System.out.println("A kiemenet hosszab az elvart kiemenettnel.");
+			System.out.println("A kimenet hosszabb az elvart kimenetnel.");
 		}
 		else
 		{
