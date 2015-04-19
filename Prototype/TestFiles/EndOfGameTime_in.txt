@@ -1,7 +1,6 @@
+
 Init
-listId Game
-dump Game 1
-Update
+dump Game
 Update
 Update
 Update

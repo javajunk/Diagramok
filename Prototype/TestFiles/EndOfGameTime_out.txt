@@ -1,12 +1,12 @@
+Veletlen ertekek az akadalyok szamara
+(ha nincs megadva, veletlen lesz):
 Init Success
-Available Game Ids: (1)
 Game 1
 ----------------------
 gameTime: 60
 elapsedTime: 0
 isRunning: true
 ----------------------
-Update () Success
 Update () Success
 Update () Success
 Update () Success

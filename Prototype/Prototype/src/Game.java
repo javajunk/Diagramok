@@ -44,7 +44,7 @@ public class Game extends JComponent implements Runnable, Dumpable {
 	}
 	
 	private int elapsedTime = 0;
-	private int gameTime = 0;
+	private int gameTime = 60;
 	private boolean isRunning = false;
 
 	private Map map;
@@ -241,7 +241,7 @@ public class Game extends JComponent implements Runnable, Dumpable {
 			onePlayerAlive = onePlayerAlive || rob.isAlive();
 		}
 		
-		boolean gameTimeExpired = this.getRemainingTime() <= 0;
+		boolean gameTimeExpired = this.getRemainingTime() <= 1;
 		
 		if(!onePlayerAlive || gameTimeExpired)
 		{
@@ -274,7 +274,7 @@ public class Game extends JComponent implements Runnable, Dumpable {
 		
 		infos.put("gameTime", String.valueOf(gameTime));
 		infos.put("elapsedTime", String.valueOf(elapsedTime));
-		infos.put("isRuning", String.valueOf(isRunning));
+		infos.put("isRunning", String.valueOf(isRunning));
 		
 		return infos;
 	}
