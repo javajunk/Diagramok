@@ -1,6 +1,6 @@
 Veletlen ertekek az akadalyok szamara
 (ha nincs megadva, veletlen lesz):
-Random values: (600,594;427,87;555,532;217,87)
+Random values: (322,87;427,87;600,532;217,87)
 Init Success
 Available Robot Ids: (1,2)
 Available Oil Ids: (3,4)

@@ -22,10 +22,10 @@ Update () Success
 Robot 2
 ----------------------
 speed: (-0.5,0)
-position: (596.5,532)
+position: (596,532)
 alive: true
 controllable: true
-distance: 3.5
+distance: 4
 storedGlue: 8
 storedOil: 8
 playerControlKeys: (Up:P,Down:É,Left:L,Right:Á,Glue:Õ,Oil:O)

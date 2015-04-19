@@ -49,7 +49,7 @@ public class Map implements GameObject {
 		    //trackLine=ImageIO.read(new File(tracklinepath));
 		    
 		    mapImage=mappath;
-		    outOfTrackMaskFile=mappath;
+		    outOfTrackMaskFile=mappath;	    
 		  
 		} catch (IOException e) {
 			System.out.println("Map masknot found!");			
@@ -83,7 +83,9 @@ public class Map implements GameObject {
 				X < 0 || mask.getWidth() < X)
 			return true;
 		
-		return mask.getRGB(X, Y) == Color.WHITE.getRGB();
+		int i = mask.getRGB(X, Y);
+		
+		return mask.getRGB(X,Y) == 0xFF;
 	}
 
 	/*public Vector2D[] getTrackLine(){

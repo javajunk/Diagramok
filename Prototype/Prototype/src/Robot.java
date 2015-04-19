@@ -35,7 +35,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	
 	private int protoID;
 	private static int protoIdNext = 0;
-
+	
 	public Robot(PlayerInitParams params) {
 		
 		protoIdNext++;
@@ -181,6 +181,11 @@ public class Robot extends Bot implements GameObject, Dumpable {
 		controllable = newState;
 	}
 
+	public boolean getControllable()
+	{
+		return controllable;
+	}
+	
 
 	/**
 	 * Beállítja az adott robot új sebességét
@@ -206,26 +211,28 @@ public class Robot extends Bot implements GameObject, Dumpable {
 			KeyboardState kb = g.getkeyboardState();
 			if(onTheGround())
 			{
+				Vector2D addSpeed = new Vector2D(0,0);
 				if(kb.isKeyDown(playerControlKeys.get(Control.UP)) && controllable)
 				{
-					speed.Add(new Vector2D(0, -1));
+					addSpeed.Add(new Vector2D(0, -1));
 				}
 				if(kb.isKeyDown(playerControlKeys.get(Control.DOWN)) && controllable)
 				{
-					speed.Add(new Vector2D(0, 1));
+					addSpeed.Add(new Vector2D(0, 1));
 				}
 				if(kb.isKeyDown(playerControlKeys.get(Control.LEFT)) && controllable)
 				{
-					speed.Add(new Vector2D(-1, 0));
+					addSpeed.Add(new Vector2D(-1, 0));
 				}
 				if(kb.isKeyDown(playerControlKeys.get(Control.RIGHT)) && controllable)
 				{
-					speed.Add(new Vector2D(1, 0));
+					addSpeed.Add(new Vector2D(1, 0));
 				}
+				addSpeed.Normalize();
+				speed.Add(addSpeed);
 			}
 			
 			//Majdnem joo volt csak 2 sorral lejebb kellet volna ---- Tamas
-			speed.Normalize();
 			position.Add(speed);
 			distance += speed.Length(); // Ez így jó? 
 			
@@ -247,6 +254,9 @@ public class Robot extends Bot implements GameObject, Dumpable {
 			}
 			oilBtnLastState = oilBtnState;
 			
+			if(g.getMap().isOutOfTrack(position));
+				this.KillHim();
+			
 			for(GameObject gObj : g.getRobots())
 			{
 				if(gObj!=this)
@@ -254,10 +264,12 @@ public class Robot extends Bot implements GameObject, Dumpable {
 					gObj.CollisionWithRobot(this);
 				}
 			}
+			
 			for(GameObject gObj : g.getObstacles())
 			{
 				gObj.CollisionWithRobot(this);
 			}
+			
 			for(GameObject gObj : g.getLittleBots())
 			{
 				gObj.CollisionWithRobot(this);

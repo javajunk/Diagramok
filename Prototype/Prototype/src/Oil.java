@@ -34,7 +34,7 @@ public class Oil extends Obstacle {
 		}
 		else
 		{
-			robi.setControllable(true);
+			robi.setControllable(true && robi.getControllable());
 		}
 	}
 	

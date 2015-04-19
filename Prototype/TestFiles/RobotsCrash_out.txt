@@ -44,10 +44,10 @@ Available Robot Ids: (1,2)
 Robot 1
 ----------------------
 speed: (0,-2)
-position: (600,552)
+position: (600,562)
 alive: true
 controllable: true
-distance: 0
+distance: 32
 storedGlue: 8
 storedOil: 8
 playerControlKeys: (Up:W,Down:S,Left:A,Right:D,Glue:Q,Oil:E)
