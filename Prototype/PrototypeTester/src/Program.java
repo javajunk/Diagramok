@@ -22,7 +22,7 @@ public class Program {
 		
 		String inputFile = args[1];
 		String compFile = args[2];
-		System.out.println(args[0]);
+
 		Process p;
 		try {
 			p = Runtime.getRuntime().exec(args[0]);
@@ -86,7 +86,7 @@ public class Program {
 		else if(outputLine == null && compFileLine != null)
 		{
 			
-			System.out.println("Az elv�rt kiemenet hosszab a kiemenetnel.");
+			System.out.println("Az elvart kiemenet hosszab a kiemenetnel.");
 		}
 		else if(outputLine != null && compFileLine == null)
 		{
@@ -94,7 +94,7 @@ public class Program {
 		}
 		else
 		{
-			System.out.println("A k�vetkezo 2 sor nem egyezik ("+line+"): ");
+			System.out.println("A kovetkezo 2 sor nem egyezik ("+line+"): ");
 			System.out.println("Elvart Kimenet: " + compFileLine);
 			System.out.println("Kimenet       : " + outputLine);
 		}
