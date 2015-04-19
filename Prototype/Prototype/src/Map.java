@@ -83,9 +83,7 @@ public class Map implements GameObject {
 				X < 0 || mask.getWidth() < X)
 			return true;
 		
-		int i = mask.getRGB(X, Y);
-		
-		return mask.getRGB(X,Y) == 0xFF;
+		return mask.getRGB(X,Y) == Color.WHITE.getRGB();
 	}
 
 	/*public Vector2D[] getTrackLine(){
