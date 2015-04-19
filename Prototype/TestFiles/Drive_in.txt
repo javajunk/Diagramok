@@ -9,7 +9,7 @@ Update A		//A levegoben van Spd:(-1,0), Pos:(597,594)
 Update W		//A foldon van Spd:(-1,-1), Pos:(596,593)
 Update W		//A levegoben van Spd:(-1,-1), Pos:(595,592)
 Update W		//A levegoben van Spd:(-1,-1), Pos:(594,591)
-Update			//A foldon van Spd:(-1,-1), Pos: (593,590)
+Update	//A foldon van Spd:(-1,-1), Pos: (593,590)
 dump Robot 1
 Update 			//A levegoben van Spd:(-1,-1), Pos:(592,589)
 dump Robot 1

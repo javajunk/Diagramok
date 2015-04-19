@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 public class Program {
 
 	public static void main(String[] args) throws IOException {
-		System.setOut(new java.io.PrintStream(System.out, true, "cp852"));
+		System.setOut(new java.io.PrintStream(System.out, true, "UTF8"));
 		
 		if(args.length < 3)
 		{
@@ -36,7 +36,7 @@ public class Program {
 		}
 		
 		PrintWriter procIn = new PrintWriter(new OutputStreamWriter(p.getOutputStream()));
-		BufferedReader procOut = new BufferedReader(new InputStreamReader(p.getInputStream(),"cp852"));
+		BufferedReader procOut = new BufferedReader(new InputStreamReader(p.getInputStream(),"UTF8"));
 		
 		BufferedReader inputFileReader;
 		try {
