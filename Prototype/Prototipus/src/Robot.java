@@ -48,20 +48,6 @@ public class Robot extends Bot implements GameObject, Dumpable {
 		speed = new Vector2D(0,0);
 		playerControlKeys = params.getControlKeys();
 		position = params.getInitPosition();
-		
-		try {
-			robotImage = ImageIO.read(new File(params.getImageSrc()));
-		}
-		catch (IOException e) 
-		{
-			e.getStackTrace();
-			System.err.println(e);
-		}
-		catch (Exception e)
-		{
-			e.getStackTrace();
-			System.err.println(e);
-		}
 	}
 
 
@@ -292,7 +278,6 @@ public class Robot extends Bot implements GameObject, Dumpable {
 
 	@Override
 	public int getProtoId() {
-
 		return protoID;
 	}
 
@@ -304,7 +289,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 		infos.put("position", position.toString());
 		infos.put("alive", String.valueOf(alive));
 		infos.put("controllable", String.valueOf(controllable));
-		infos.put("distance", String.valueOf(distance));
+		infos.put("distance", PrototypeHelper.LeaveDotZeroOr3Digit(distance));
 		infos.put("storedGlue", String.valueOf(storedGlue));
 		infos.put("storedOil", String.valueOf(storedOil));
 		if(playerControlKeys.get(Control.UP) == KeyEvent.VK_W) // Nem a legelegánsabb, de rövid és egyszerű

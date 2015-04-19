@@ -29,13 +29,7 @@ public abstract class Obstacle implements GameObject, Dumpable {
 	 */
 	protected boolean CollisionDetectWithRobot(Robot robi)
 	{
-		//SkeletonHelper.writeOutMethodName();
-		
-		boolean collision = robi.onTheGround();
-		robi.getPosition();
-		//collision = collision && SkeletonHelper.getBooleanAnswer("Történt ütközés a robottal?");
-		//SkeletonHelper.returnFromMethod();
-		return collision;
+		return robi.getPosition().Distance(position) < Radius && robi.onTheGround();
 	}
 	
 	public void DecreaseLife(double d)

@@ -100,12 +100,12 @@ public class PrototypeHelper {
 
 	public static void DumpDumpable(Dumpable d, String name) {
 		System.out.println(name + " " + d.getProtoId());
-		System.out.println(repeat("-", 24));
+		System.out.println(repeat("-", 22));
 		for (Entry<String, String> attr : d.dump().entrySet()) {
 			System.out.println(attr.getKey() + ": " + attr.getValue());
 		}
 
-		System.out.println(repeat("-", 24));
+		System.out.println(repeat("-", 22));
 		
 	}
 

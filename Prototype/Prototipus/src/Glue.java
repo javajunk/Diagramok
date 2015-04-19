@@ -18,19 +18,6 @@ public class Glue extends Obstacle {
 	
 	public Glue(Vector2D pos){
 		super(pos);
-		try {
-			glueImage = ImageIO.read(new File(gluePic));
-		}
-		catch (IOException e) 
-		{
-			e.getStackTrace();
-			System.err.println(e);
-		}
-		catch (Exception e)
-		{
-			e.getStackTrace();
-			System.err.println(e);
-		}
 	}
 
 	/**

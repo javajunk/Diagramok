@@ -18,30 +18,7 @@ public class Oil extends Obstacle {
 
 	public Oil(Vector2D pos){
 		super(pos);
-		try 
-		{
-		    oilImage = ImageIO.read(new File(oilPic));
-		    
-	        /*ImageIcon icon=new ImageIcon(oilImage);
-	        JFrame frame=new JFrame();
-	        frame.setLayout(new FlowLayout());
-	        frame.setSize(200,300);
-	        JLabel lbl=new JLabel();
-	        lbl.setIcon(icon);
-	        frame.add(lbl);
-	        frame.setVisible(true);
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
-		} 
-		catch (IOException e) 
-		{
-			e.getStackTrace();
-			System.out.println(e);
-		}
-		catch (Exception e)
-		{
-			e.getStackTrace();
-			System.out.println(e);
-		}
+
 	}
 	
 	/**
@@ -68,8 +45,9 @@ public class Oil extends Obstacle {
 	 * @param g: a grafikus környezet, amiben a kirajzolás történik.
 	 */
 	@Override
-	public void Draw(Graphics g) { //TODO
-		g.drawImage(oilImage, 0, 0, null);
+	public void Draw(Graphics g) 
+	{
+		
 	}
 	
 	/**

@@ -31,30 +31,6 @@ public class LittleBot extends Bot implements Dumpable {
 		this.alive = true;
 		this.position = initPos;
 		this.speed = new Vector2D();
-		try 
-		{
-			littleBotImage = ImageIO.read(new File(littleBotPic));
-		    
-	        /*ImageIcon icon=new ImageIcon(littleBotPic);
-	        JFrame frame=new JFrame();
-	        frame.setLayout(new FlowLayout());
-	        frame.setSize(200,300);
-	        JLabel lbl=new JLabel();
-	        lbl.setIcon(icon);
-	        frame.add(lbl);
-	        frame.setVisible(true);
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
-		} 
-		catch (IOException e) 
-		{
-			e.getStackTrace();
-			System.out.println(e);
-		}
-		catch (Exception e)
-		{
-			e.getStackTrace();
-			System.out.println(e);
-		}
 	}
 	
 
