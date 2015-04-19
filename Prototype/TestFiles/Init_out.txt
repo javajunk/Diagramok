@@ -1,0 +1,17 @@
+Veletlen ertekek az akadalyok szamara
+(ha nincs megadva, veletlen lesz):
+Random values: (322,87;427,87;112,87;217,87)
+Init Success
+Available Obstacle Ids: (1,2,3,4)
+Obstacle 1
+----------------------
+position: (322,87)
+life:    100
+----------------------
+Obstacle 3
+----------------------
+position: (112,87)
+life:    100
+----------------------
+Test Sequence Ended
+

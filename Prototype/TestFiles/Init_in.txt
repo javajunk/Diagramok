@@ -1,0 +1,6 @@
+322,87;427,87;112,87;217,87
+Init
+listId Obstacle
+dump Obstacle 1
+dump Obstacle 3
+exit

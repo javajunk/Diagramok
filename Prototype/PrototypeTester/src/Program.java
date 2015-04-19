@@ -70,14 +70,16 @@ public class Program {
 		String outputLine;
 		String compFileLine;
 		int line = 0;
+		
 		do
 		{
 			outputLine = procOut.readLine();
+			outputLine = (outputLine != null) ? outputLine.trim().replaceAll(" +", " ") : outputLine;
 			compFileLine = compFileReader.readLine();
+			compFileLine = (compFileLine != null) ? compFileLine.trim().replaceAll(" +", " ") : compFileLine;
 			line++;
 		}while(outputLine != null && compFileLine != null &&
-				outputLine.trim().replace("  ", " ")
-				.equals(compFileLine.trim().replace("  ", " ")));
+				outputLine.equals(compFileLine));
 		
 		if(outputLine == null && compFileLine == null)
 		{
