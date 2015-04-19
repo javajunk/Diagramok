@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 public class Program {
 
 	public static void main(String[] args) throws IOException {
-		
+		System.setProperty("file.encoding", "UTF8");
 		if(args.length < 3)
 		{
 			System.out.println("A program parameterezese nem megfelelo!");

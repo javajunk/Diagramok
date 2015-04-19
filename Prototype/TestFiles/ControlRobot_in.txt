@@ -1,6 +1,6 @@
 322,87;427,87;112,87;217,87
 Init
 dump Robot 1
-Update W, A
+Update W, A			//Hehehe
 dump Robot 1
 exit

@@ -10,7 +10,7 @@ public class Program {
 
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		
-		System.setOut(new PrintStream(System.out,true,"UTF-8"));
+		System.setOut(new java.io.PrintStream(System.out, true, "cp852"));
 		
 		//SkeletonHelper.Init();
 		//Game g = new Game();

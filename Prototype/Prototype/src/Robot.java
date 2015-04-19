@@ -298,7 +298,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 		}
 		else
 		{
-			infos.put("playerControlKeys", "(Up:P,Down:É,Left:L,Right:Á,Glue:Ő,Oil:O)");
+			infos.put("playerControlKeys", "(Up:P,Down:é,Left:L,Right:Á,Glue:Ő,Oil:O)");
 		}
 		return infos;
 	}
