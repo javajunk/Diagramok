@@ -20,6 +20,6 @@ Available Oil Ids: (3,4,5)
 Oil 5
 ----------------------
 position: (600,532)
-life: 100
+life: 93.333
 ----------------------
 Test Sequence Ended
