@@ -5,7 +5,7 @@ Init Success
 Available Robot Ids: (1,2)
 Available Glue Ids: (1,2)
 Robot 2
------------------------
+----------------------
 speed: (0,0)
 position: (600,532)
 alive: true
@@ -14,13 +14,13 @@ distance: 0
 storedGlue: 8
 storedOil: 8
 playerControlKeys: (Up:P,Down:É,Left:L,Right:Á,Glue:Õ,Oil:O)
------------------------
+----------------------
 Update (L) Success
 Update () Success
 Update () Success
 Update () Success
 Robot 2
------------------------
+----------------------
 speed: (-0.5,0)
 position: (596.5,532)
 alive: true
@@ -29,5 +29,5 @@ distance: 3.5
 storedGlue: 8
 storedOil: 8
 playerControlKeys: (Up:P,Down:É,Left:L,Right:Á,Glue:Õ,Oil:O)
------------------------
+----------------------
 Test Sequence Ended

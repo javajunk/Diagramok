@@ -3,7 +3,7 @@ Veletlen ertekek az akadalyok szamara
 Random values: (600,594;427,87;555,532;217,87)
 Init Success
 Available Robot Ids: (1,2)
-Available Oil Ids: (1,2)
+Available Oil Ids: (3,4)
 Robot 2
 ----------------------
 speed: (0,0)
