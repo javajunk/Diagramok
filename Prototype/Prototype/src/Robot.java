@@ -254,8 +254,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 			}
 			oilBtnLastState = oilBtnState;
 			
-			if(g.getMap().isOutOfTrack(position));
-				this.KillHim();
+			g.getMap().CollisionWithRobot(this);
 			
 			for(GameObject gObj : g.getRobots())
 			{
