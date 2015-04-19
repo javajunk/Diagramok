@@ -73,10 +73,11 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	public void CollisionWithRobot(Robot robi){
 		/*Vector2D dist = this.getPosition();
 		dist.Subtract(robi.getPosition());*/
-		Vector2D dist = new Vector2D(position.getX(), position.getY());
-		dist.Subtract(robi.getPosition());
+		//Vector2D dist = new Vector2D(position.getX(), position.getY());
+		//dist.Subtract(robi.getPosition());
 		
-		if(dist.Length() < 2 * Radius && robi.isAlive() && alive)
+		//if(dist.Length() < 2 * Radius && robi.isAlive() && alive)
+		if(position.Distance(robi.getPosition()) < 2 * Radius && robi.isAlive() && alive)
 		{
 			double r1Speed = this.getSpeed().Length();
 			double r2Speed = robi.getSpeed().Length();
