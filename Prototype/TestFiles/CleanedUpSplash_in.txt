@@ -1,0 +1,16 @@
+600,30;427,87;112,87;217,87
+Init
+listId Glue
+dump Glue 1
+Update		//Bejon egy kisrobi G Life: 85
+listId LittleBot 
+dump LittleBot 1
+Update		// g life: 70
+Update		// g life: 55
+Update		// g life: 40
+Update		// g life: 25
+dump Glue 1
+Update		//Bejon egy kisrobi; g life: -5
+listId LittleBot
+listId Glue
+exit

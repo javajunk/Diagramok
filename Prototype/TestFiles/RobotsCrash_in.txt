@@ -1,0 +1,24 @@
+322,87;427,87;112,87;217,87
+Init
+listId Robot
+dump Robot 1
+dump Robot 2
+Update W		//A foldon van	Spd:(0,-1), Pos:(600,593)
+Update		//Levegoben van	Spd:(0,-1), Pos:(600,592)
+Update		//Levegoben van	Spd:(0,-1), Pos:(600,591)
+Update W 		//A foldon van	Spd:(0,-2), Pos:(600,589)
+Update		//Levegoben van	Spd:(0,-2), Pos:(600,587)
+Update		//Levegoben van	Spd:(0,-2), Pos:(600,585)
+Update W		//A foldon van	Spd:(0,-3), Pos:(600,582)
+Update		//Levegoben van	Spd:(0,-3), Pos:(600,579)
+Update		//Levegoben van	Spd:(0,-3), Pos:(600,576)
+Update W		//A foldon van	Spd:(0,-4), Pos:(600,572)
+Update		//Levegoben van	Spd:(0,-4), Pos:(600,568)
+Update		//Levegoben van	Spd:(0,-4), Pos:(600,564)
+Update		//A foldon van	Spd:(0,-4), Pos:(600,560)
+Update		//Levegoben van	Spd:(0,-4), Pos:(600,556)
+Update		//Levegoben van	Spd:(0,-4), Pos:(600,552)
+listId Robot
+dump Robot 1
+dump Robot 2
+exit

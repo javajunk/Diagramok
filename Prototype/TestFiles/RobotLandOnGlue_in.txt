@@ -1,0 +1,11 @@
+555,532;427,87;112,87;217,87
+Init
+listId Robot
+listId Glue
+dump Robot 2
+Update L 		//A foldon van	Spd:(-1,0), Pos:(599,532)
+Update 
+Update
+Update 		//A foldon van, ragacsban
+dump Robot 2
+exit
