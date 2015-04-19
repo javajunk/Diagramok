@@ -1,0 +1,13 @@
+322,87;427,87;112,87;217,87
+Init
+listId LittleBot
+Update
+listId LittleBot
+Update
+Update
+Update
+Update
+listId LittleBot
+Update
+listId LittleBot
+exit

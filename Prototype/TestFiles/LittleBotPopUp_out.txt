@@ -1,0 +1,15 @@
+Veletlen ertekek az akadalyok szamara
+(ha nincs megadva, veletlen lesz):
+Random values: (322,87;427,87;112,87;217,87)
+Init Success
+Available LittleBot Ids: ()
+Update Success
+Available LittleBot Ids: (1)
+Update Success
+Update Success
+Update Success
+Update Success
+Available LittleBot Ids: (1)
+Update Success
+Available LittleBot Ids: (1,2)
+Test Sequence Ended
