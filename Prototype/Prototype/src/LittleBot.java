@@ -30,7 +30,7 @@ public class LittleBot extends Bot implements Dumpable {
 		protoID=protoIdNext;
 		this.alive = true;
 		this.position = initPos;
-		this.speed = new Vector2D();
+		this.speed = new Vector2D(0,0);
 	}
 	
 
