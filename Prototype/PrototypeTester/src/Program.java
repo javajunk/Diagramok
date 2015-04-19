@@ -75,7 +75,7 @@ public class Program {
 		do
 		{
 			outputLine = procOut.readLine();
-			System.out.println(outputLine);
+			//System.out.println(outputLine);
 			outputLine = (outputLine != null) ? outputLine.trim().replaceAll(" +", " ") : outputLine;
 			compFileLine = compFileReader.readLine();
 			compFileLine = (compFileLine != null) ? compFileLine.trim().replaceAll(" +", " ") : compFileLine;
