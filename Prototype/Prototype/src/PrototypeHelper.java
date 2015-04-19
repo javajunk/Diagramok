@@ -175,7 +175,7 @@ public class PrototypeHelper {
 
 	private static void ListId(String[] commAndArgs) {
 		String[] args = commAndArgs[1].split(" ");
-
+ 
 		switch (args[0]) {
 		case "Robot":
 			FindAndListId(game.getRobots(), args[0]);

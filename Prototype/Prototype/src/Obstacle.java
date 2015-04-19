@@ -39,7 +39,7 @@ public abstract class Obstacle implements GameObject, Dumpable {
 	
 	public void Update(Game g)
 	{
-		if(life <= 0)
+		if(life < 1)
 			g.removeObstacle(this);
 	}
 	

@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
  * valamint az olajfoltok frissítése és kirajzolása is
  */
 public class Oil extends Obstacle {
-	public final static double DryingSpeed = 0.01389;
+	public final static double DryingSpeed = 6.66666;//0.01389;
 	public final static String oilPic = "oil.png";
 	private BufferedImage oilImage = null;
 
@@ -56,15 +56,7 @@ public class Oil extends Obstacle {
 	 * @param g: az objektumot vezérlő Game osztály.
 	 */
 	public void Update(Game g){
-		List<Obstacle> obs = new ArrayList<Obstacle>();
-		obs = g.getObstacles();
-		
-		for(int i=0; i<obs.size(); i++)
-		{
-			if(obs.get(i) instanceof Oil)
-			{
-				obs.get(i).DecreaseLife(Oil.DryingSpeed);
-			}
-		}
+		this.DecreaseLife(DryingSpeed);
+		super.Update(g);
 	}
 }

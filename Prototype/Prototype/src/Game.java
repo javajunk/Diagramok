@@ -230,9 +230,11 @@ public class Game extends JComponent implements Runnable, Dumpable {
 			robots.get(i).Update(this);
 		}
 
-		for(int i = 0; i < obstacles.size(); i++)
+		List<Obstacle> obstaclesClone = new ArrayList<Obstacle>(obstacles);
+		
+		for(int i = 0; i < obstaclesClone.size(); i++)
 		{
-			obstacles.get(i).Update(this);
+			obstaclesClone.get(i).Update(this);
 		}
 		
 		
