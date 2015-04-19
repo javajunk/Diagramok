@@ -14,7 +14,7 @@ controllable: true
 distance: 0
 storedGlue: 8
 storedOil: 7
-playerControlKeys: (Up:P,Down:é,Left:L,Right:Á,Glue:Õ,Oil:O)
+playerControlKeys: (Up:P,Down:É,Left:L,Right:Á,Glue:Õ,Oil:O)
 ----------------------
 Available Oil Ids: (3,4,5)
 Oil 5

@@ -12,7 +12,8 @@ import java.io.PrintWriter;
 public class Program {
 
 	public static void main(String[] args) throws IOException {
-		System.setProperty("file.encoding", "UTF8");
+		System.setOut(new java.io.PrintStream(System.out, true, "cp852"));
+		
 		if(args.length < 3)
 		{
 			System.out.println("A program parameterezese nem megfelelo!");
@@ -35,7 +36,7 @@ public class Program {
 		}
 		
 		PrintWriter procIn = new PrintWriter(new OutputStreamWriter(p.getOutputStream()));
-		BufferedReader procOut = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		BufferedReader procOut = new BufferedReader(new InputStreamReader(p.getInputStream(),"cp852"));
 		
 		BufferedReader inputFileReader;
 		try {
@@ -97,8 +98,8 @@ public class Program {
 		}
 		else
 		{
-			System.out.println("A kovetkezo 2 sor nem egyezik ("+line+"): ");
-			System.out.println("Elvart Kimenet: " + compFileLine);
+			System.out.println("A következő 2 sor nem egyezik ("+line+"): ");
+			System.out.println("Elvárt Kimenet: " + compFileLine);
 			System.out.println("Kimenet       : " + outputLine);
 		}
 		
