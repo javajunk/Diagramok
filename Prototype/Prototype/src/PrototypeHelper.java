@@ -47,10 +47,10 @@ public class PrototypeHelper {
 			String tmp = (br.readLine().split("//"))[0];
 			int commandEnd = tmp.indexOf(' ');
 			if (commandEnd != -1) {
-				command[0] = tmp.substring(0, commandEnd);
+				command[0] = tmp.substring(0, commandEnd).trim();
 				command[1] = tmp.substring(commandEnd + 1, tmp.length()).trim();
 			} else {
-				command[0] = tmp;
+				command[0] = tmp.trim();
 				command[1] = new String();
 			}
 
@@ -59,7 +59,7 @@ public class PrototypeHelper {
 		} catch (IOException e) {
 			System.out.print("Something went wrong. :(");
 		}
-
+		
 		return command;
 	}
 
