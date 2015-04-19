@@ -16,7 +16,8 @@ import javax.imageio.ImageIO;
 public class LittleBot extends Bot implements Dumpable {
 	
 	public final static String littleBotPic = "littleBot.png";
-	public final static double Radius = 13;
+	public final static double Radius = 13.0;
+	public final static double CleaningSpeed = 15.0;
 	private BufferedImage littleBotImage = null;
 	private Obstacle targetObstacle;
 	private boolean alive = false;
@@ -108,7 +109,19 @@ public class LittleBot extends Bot implements Dumpable {
 				}
 			}
 			
+			//A kisrobot mozgatása a kiszemelt folt felé
+			Vector2D dir = new Vector2D(this.position.getX(),this.position.getY());
+			dir.Subtract(targetObstacle.position);
+			dir.Normalize();
+			this.speed = dir;
 			
+			this.position.Add(this.speed);
+			
+			//Ha kisrobot eléri a kiszemelt foltot, elkezdi takarítani
+			if(this.position.Distance(targetObstacle.position)<LittleBot.Radius)
+			{
+				targetObstacle.DecreaseLife(LittleBot.CleaningSpeed);
+			}
 		}
 		else
 		{
