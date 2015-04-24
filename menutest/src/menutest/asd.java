@@ -18,6 +18,8 @@ public class asd {
 		
 		final JFrame frame = new JFrame();
 		
+		//változtatás aergbaerbaerhar
+		
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		
 		CustomButton button = new CustomButton(new ImageIcon("asd.png").getImage());
