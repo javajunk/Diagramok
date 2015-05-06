@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -17,12 +18,15 @@ public class LittleBot extends Bot implements Dumpable {
 
 	public final static String littleBotPic = "littleBot.png";
 	public final static double Radius = 13.0;
-	public final static double CleaningSpeed = 0.015;
+	public final static double CleaningSpeed = 0.333;
 	private BufferedImage littleBotImage = null;
 	private Obstacle targetObstacle;
 	private boolean alive = false;
 	private int protoID;
 	private static int protoIdNext = 0;
+	
+	private BufferedImage mask=null;
+	public final static String outOfTrackMaskFile = "map/mapMask.png";
 
 	LittleBot(Vector2D initPos) {
 		protoIdNext++;
@@ -30,8 +34,8 @@ public class LittleBot extends Bot implements Dumpable {
 		this.alive = true;
 		this.position = initPos;
 		this.speed = new Vector2D(0, 0);
-		
 		try {
+			mask = ImageIO.read(new File(outOfTrackMaskFile));
 			littleBotImage = ImageIO.read(new File(littleBotPic));
 		} catch (IOException e) {
 			System.out.println("Robot files not found!");			
@@ -104,8 +108,34 @@ public class LittleBot extends Bot implements Dumpable {
 				dir = dir.Subtract(this.position);
 				dir.Normalize();
 				this.speed = dir;
+				
+				///////////
+				if(this.LittleBotisOutOfTrack(this.position.Add(this.speed)))
+				{
+					//XXXXXXXXX
+					//teljes bal oldal
+					if(this.position.getX()<600)
+					{
+						this.speed.setCoords(-1.0, 0.0);
+					}
+					//teljes jobb oldal
+					else if(this.position.getX()>600)
+					{
+						this.speed.setCoords(1.0, 0.0);
+					}
+					
+					//this.speed.Normalize();
+					this.position = this.position.Add(this.speed);
+				}
+				else
+				{
+					this.position = this.position.Add(this.speed);
+				}
+				//////////
+				
+				
 			
-			this.position = this.position.Add(this.speed);
+			//this.position = this.position.Add(this.speed);
 			
 			//Ha kisrobot eléri a kiszemelt foltot, elkezdi takarítani
 			if(this.position.Distance(targetObstacle.position)<LittleBot.Radius)
@@ -127,6 +157,17 @@ public class LittleBot extends Bot implements Dumpable {
 		return protoID;
 	}
 
+	public boolean LittleBotisOutOfTrack(Vector2D pos){
+		int X=(int)pos.getX();
+		int Y=(int)pos.getY();
+		
+		if(Y < 0 || mask.getHeight() <= Y ||
+				X < 0 || mask.getWidth() <= X)
+			return true;
+
+		return mask.getRGB(X,Y) == Color.WHITE.getRGB();
+	}
+	
 	@Override
 	public LinkedHashMap<String, String> dump() {
 		LinkedHashMap<String, String> infos = new LinkedHashMap<String, String>();
