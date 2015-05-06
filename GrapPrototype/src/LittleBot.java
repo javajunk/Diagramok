@@ -17,7 +17,7 @@ public class LittleBot extends Bot implements Dumpable {
 
 	public final static String littleBotPic = "littleBot.png";
 	public final static double Radius = 13.0;
-	public final static double CleaningSpeed = 0.1;
+	public final static double CleaningSpeed = 0.015;
 	private BufferedImage littleBotImage = null;
 	private Obstacle targetObstacle;
 	private boolean alive = false;

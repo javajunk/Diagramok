@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
  * valamint az olajfoltok frissítése és kirajzolása is
  */
 public class Oil extends Obstacle {
-	public final static double DryingSpeed = 0.333;
+	public final static double DryingSpeed = 0.01389;
 	public final static String oilPic = "obstacles/oil.png";
 
 	public Oil(Vector2D pos){
