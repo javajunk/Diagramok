@@ -19,7 +19,7 @@ public class Game extends JComponent implements Runnable {
 	private static final int initialPlacedObstacles = 2;
 	private static final Vector2D littleBotsEntryPosition = new Vector2D(600,
 			30);
-	private static final int littleBotEntryPeriod = 60;
+	private static final int littleBotEntryPeriod = 2700;
 	private static final PlayerInitParams[] PlayersInitParams = new PlayerInitParams[2];
 	private static final int targetFrameTime = 16;
 	private static final long serialVersionUID = 7845653460750690226L;
