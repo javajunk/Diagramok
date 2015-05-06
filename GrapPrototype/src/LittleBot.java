@@ -101,11 +101,11 @@ public class LittleBot extends Bot implements Dumpable {
 				
 				//A kisrobot mozgatása a kiszemelt folt felé
 				Vector2D dir = new Vector2D(targetObstacle.position.getX(),targetObstacle.position.getY());
-				dir.Subtract(this.position);
+				dir = dir.Subtract(this.position);
 				dir.Normalize();
 				this.speed = dir;
 			
-			this.position.Add(this.speed);
+			this.position = this.position.Add(this.speed);
 			
 			//Ha kisrobot eléri a kiszemelt foltot, elkezdi takarítani
 			if(this.position.Distance(targetObstacle.position)<LittleBot.Radius)

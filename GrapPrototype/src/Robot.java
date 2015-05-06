@@ -227,25 +227,25 @@ public class Robot extends Bot implements GameObject, Dumpable {
 				addSpeed = new Vector2D(0,0);
 				if(kb.isKeyDown(playerControlKeys.get(Control.UP)) && controllable)
 				{
-					addSpeed.Add(new Vector2D(0, -1));
+					addSpeed = addSpeed.Add(new Vector2D(0, -1));
 				}
 				if(kb.isKeyDown(playerControlKeys.get(Control.DOWN)) && controllable)
 				{
-					addSpeed.Add(new Vector2D(0, 1));
+					addSpeed = addSpeed.Add(new Vector2D(0, 1));
 				}
 				if(kb.isKeyDown(playerControlKeys.get(Control.LEFT)) && controllable)
 				{
-					addSpeed.Add(new Vector2D(-1, 0));
+					addSpeed = addSpeed.Add(new Vector2D(-1, 0));
 				}
 				if(kb.isKeyDown(playerControlKeys.get(Control.RIGHT)) && controllable)
 				{
-					addSpeed.Add(new Vector2D(1, 0));
+					addSpeed = addSpeed.Add(new Vector2D(1, 0));
 				}
 				addSpeed.Normalize();
 				addSpeed.Scale(speedUnit);
 							
 			//Majdnem joo volt csak 2 sorral lejebb kellet volna ---- Tamas
-			position.Add(speed);
+			position = position.Add(speed);
 			distance += speed.Length(); // Ez így jó? 
 
 			
@@ -289,7 +289,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 			
 			if(onTheGround() && controllable)
 			{
-				speed.Add(addSpeed);
+				speed = speed.Add(addSpeed);
 			}
 		}		
 	}
@@ -305,7 +305,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 		
 		AffineTransform trans = new AffineTransform();
 		Vector2D spd = new Vector2D(speed.getX(),speed.getY());
-		spd.Add(addSpeed);
+		spd = spd.Add(addSpeed);
 		
 		double scale = Math.abs(Math.sin(
 				((double)botHeight/inAirTime)*Math.PI
