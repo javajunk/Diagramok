@@ -1,7 +1,7 @@
 /**
  * Az osztály egy egyszerű 2 dimenziós vektort implementál.
  */
-public class Vector2D {
+public class Vector2D implements Cloneable{
 
 	private double x;
 	private double y;
@@ -24,6 +24,10 @@ public class Vector2D {
 		this.y = y;
 	}
 	
+ 	@Override
+ 	protected Object clone() throws CloneNotSupportedException {
+ 		return new Vector2D (x,y);
+ 	}
 	/**
 	 * Módosítja a vektor koordinátáit a paraméterként kapott értékekre.
 	 * @param x - Az új X koordináta érték.
@@ -126,11 +130,14 @@ public class Vector2D {
 	 * Vektorösszeadás.
 	 * @param vec - A hozzáadandó vektor.
 	 */
-	public void Add(Vector2D vec){
-		x = x + vec.getX();
-		y = y + vec.getY();
+	public Vector2D Add (Vector2D vec) {
+		return new Vector2D (x + vec.getX(), y + vec.getY());
 	}
-
+//	public void Add (Vector2D vec) {
+//		x = x + vec.getX();
+//		y = y + vec.getY();
+//	}
+	
 	/**
 	 * Normalizálja a vektort.
 	 */
@@ -157,10 +164,13 @@ public class Vector2D {
 	 * Vektorkivonás.
 	 * @param vec - A kivonandó vektor.
 	 */
-	public void Subtract(Vector2D vec){
-		x = x - vec.getX();
-		y = y - vec.getY();
+	public Vector2D Subtract(Vector2D vec){
+		return new Vector2D (x - vec.getX(), y - vec.getY());
 	}
+//	public void Subtract (Vector2D vec) {
+//		x = x - vec.getX();
+//		y = y - vec.getY();
+//	}
 	
 	/**
 	 * Kiszámolja két pont távolságát
