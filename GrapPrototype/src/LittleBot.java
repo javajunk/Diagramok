@@ -22,6 +22,10 @@ public class LittleBot extends Bot implements Dumpable {
 	private BufferedImage littleBotImage = null;
 	private Obstacle targetObstacle;
 	private boolean alive = false;
+	private boolean inLineX = false; //egy vonalban ragadás ellen
+	private double inLineXCoordY = 0.0;
+	private boolean inLineY = false; //egy vonalban ragadás ellen
+	private int inLineYCoordX = 0;
 	private int protoID;
 	private static int protoIdNext = 0;
 	
@@ -109,13 +113,32 @@ public class LittleBot extends Bot implements Dumpable {
 				dir.Normalize();
 				this.speed = dir;
 				
-				///////////
 				if(this.LittleBotisOutOfTrack(this.position.Add(this.speed)))
 				{
-					//teljes bal oldal
-					if(this.position.getX()<176) //Y miatt
+					//jobb vagy bal oldal
+					if(this.position.getX()<176 || this.position.getX()>1024)
 					{
-						if(this.speed.getY()<0)
+						if(inLineY)
+						{
+							if((int)this.position.getX()==inLineYCoordX)
+							{
+								if(this.position.getY()<=325)
+								{
+									this.speed.setCoords(0.0, -1.0);
+								}
+								else
+								{
+									this.speed.setCoords(0.0, 1.0);
+								}
+							}
+						}
+						else if((int)this.position.getY()==(int)this.targetObstacle.position.getY())
+						{
+							inLineY = true;
+							inLineYCoordX = (int)this.position.getX();
+							this.speed.setCoords(0.0, 0.0);
+						}
+						else if(this.speed.getY()<0)
 						{
 							this.speed.setCoords(0.0, -1.0);
 						}
@@ -124,58 +147,55 @@ public class LittleBot extends Bot implements Dumpable {
 							this.speed.setCoords(0.0, 1.0);
 						}
 					}
-					else if(this.position.getX()<600)
+					else if(this.position.getY()<151 || this.position.getY()>499)
 					{
-						this.speed.setCoords(-1.0, 0.0);
-					}
-					//teljes jobb oldal
-					else if(this.position.getX()>1024) //Y miatt
-					{
-						if(this.speed.getY()<0)
+						if(inLineX)
 						{
-							this.speed.setCoords(0.0, -1.0);
+							if((int)this.position.getY()==inLineXCoordY)
+							{
+								if(this.position.getX()<=600)
+								{
+									this.speed.setCoords(-1.0, 0.0);
+								}
+								else
+								{
+									this.speed.setCoords(1.0, 0.0);
+								}
+							}
 						}
-						else if(this.speed.getY()>0)
+						else if((int)this.position.getX()==(int)this.targetObstacle.position.getX())
 						{
-							this.speed.setCoords(0.0, 1.0);
+							inLineX = true;
+							inLineXCoordY = (int)this.position.getY();
+							this.speed.setCoords(0.0, 0.0);
+						}
+						else if(this.speed.getX()<0)
+						{
+							this.speed.setCoords(-1.0, 0.0);
+						}
+						else if(this.speed.getX()>0)
+						{
+							this.speed.setCoords(1.0, 0.0);
 						}
 					}
-					else if(this.position.getX()>600)
-					{
-						this.speed.setCoords(1.0, 0.0);
-					}
-					
-					//YYYYYYYYYY
-					//ha +, akkor lefelé megy,
-					//ha -, akkor felfelé megy
-					
-					
-					//this.speed.Normalize();
 					this.position = this.position.Add(this.speed);
 				}
 				else
 				{
+					inLineY = false;
+					inLineYCoordX = 0;
+					inLineX = false;
+					inLineXCoordY = 0;
 					this.position = this.position.Add(this.speed);
 				}
-				//////////
-				
-				
 			
-			//this.position = this.position.Add(this.speed);
-			
-			//Ha kisrobot eléri a kiszemelt foltot, elkezdi takarítani
-			if(this.position.Distance(targetObstacle.position)<LittleBot.Radius)
-			{
-				targetObstacle.DecreaseLife(LittleBot.CleaningSpeed);
-			}
+				//Ha kisrobot eléri a kiszemelt foltot, elkezdi takarítani
+				if(this.position.Distance(targetObstacle.position)<LittleBot.Radius)
+				{
+					targetObstacle.DecreaseLife(LittleBot.CleaningSpeed);
+				}
 			}
 		}
-		else
-		{
-				g.addObstacle(new Oil(this.position));
-				g.removeLittleBot(this);
-		}
-		
 	}
 
 	@Override
