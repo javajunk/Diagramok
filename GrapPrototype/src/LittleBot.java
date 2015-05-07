@@ -112,17 +112,43 @@ public class LittleBot extends Bot implements Dumpable {
 				///////////
 				if(this.LittleBotisOutOfTrack(this.position.Add(this.speed)))
 				{
-					//XXXXXXXXX
 					//teljes bal oldal
-					if(this.position.getX()<600)
+					if(this.position.getX()<176) //Y miatt
+					{
+						if(this.speed.getY()<0)
+						{
+							this.speed.setCoords(0.0, -1.0);
+						}
+						else if(this.speed.getY()>0)
+						{
+							this.speed.setCoords(0.0, 1.0);
+						}
+					}
+					else if(this.position.getX()<600)
 					{
 						this.speed.setCoords(-1.0, 0.0);
 					}
 					//teljes jobb oldal
+					else if(this.position.getX()>1024) //Y miatt
+					{
+						if(this.speed.getY()<0)
+						{
+							this.speed.setCoords(0.0, -1.0);
+						}
+						else if(this.speed.getY()>0)
+						{
+							this.speed.setCoords(0.0, 1.0);
+						}
+					}
 					else if(this.position.getX()>600)
 					{
 						this.speed.setCoords(1.0, 0.0);
 					}
+					
+					//YYYYYYYYYY
+					//ha +, akkor lefelé megy,
+					//ha -, akkor felfelé megy
+					
 					
 					//this.speed.Normalize();
 					this.position = this.position.Add(this.speed);
