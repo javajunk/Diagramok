@@ -110,11 +110,11 @@ public class LittleBot extends Bot {
 				
 				if(this.LittleBotisOutOfTrack(this.position.Add(this.speed)))
 				{
-					if(this.speed.getX()<0 && this.speed.getY()>0) //-+ speed-koordináták
+					if(this.speed.getX()<0 && this.speed.getY()>=0) //-+ speed-koordináták
 					{
 						if(this.targetObstacle.position.getX()<600) //-- -ba megyünk -+ -on keresztül
 						{
-							if(this.position.getX()>600 && this.position.getY()<325) //++
+							if(this.position.getX()>=600 && this.position.getY()<325) //++
 							{
 								this.speed.setCoords(-1.0, -1.0);
 							}
@@ -122,32 +122,32 @@ public class LittleBot extends Bot {
 							{
 								this.speed.setCoords(-1.0, 0.0);
 							}
-							else if(this.position.getX()>600 && this.position.getY()>325) //+-
+							else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
 							{
 								this.speed.setCoords(0.0, 1.0);
 							}
 						}
-						else if(this.targetObstacle.position.getX()>600 && this.targetObstacle.position.getY()>325) //+- -ba megyünk
+						else if(this.targetObstacle.position.getX()>=600 && this.targetObstacle.position.getY()>=325) //+- -ba megyünk
 						{
-							if(this.position.getX()>600 && this.position.getY()<325)
+							if(this.position.getX()>=600 && this.position.getY()<325) //++
 							{
 								this.speed.setCoords(1.0, 0.0);
 							}
-							else if(this.position.getX()>600 && this.position.getY()>325)
+							else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
 							{
 								this.speed.setCoords(0.0, 1.0);
 							}
 						}
 					}
-					else if(this.speed.getX()>0 && this.speed.getY()<0) //+- speed-koordináták
+					else if(this.speed.getX()>=0 && this.speed.getY()<0) //+- speed-koordináták
 					{
-						if(this.targetObstacle.position.getX()>600) //++ -ba megyünk +- -on keresztül
+						if(this.targetObstacle.position.getX()>=600) //++ -ba megyünk +- -on keresztül
 						{
-							if(this.position.getX()<600 && this.position.getY()>325) //--
+							if(this.position.getX()<600 && this.position.getY()>=325) //--
 							{
 								this.speed.setCoords(1.0, 1.0);
 							}
-							else if(this.position.getX()>600 && this.position.getY()>325) //+-
+							else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
 							{
 								this.speed.setCoords(1.0, 0.0);
 							}
@@ -158,7 +158,7 @@ public class LittleBot extends Bot {
 						}
 						else if(this.targetObstacle.position.getX()<600 && this.targetObstacle.position.getY()<325) //-+ -ba megyünk
 						{
-							if(this.position.getX()<600 && this.position.getY()>325) //--
+							if(this.position.getX()<600 && this.position.getY()>=325) //--
 							{
 								this.speed.setCoords(-1.0, 0.0);
 							}
@@ -168,30 +168,30 @@ public class LittleBot extends Bot {
 							}
 						}
 					}
-					else if(this.speed.getX()>0 && this.speed.getY()>0) //++ speed-koordináták
+					else if(this.speed.getX()>=0 && this.speed.getY()>0) //++ speed-koordináták
 					{
-						if(this.targetObstacle.position.getX()>600) //+- -ba megyünk ++ -on keresztül
+						if(this.targetObstacle.position.getX()>=600) //+- -ba megyünk ++ -on keresztül
 						{
 							if(this.position.getX()<600 && this.position.getY()<325) //-+
 							{
 								this.speed.setCoords(1.0, -1.0);
 							}
-							else if(this.position.getX()>600 && this.position.getY()<325) //++
+							else if(this.position.getX()>=600 && this.position.getY()<325) //++
 							{
 								this.speed.setCoords(1.0, 0.0);
 							}
-							else if(this.position.getX()>600 && this.position.getY()>325) //+-
+							else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
 							{
 								this.speed.setCoords(0.0, 1.0);
 							}
 						}
-						else if(this.targetObstacle.position.getX()<600 && this.targetObstacle.position.getY()>325) //-- -ba megyünk
+						else if(this.targetObstacle.position.getX()<600 && this.targetObstacle.position.getY()>=325) //-- -ba megyünk
 						{
 							if(this.position.getX()<600 && this.position.getY()<325) //-+
 							{
 								this.speed.setCoords(-1.0, 0.0);
 							}
-							else if(this.position.getX()<600 && this.position.getY()>325) //--
+							else if(this.position.getX()<600 && this.position.getY()>=325) //--
 							{
 								this.speed.setCoords(0.0, 1.0);
 							}
@@ -201,11 +201,11 @@ public class LittleBot extends Bot {
 					{
 						if(this.targetObstacle.position.getX()<600) //-+ -ba megyünk -- -on keresztül
 						{
-							if(this.position.getX()>600 && this.position.getY()>325) //+-
+							if(this.position.getX()>=600 && this.position.getY()>=325) //+-
 							{
 								this.speed.setCoords(-1.0, 1.0);
 							}
-							else if(this.position.getX()<600 && this.position.getY()>325) //--
+							else if(this.position.getX()<600 && this.position.getY()>=325) //--
 							{
 								this.speed.setCoords(-1.0, 0.0);
 							}
@@ -214,23 +214,24 @@ public class LittleBot extends Bot {
 								this.speed.setCoords(0.0, -1.0);
 							}
 						}
-						else if(this.targetObstacle.position.getX()>600 && this.targetObstacle.position.getY()<325) //++ -ba megyünk
+						else if(this.targetObstacle.position.getX()>=600 && this.targetObstacle.position.getY()<325) //++ -ba megyünk
 						{
-							if(this.position.getX()>600 && this.position.getY()>325) //+-
+							if(this.position.getX()>=600 && this.position.getY()>=325) //+-
 							{
 								this.speed.setCoords(1.0, 0.0);
 							}
-							else if(this.position.getX()>600 && this.position.getY()<325) //++
+							else if(this.position.getX()>=600 && this.position.getY()<325) //++
 							{
 								this.speed.setCoords(0.0, -1.0);
 							}
 						}
 					}
-					
+					//this.speed.Normalize();
 					this.position = this.position.Add(this.speed);
 				}
 				else
 				{
+					//this.speed.Normalize();
 					this.position = this.position.Add(this.speed);
 				}
 			
