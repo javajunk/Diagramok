@@ -217,6 +217,10 @@ public class LittleBot extends Bot {
 							{
 								this.speed.setCoords(0.0, -1.0);
 							}
+							else
+							{
+								this.speed.setCoords(0.0, -1.0);
+							}
 						}
 						else if(this.targetObstacle.position.getX()>=600 && this.targetObstacle.position.getY()<325) //++ -ba megyünk
 						{
