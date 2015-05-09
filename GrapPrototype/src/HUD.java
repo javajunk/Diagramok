@@ -56,7 +56,7 @@ public class HUD {
 		for(Robot r : g.getRobots())
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.append(r.getName()); sb.append(" Játekos");
+			sb.append(r.getName()); sb.append(" Játékos");
 			sb.append("\nOlaj: "); sb.append(r.getStoredOil());
 			sb.append("\nRagacs: "); sb.append(r.getStoredGlue());
 			sb.append("\nTáv: "); sb.append(distanceFormat.format(r.getDistance()));
