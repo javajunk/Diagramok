@@ -5,6 +5,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -21,10 +22,7 @@ public class LittleBot extends Bot {
 	private BufferedImage littleBotImage = null;
 	private Obstacle targetObstacle;
 	private boolean alive = false;
-	private boolean inLineX = false; //egy vonalban ragadás ellen
-	private double inLineXCoordY = 0.0;
-	private boolean inLineY = false; //egy vonalban ragadás ellen
-	private int inLineYCoordX = 0;
+
 	
 	private BufferedImage mask=null;
 	public final static String outOfTrackMaskFile = "map/mapMask.png";
@@ -54,12 +52,20 @@ public class LittleBot extends Bot {
 	 * Teszteli, hogy a kisrobot ütközik-e a paraméterül kapott kisrobottal. Ha
 	 * ütköznek, mindkét kisrobot irányt vált.
 	 */
-	public void CollisionWithLittleBot(LittleBot lbot) {
-
-		if (this.position.Distance(lbot.position) < 2 * LittleBot.Radius) {
+	public void CollisionWithLittleBot(LittleBot lbot) 
+	{
+		if((lbot.speed.getX()>0 && this.speed.getX()<0) || (lbot.speed.getX()<0 && this.speed.getX()>0))
+		{ //egymásnak szemből mennek neki <- nem lesz jó
 			this.speed.setDegreeAngle(-90.0);
 			lbot.speed.setDegreeAngle(-90.0);
 		}
+		//else if()
+		{ //egy irányba mennek
+			
+		}
+		
+		this.position = this.position.Add(this.speed);
+		lbot.position = lbot.position.Add(lbot.speed);
 	}
 
 	@Override
@@ -101,6 +107,21 @@ public class LittleBot extends Bot {
 						targetObstacle = obs.get(i);
 					}
 				}
+				
+				//Kisrobotok ütközésének vizsgálata
+				List<LittleBot> proba = new ArrayList();
+				proba = g.getLittleBots();
+				if(proba.size()>0)
+				{
+					for(int i=0; i<g.getLittleBots().size();i++)
+					{
+						if(this!=proba.get(i) && this.position.Distance(proba.get(i).position)<2*LittleBot.Radius)
+						{
+							CollisionWithLittleBot(this);
+						}
+					}
+				}
+				
 				
 				//A kisrobot mozgatása a kiszemelt folt felé
 				Vector2D dir = new Vector2D(targetObstacle.position.getX(),targetObstacle.position.getY());
