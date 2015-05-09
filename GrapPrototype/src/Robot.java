@@ -1,12 +1,10 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
-import java.util.LinkedHashMap;
 
 import javax.imageio.ImageIO;
 
@@ -15,10 +13,8 @@ import javax.imageio.ImageIO;
  * Ilyen például a robot pozíciója, sebessége, vagy a megtett távolság. 
  * Ezen kívül az is a feladata, hogy frissítse és kirajzolja a robotot.
  */
-public class Robot extends Bot implements GameObject, Dumpable {
+public class Robot extends Bot implements GameObject {
 
-	/*private Vector2D position;
-	private Vector2D speed;*/
 	public boolean controllable;
 	private double distance;
 	private static final int inAirTime = 60;
@@ -30,19 +26,14 @@ public class Robot extends Bot implements GameObject, Dumpable {
 	public int storedOil;
 	private boolean alive;
 	private boolean ontheGround = true;
+	private String name;
 	
 	private int botHeight = 0;
 
 	private boolean glueBtnLastState = false; 	//A cuccok lerakasa false -> true atmenetre
 	private boolean oilBtnLastState = false;	//
-	
-	private int protoID;
-	private static int protoIdNext = 0;
-	
-	public Robot(PlayerInitParams params) {
 		
-		protoIdNext++;
-		protoID=protoIdNext;
+	public Robot(PlayerInitParams params) {
 		controllable = true;
 		distance = 0;
 		storedGlue = initStoredObstacles;
@@ -51,29 +42,26 @@ public class Robot extends Bot implements GameObject, Dumpable {
 		speed = new Vector2D(0,0);
 		playerControlKeys = params.getControlKeys();
 		position = params.getInitPosition();
+		name = params.getName();
 		
 		try {
 			robotImage = ImageIO.read(new File(params.getImageSrc()));
 		} catch (IOException e) {
 			System.out.println("Robot files not found!");			
 		}
-		
-		
 	}
 
-
+	public String getName()
+	{
+		return name;
+	}
+	
 	/**
 	 * Megnézi, hogy ütközik-e egymással a két robot.
 	 * 
 	 * @param robi: a másik robot
 	 */
 	public void CollisionWithRobot(Robot robi){
-		/*Vector2D dist = this.getPosition();
-		dist.Subtract(robi.getPosition());*/
-		//Vector2D dist = new Vector2D(position.getX(), position.getY());
-		//dist.Subtract(robi.getPosition());
-		
-		//if(dist.Length() < 2 * Radius && robi.isAlive() && alive)
 		if(position.Distance(robi.getPosition()) < 2 * Radius && robi.isAlive() && alive)
 		{
 			double r1Speed = this.getSpeed().Length();
@@ -81,21 +69,11 @@ public class Robot extends Bot implements GameObject, Dumpable {
 			Vector2D newSp = new Vector2D((speed.getX() + robi.getSpeed().getX()) / 2, (speed.getY() + robi.getSpeed().getY()) / 2);
 			if(r1Speed < r2Speed)
 			{
-				/*Vector2D newSpeed = this.getSpeed();
-				newSpeed.Add(robi.getSpeed());
-				newSpeed.Scale(0.5);
-				robi.setSpeed(newSpeed);
-				this.KillHim();*/
 				robi.setSpeed(newSp);
 				this.KillHim();
 			}
 			else if(r1Speed > r2Speed)
 			{
-				/*Vector2D newSpeed = this.getSpeed();
-				newSpeed.Add(robi.getSpeed());
-				newSpeed.Scale(0.5);
-				robi.KillHim();
-				this.setSpeed(newSpeed);*/
 				this.setSpeed(newSp);
 				robi.KillHim();
 			}
@@ -207,7 +185,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 		speed = newSp;
 	}
 
-	Vector2D addSpeed;
+	Vector2D addSpeed = new Vector2D();
 	/**
 	 * Frissíti a robotok állapotát.
 	 * 
@@ -293,7 +271,7 @@ public class Robot extends Bot implements GameObject, Dumpable {
 			}
 		}		
 	}
-
+	
 	/**
 	 * Kirajzolja a robotokat.
 	 * 
@@ -319,33 +297,4 @@ public class Robot extends Bot implements GameObject, Dumpable {
 		
 		grap.drawImage(robotImage, trans, null);
 	}
-
-int i = 0;
-	@Override
-	public int getProtoId() {
-		return protoID;
-	}
-
-
-	@Override
-	public LinkedHashMap<String, String> dump() {
-		LinkedHashMap<String,String> infos = new LinkedHashMap<String,String>();
-		infos.put("speed", speed.toString());
-		infos.put("position", position.toString());
-		infos.put("alive", String.valueOf(alive));
-		infos.put("controllable", String.valueOf(controllable));
-		
-		infos.put("storedGlue", String.valueOf(storedGlue));
-		infos.put("storedOil", String.valueOf(storedOil));
-		if(playerControlKeys.get(Control.UP) == KeyEvent.VK_W) // Nem a legelegánsabb, de rövid és egyszerű
-		{
-			infos.put("playerControlKeys", "(Up:W,Down:S,Left:A,Right:D,Glue:Q,Oil:E)");
-		}
-		else
-		{
-			infos.put("playerControlKeys", "(Up:P,Down:É,Left:L,Right:Á,Glue:Ő,Oil:O)");
-		}
-		return infos;
-	}
-
 }

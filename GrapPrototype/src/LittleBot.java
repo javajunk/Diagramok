@@ -5,7 +5,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -14,7 +13,7 @@ import javax.imageio.ImageIO;
  * A játéktéren keményen dolgozó kisrobotokat reprezentáló objektum, akik szépen
  * sorban feltakarítják a pályán található foltokat.
  */
-public class LittleBot extends Bot implements Dumpable {
+public class LittleBot extends Bot {
 
 	public final static String littleBotPic = "littleBot.png";
 	public final static double Radius = 13.0;
@@ -26,15 +25,11 @@ public class LittleBot extends Bot implements Dumpable {
 	private double inLineXCoordY = 0.0;
 	private boolean inLineY = false; //egy vonalban ragadás ellen
 	private int inLineYCoordX = 0;
-	private int protoID;
-	private static int protoIdNext = 0;
 	
 	private BufferedImage mask=null;
 	public final static String outOfTrackMaskFile = "map/mapMask.png";
 
 	LittleBot(Vector2D initPos) {
-		protoIdNext++;
-		protoID = protoIdNext;
 		this.alive = true;
 		this.position = initPos;
 		this.speed = new Vector2D(0, 0);
@@ -253,11 +248,6 @@ public class LittleBot extends Bot implements Dumpable {
 		}
 	}
 
-	@Override
-	public int getProtoId() {
-		return protoID;
-	}
-
 	public boolean LittleBotisOutOfTrack(Vector2D pos){
 		int X=(int)pos.getX();
 		int Y=(int)pos.getY();
@@ -268,17 +258,5 @@ public class LittleBot extends Bot implements Dumpable {
 
 		return mask.getRGB(X,Y) == Color.WHITE.getRGB();
 	}
-	
-	@Override
-	public LinkedHashMap<String, String> dump() {
-		LinkedHashMap<String, String> infos = new LinkedHashMap<String, String>();
-
-		infos.put("position", this.position.toString());
-		infos.put("speed", this.speed.toString());
-		infos.put("targetObstacle (Id)",
-				String.valueOf(this.targetObstacle.getProtoId()));
-
-		return infos;
-	}
-
 }
+

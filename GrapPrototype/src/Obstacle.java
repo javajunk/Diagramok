@@ -1,6 +1,5 @@
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.LinkedHashMap;
 
 /**
  * Az Obstacle absztrakt osztály tartalmazza az akadályok közös attribútumait és metódusát.
@@ -8,7 +7,7 @@ import java.util.LinkedHashMap;
  * Az osztály fő feladata az ütközések detektálása egy robot és egy akadály között.
  */
 
-public abstract class Obstacle implements GameObject, Dumpable {
+public abstract class Obstacle implements GameObject {
 	public final static double Radius = 42;
 	
 	protected BufferedImage obstacleImage = null;
@@ -49,18 +48,5 @@ public abstract class Obstacle implements GameObject, Dumpable {
 	public void Draw(Graphics g)
 	{
 		g.drawImage(obstacleImage, (int)(position.getX() - Radius), (int)(position.getY() - Radius), null);
-	}
-	
-	@Override
-	public int getProtoId() {
-		return protoID;
-	}
-
-	@Override
-	public LinkedHashMap<String, String> dump() {
-		LinkedHashMap<String,String> infos = new LinkedHashMap<String,String>();
-		infos.put("position", position.toString());
-		
-		return infos;
 	}
 }

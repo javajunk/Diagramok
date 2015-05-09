@@ -6,12 +6,14 @@ public class PlayerInitParams {
 	private Hashtable<Control,Integer> controlKeys;
 	private String imageSrc;
 	private Vector2D initPosition;
+	private String playerName;
 	
-	public PlayerInitParams(Hashtable<Control,Integer> cKeys,String imgSrc,Vector2D initPos)
+	public PlayerInitParams(String name, Hashtable<Control,Integer> cKeys,String imgSrc,Vector2D initPos)
 	{
 		controlKeys = cKeys;
 		imageSrc = imgSrc;
 		initPosition = initPos;
+		playerName = name;
 	}
 	
 	public Hashtable<Control,Integer> getControlKeys()
@@ -22,6 +24,11 @@ public class PlayerInitParams {
 	public String getImageSrc() 
 	{
 		return imageSrc;
+	}
+	
+	public String getName() 
+	{
+		return playerName;
 	}
 	
 	public Vector2D getInitPosition() 

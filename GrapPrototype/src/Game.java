@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -16,12 +15,11 @@ import java.util.List;
 
 public class Game extends JComponent implements Runnable {
 
-	private static final int initialPlacedObstacles = 2;
+	private static final int initialPlacedObstacles = 0;
 	private static final Vector2D littleBotsEntryPosition = new Vector2D(600,
 			30);
 	private static final int littleBotEntryPeriod = 2700;
 	private static final PlayerInitParams[] PlayersInitParams = new PlayerInitParams[2];
-	private static final int targetFrameTime = 16;
 	private static final long serialVersionUID = 7845653460750690226L;
 
 	static {
@@ -33,7 +31,7 @@ public class Game extends JComponent implements Runnable {
 		p1Control.put(Control.GLUE, KeyEvent.VK_Q);
 		p1Control.put(Control.OIL, KeyEvent.VK_E);
 
-		PlayersInitParams[0] = new PlayerInitParams(p1Control,
+		PlayersInitParams[0] = new PlayerInitParams("Kék",p1Control,
 				"robot/p1Rob.png", new Vector2D(600, 594));
 
 		Hashtable<Control, Integer> p2Control = new Hashtable<Control, Integer>();
@@ -44,10 +42,11 @@ public class Game extends JComponent implements Runnable {
 		p2Control.put(Control.GLUE, KeyEvent.VK_O);
 		p2Control.put(Control.OIL, KeyEvent.VK_U);
 
-		PlayersInitParams[1] = new PlayerInitParams(p2Control,
+		PlayersInitParams[1] = new PlayerInitParams("Zöld",p2Control,
 				"robot/p2Rob.png", new Vector2D(600, 532));
 	}
 
+	public static final int targetFrameTime = 16;
 	private int elapsedTime = 0;
 	private int gameTime = 648000;
 	private volatile boolean isRunning = false;
@@ -56,7 +55,7 @@ public class Game extends JComponent implements Runnable {
 	private List<LittleBot> littleBots = new ArrayList<LittleBot>();
 	private List<Robot> robots = new ArrayList<Robot>();
 	private List<Obstacle> obstacles = new ArrayList<Obstacle>();
-
+	private HUD hud;
 	private KeyboardState keyboardState = new KeyboardState();
 	private List<GameEndedListener> gameEndedListeners = new ArrayList<GameEndedListener>();
 
@@ -87,8 +86,6 @@ public class Game extends JComponent implements Runnable {
 		this.obstacles.add(obs);
 	}
 
-	private Object obj = new Object();
-
 	/**
 	 * Meghívja a játéktér összes elemének a kirajzoló metódusát.
 	 * 
@@ -109,6 +106,8 @@ public class Game extends JComponent implements Runnable {
 		for (GameObject rob : littleBots) {
 			rob.Draw(g);
 		}
+		
+		hud.Draw(g);
 	}
 
 	@Override
@@ -208,6 +207,7 @@ public class Game extends JComponent implements Runnable {
 		for (int i = 0; i < initialPlacedObstacles; i++) {
 			this.addObstacle(new Oil(getRandomOnMapPostition()));
 		}
+		hud = new HUD(this.map);
 	}
 
 	/**
@@ -279,6 +279,8 @@ public class Game extends JComponent implements Runnable {
 			}
 		}
 
+		hud.Update(this);
+		
 		elapsedTime++;
 	}
 
