@@ -42,7 +42,7 @@ public class Game extends JComponent implements Runnable {
 		p2Control.put(Control.GLUE, KeyEvent.VK_O);
 		p2Control.put(Control.OIL, KeyEvent.VK_U);
 
-		PlayersInitParams[1] = new PlayerInitParams("Zöld",p2Control,
+		PlayersInitParams[1] = new PlayerInitParams("Piros",p2Control,
 				"robot/p2Rob.png", new Vector2D(600, 532));
 	}
 
