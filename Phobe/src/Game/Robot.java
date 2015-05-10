@@ -73,8 +73,6 @@ public class Robot extends Bot implements GameObject {
 			Vector2D newSp = new Vector2D(speed);
 			newSp = newSp.Add(robi.getSpeed());
 			newSp.Scale(0.5);
-
-			System.out.println(newSp);
 			
 			if (r1Speed < r2Speed) {
 				robi.setSpeed(newSp);
