@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class LittleBot extends Bot {
 
-	public final static String littleBotPic = "littleBot.png";
+	public final static String littleBotPic = "robot/littleBot.png";
 	public final static double Radius = 13.0;
 	public final static double CleaningSpeed = 0.333;
 	private BufferedImage littleBotImage = null;

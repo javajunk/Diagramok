@@ -43,7 +43,7 @@ public class MainWindow extends JFrame {
 	private MainWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
-			contentPane = new ImageBackgroundJPanel("map/map.png");
+			contentPane = new ImageBackgroundJPanel("other/background.png");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
