@@ -62,12 +62,7 @@ public class Map implements GameObject {
 		return mask.getRGB(X,Y) == Color.WHITE.getRGB();
 	}
 
-	/*public Vector2D[] getTrackLine(){
-	
-	
-	}*/
-
-	/**
+	                       /**
 	 * Frissíti a térkép állapotát.
 	 * 
 	 * @param g: az objektumot vezérlő Game osztály.

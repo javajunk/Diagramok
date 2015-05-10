@@ -6,7 +6,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -65,7 +64,7 @@ public class LittleBot extends Bot {
 			{
 				atCollisionTarget = new Vector2D(Math.random()-0.5,Math.random()-0.5);
 				atCollisionTarget.Normalize();
-				atCollisionTarget.Scale(LittleBot.Radius*10);
+				atCollisionTarget.Scale(LittleBot.Radius*4);
 				atCollisionTarget = atCollisionTarget.Add(position);
 			}while(map.isOutOfTrack(atCollisionTarget));
 		}
@@ -86,7 +85,6 @@ public class LittleBot extends Bot {
 		grap.drawImage(littleBotImage, trans, null);
 	}
 
-	
 	private void moveToPosition(Vector2D target, Map map)
 	{
 		// Csak hogy ne lepje at.

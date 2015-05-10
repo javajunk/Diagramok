@@ -67,12 +67,15 @@ public class Robot extends Bot implements GameObject {
 	public void CollisionWithRobot(Robot robi) {
 		if (position.Distance(robi.getPosition()) < 2 * Radius
 				&& robi.isAlive() && alive) {
+			
 			double r1Speed = this.getSpeed().Length();
 			double r2Speed = robi.getSpeed().Length();
 			Vector2D newSp = new Vector2D(speed);
-			newSp.Add(robi.getSpeed());
+			newSp = newSp.Add(robi.getSpeed());
 			newSp.Scale(0.5);
 
+			System.out.println(newSp);
+			
 			if (r1Speed < r2Speed) {
 				robi.setSpeed(newSp);
 				this.KillHim();

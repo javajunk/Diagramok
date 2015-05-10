@@ -1,10 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -14,7 +11,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -133,6 +129,10 @@ public class MainWindow extends JFrame {
 	
 	private class ImageBackgroundJPanel extends JPanel
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -5427677446748138452L;
 		private BufferedImage img;
 		
 		public ImageBackgroundJPanel(String imgPath) throws IOException {

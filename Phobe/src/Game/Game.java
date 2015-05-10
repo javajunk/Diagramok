@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Game extends JComponent implements Runnable {
 
-	private static final int initialPlacedObstacles = 0;
+	private static final int initialPlacedObstacles = 2;
 	private static final Vector2D littleBotsEntryPosition = new Vector2D(600,
 			30);
 	private static final int littleBotEntryPeriod = 600;
