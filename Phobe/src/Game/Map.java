@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 /**
- * T�rolja a p�lya k�p�s �s a p�ly�t meghat�roz� maskot.
- * Ut�bbi seg�ts�g�vel �llap�tja meg, hogy az adott poz�ci� a p�lya ter�let�n tal�lhat�-e.
+ * Tárolja a pálya képét és a pályát meghatározó maskot.
+ * Utóbbi segítségével állapítja meg, hogy az adott pozoció a pálya területén található-e.
  */
 public class Map implements GameObject {
 	
@@ -62,7 +62,7 @@ public class Map implements GameObject {
 		return mask.getRGB(X,Y) == Color.WHITE.getRGB();
 	}
 
-	                       /**
+	 /**
 	 * Frissíti a térkép állapotát.
 	 * 
 	 * @param g: az objektumot vezérlő Game osztály.
