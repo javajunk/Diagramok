@@ -12,11 +12,16 @@ public abstract class Obstacle implements GameObject {
 	
 	protected BufferedImage obstacleImage = null;
 	
-	protected Vector2D position;
-	protected double life = 100;
+	private Vector2D position;
+	private double life = 100;
 	
 	protected int protoID;
 	protected static int protoIdNext = 0;
+	
+	public Vector2D getPosition()
+	{
+		return position;
+	}
 	
 	public Obstacle(Vector2D pos)
 	{

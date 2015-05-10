@@ -19,7 +19,7 @@ public class Game extends JComponent implements Runnable {
 	private static final int initialPlacedObstacles = 0;
 	private static final Vector2D littleBotsEntryPosition = new Vector2D(600,
 			30);
-	private static final int littleBotEntryPeriod = 2700;
+	private static final int littleBotEntryPeriod = 600;
 	private static final PlayerInitParams[] PlayersInitParams = new PlayerInitParams[2];
 	private static final long serialVersionUID = 7845653460750690226L;
 
@@ -248,7 +248,7 @@ public class Game extends JComponent implements Runnable {
 	 */
 	public synchronized void Update() {
 
-		if (elapsedTime % littleBotEntryPeriod == 0) {
+		if (elapsedTime % littleBotEntryPeriod == 0 && littleBots.size() < 15) {
 			littleBots.add(new LittleBot(littleBotsEntryPosition));
 		}
 

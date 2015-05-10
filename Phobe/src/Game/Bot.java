@@ -5,8 +5,12 @@ package Game;
  */
 public abstract class Bot implements GameObject{
 	
-	public Vector2D position;
-	public Vector2D speed;
+	protected Vector2D position;
+	protected Vector2D speed;
 	public final static double speedUnit = 0.5;
 
+	public  Vector2D getPosition()
+	{
+		return position;
+	}
 }

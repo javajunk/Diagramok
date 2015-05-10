@@ -1,14 +1,13 @@
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+
 
 /**
  * A játéktéren keményen dolgozó kisrobotokat reprezentáló objektum, akik szépen
@@ -22,20 +21,17 @@ public class LittleBot extends Bot {
 	private BufferedImage littleBotImage = null;
 	private Obstacle targetObstacle;
 	private boolean alive = false;
-
+	private Vector2D atCollisionTarget = null;
 	
-	private BufferedImage mask=null;
-	public final static String outOfTrackMaskFile = "map/mapMask.png";
-
 	LittleBot(Vector2D initPos) {
 		this.alive = true;
 		this.position = initPos;
 		this.speed = new Vector2D(0, 0);
+
 		try {
-			mask = ImageIO.read(new File(outOfTrackMaskFile));
 			littleBotImage = ImageIO.read(new File(littleBotPic));
 		} catch (IOException e) {
-			System.out.println("Robot files not found!");			
+			System.out.println("LittleBot files not found!");
 		}
 	}
 
@@ -48,24 +44,28 @@ public class LittleBot extends Bot {
 		}
 	}
 
+	private boolean CollisionDetectWithLittleBot(LittleBot lbot)
+	{
+		return this.position.Distance(lbot.getPosition()) <= LittleBot.Radius*2;
+	}
+	
 	/**
 	 * Teszteli, hogy a kisrobot ütközik-e a paraméterül kapott kisrobottal. Ha
 	 * ütköznek, mindkét kisrobot irányt vált.
 	 */
-	public void CollisionWithLittleBot(LittleBot lbot) 
+	public void CollisionWithLittleBot(LittleBot lbot, Map map) 
 	{
-		if((lbot.speed.getX()>0 && this.speed.getX()<0) || (lbot.speed.getX()<0 && this.speed.getX()>0))
-		{ //egymásnak szemből mennek neki <- nem lesz jó
-			this.speed.setDegreeAngle(-90.0);
-			lbot.speed.setDegreeAngle(-90.0);
-		}
-		//else if()
-		{ //egy irányba mennek
-			
-		}
 		
-		this.position = this.position.Add(this.speed);
-		lbot.position = lbot.position.Add(lbot.speed);
+		if(CollisionDetectWithLittleBot(lbot) && atCollisionTarget == null)
+		{
+			do
+			{
+				atCollisionTarget = new Vector2D(Math.random()-0.5,Math.random()-0.5);
+				atCollisionTarget.Normalize();
+				atCollisionTarget.Scale(LittleBot.Radius*10);
+				atCollisionTarget = atCollisionTarget.Add(position);
+			}while(map.isOutOfTrack(atCollisionTarget));
+		}
 	}
 
 	@Override
@@ -83,6 +83,149 @@ public class LittleBot extends Bot {
 		grap.drawImage(littleBotImage, trans, null);
 	}
 
+	
+	private void moveToPosition(Vector2D target, Map map)
+	{
+		Vector2D dir = target.Subtract(this.position);
+		dir.Normalize();
+		this.speed = dir;
+		
+		if(map.isOutOfTrack(this.position.Add(this.speed)))
+		{
+			if(this.speed.getX()<0 && this.speed.getY()>=0) //-+ speed-koordináták
+			{
+				if(target.getX()<600) //-- -ba megyünk -+ -on keresztül
+				{
+					if(this.position.getX()>=600 && this.position.getY()<325) //++
+					{
+						this.speed.setCoords(-1.0, -1.0);
+					}
+					else if(this.position.getX()<600 && this.position.getY()<325) //-+
+					{
+						this.speed.setCoords(-1.0, 0.0);
+					}
+					else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
+					{
+						this.speed.setCoords(0.0, 1.0);
+					}
+				}
+				else if(target.getX()>=600 && target.getY()>=325) //+- -ba megyünk
+				{
+					if(this.position.getX()>=600 && this.position.getY()<325) //++
+					{
+						this.speed.setCoords(1.0, 0.0);
+					}
+					else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
+					{
+						this.speed.setCoords(0.0, 1.0);
+					}
+				}
+			}
+			else if(this.speed.getX()>=0 && this.speed.getY()<0) //+- speed-koordináták
+			{
+				if(target.getX()>=600) //++ -ba megyünk +- -on keresztül
+				{
+					if(this.position.getX()<600 && this.position.getY()>=325) //--
+					{
+						this.speed.setCoords(1.0, 1.0);
+					}
+					else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
+					{
+						this.speed.setCoords(1.0, 0.0);
+					}
+					else if(this.position.getX()<600 && this.position.getY()<325) //-+
+					{
+						this.speed.setCoords(0.0, -1.0);
+					}
+				}
+				else if(target.getX()<600 && target.getY()<325) //-+ -ba megyünk
+				{
+					if(this.position.getX()<600 && this.position.getY()>=325) //--
+					{
+						this.speed.setCoords(-1.0, 0.0);
+					}
+					else if(this.position.getX()<600 && this.position.getY()<325) //-+
+					{
+						this.speed.setCoords(0.0, -1.0);
+					}
+				}
+			}
+			else if(this.speed.getX()>=0 && this.speed.getY()>0) //++ speed-koordináták
+			{
+				if(target.getX()>=600) //+- -ba megyünk ++ -on keresztül
+				{
+					if(this.position.getX()<600 && this.position.getY()<325) //-+
+					{
+						this.speed.setCoords(1.0, -1.0);
+					}
+					else if(this.position.getX()>=600 && this.position.getY()<325) //++
+					{
+						this.speed.setCoords(1.0, 0.0);
+					}
+					else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
+					{
+						this.speed.setCoords(0.0, 1.0);
+					}
+					else
+					{
+						this.speed.setCoords(0.0, 1.0);
+					}
+				}
+				else if(target.getX()<600 && target.getY()>=325) //-- -ba megyünk
+				{
+					if(this.position.getX()<600 && this.position.getY()<325) //-+
+					{
+						this.speed.setCoords(-1.0, 0.0);
+					}
+					else if(this.position.getX()<600 && this.position.getY()>=325) //--
+					{
+						this.speed.setCoords(0.0, 1.0);
+					}
+				}
+			}
+			else if(this.speed.getX()<0 && this.speed.getY()<0) //-- speed-koordináták
+			{
+				if(target.getX()<600) //-+ -ba megyünk -- -on keresztül
+				{
+					if(this.position.getX()>=600 && this.position.getY()>=325) //+-
+					{
+						this.speed.setCoords(-1.0, 1.0);
+					}
+					else if(this.position.getX()<600 && this.position.getY()>=325) //--
+					{
+						this.speed.setCoords(-1.0, 0.0);
+					}
+					else if(this.position.getX()<600 && this.position.getY()<325) //-+
+					{
+						this.speed.setCoords(0.0, -1.0);
+					}
+					else
+					{
+						this.speed.setCoords(0.0, -1.0);
+					}
+				}
+				else if(target.getX()>=600 && target.getY()<325) //++ -ba megyünk
+				{
+					if(this.position.getX()>=600 && this.position.getY()>=325) //+-
+					{
+						this.speed.setCoords(1.0, 0.0);
+					}
+					else if(this.position.getX()>=600 && this.position.getY()<325) //++
+					{
+						this.speed.setCoords(0.0, -1.0);
+					}
+				}
+			}
+			//this.speed.Normalize();
+			this.position = this.position.Add(this.speed);
+		}
+		else
+		{
+			//this.speed.Normalize();
+			this.position = this.position.Add(this.speed);
+		}
+	}
+	
 	/**
 	 * A kisrobot pályára lépése után kiválasztja a hozzá legközelebbi foltot és
 	 * elindul felé. Ezután minden Update-ben ellenőrzi, lett-e újabb folt, ami
@@ -94,7 +237,8 @@ public class LittleBot extends Bot {
 	public void Update(Game g) {
 		
 		if (this.alive)
-		{
+		{		
+			//Folkereses.
 			List<Obstacle> obs = g.getObstacles();
 			if(obs.size() > 0)
 			{
@@ -102,191 +246,48 @@ public class LittleBot extends Bot {
 			
 				for(int i=1; i<obs.size(); i++)
 				{
-					if(this.position.Distance(obs.get(i).position)<this.position.Distance(targetObstacle.position))
+					if(this.position.Distance(obs.get(i).getPosition())<this.position.Distance(targetObstacle.getPosition()))
 					{
 						targetObstacle = obs.get(i);
 					}
 				}
 				
-				//Kisrobotok ütközésének vizsgálata
-				List<LittleBot> proba = new ArrayList();
-				proba = g.getLittleBots();
-				if(proba.size()>0)
+				if(this.position.Distance(targetObstacle.getPosition())<LittleBot.Radius)
 				{
-					for(int i=0; i<g.getLittleBots().size();i++)
-					{
-						if(this!=proba.get(i) && this.position.Distance(proba.get(i).position)<2*LittleBot.Radius)
-						{
-							CollisionWithLittleBot(this);
-						}
-					}
-				}
-				
-				
-				//A kisrobot mozgatása a kiszemelt folt felé
-				Vector2D dir = new Vector2D(targetObstacle.position.getX(),targetObstacle.position.getY());
-				dir = dir.Subtract(this.position);
-				dir.Normalize();
-				this.speed = dir;
-				
-				if(this.LittleBotisOutOfTrack(this.position.Add(this.speed)))
-				{
-					if(this.speed.getX()<0 && this.speed.getY()>=0) //-+ speed-koordináták
-					{
-						if(this.targetObstacle.position.getX()<600) //-- -ba megyünk -+ -on keresztül
-						{
-							if(this.position.getX()>=600 && this.position.getY()<325) //++
-							{
-								this.speed.setCoords(-1.0, -1.0);
-							}
-							else if(this.position.getX()<600 && this.position.getY()<325) //-+
-							{
-								this.speed.setCoords(-1.0, 0.0);
-							}
-							else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
-							{
-								this.speed.setCoords(0.0, 1.0);
-							}
-						}
-						else if(this.targetObstacle.position.getX()>=600 && this.targetObstacle.position.getY()>=325) //+- -ba megyünk
-						{
-							if(this.position.getX()>=600 && this.position.getY()<325) //++
-							{
-								this.speed.setCoords(1.0, 0.0);
-							}
-							else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
-							{
-								this.speed.setCoords(0.0, 1.0);
-							}
-						}
-					}
-					else if(this.speed.getX()>=0 && this.speed.getY()<0) //+- speed-koordináták
-					{
-						if(this.targetObstacle.position.getX()>=600) //++ -ba megyünk +- -on keresztül
-						{
-							if(this.position.getX()<600 && this.position.getY()>=325) //--
-							{
-								this.speed.setCoords(1.0, 1.0);
-							}
-							else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
-							{
-								this.speed.setCoords(1.0, 0.0);
-							}
-							else if(this.position.getX()<600 && this.position.getY()<325) //-+
-							{
-								this.speed.setCoords(0.0, -1.0);
-							}
-						}
-						else if(this.targetObstacle.position.getX()<600 && this.targetObstacle.position.getY()<325) //-+ -ba megyünk
-						{
-							if(this.position.getX()<600 && this.position.getY()>=325) //--
-							{
-								this.speed.setCoords(-1.0, 0.0);
-							}
-							else if(this.position.getX()<600 && this.position.getY()<325) //-+
-							{
-								this.speed.setCoords(0.0, -1.0);
-							}
-						}
-					}
-					else if(this.speed.getX()>=0 && this.speed.getY()>0) //++ speed-koordináták
-					{
-						if(this.targetObstacle.position.getX()>=600) //+- -ba megyünk ++ -on keresztül
-						{
-							if(this.position.getX()<600 && this.position.getY()<325) //-+
-							{
-								this.speed.setCoords(1.0, -1.0);
-							}
-							else if(this.position.getX()>=600 && this.position.getY()<325) //++
-							{
-								this.speed.setCoords(1.0, 0.0);
-							}
-							else if(this.position.getX()>=600 && this.position.getY()>=325) //+-
-							{
-								this.speed.setCoords(0.0, 1.0);
-							}
-							else
-							{
-								this.speed.setCoords(0.0, 1.0);
-							}
-						}
-						else if(this.targetObstacle.position.getX()<600 && this.targetObstacle.position.getY()>=325) //-- -ba megyünk
-						{
-							if(this.position.getX()<600 && this.position.getY()<325) //-+
-							{
-								this.speed.setCoords(-1.0, 0.0);
-							}
-							else if(this.position.getX()<600 && this.position.getY()>=325) //--
-							{
-								this.speed.setCoords(0.0, 1.0);
-							}
-						}
-					}
-					else if(this.speed.getX()<0 && this.speed.getY()<0) //-- speed-koordináták
-					{
-						if(this.targetObstacle.position.getX()<600) //-+ -ba megyünk -- -on keresztül
-						{
-							if(this.position.getX()>=600 && this.position.getY()>=325) //+-
-							{
-								this.speed.setCoords(-1.0, 1.0);
-							}
-							else if(this.position.getX()<600 && this.position.getY()>=325) //--
-							{
-								this.speed.setCoords(-1.0, 0.0);
-							}
-							else if(this.position.getX()<600 && this.position.getY()<325) //-+
-							{
-								this.speed.setCoords(0.0, -1.0);
-							}
-							else
-							{
-								this.speed.setCoords(0.0, -1.0);
-							}
-						}
-						else if(this.targetObstacle.position.getX()>=600 && this.targetObstacle.position.getY()<325) //++ -ba megyünk
-						{
-							if(this.position.getX()>=600 && this.position.getY()>=325) //+-
-							{
-								this.speed.setCoords(1.0, 0.0);
-							}
-							else if(this.position.getX()>=600 && this.position.getY()<325) //++
-							{
-								this.speed.setCoords(0.0, -1.0);
-							}
-						}
-					}
-					//this.speed.Normalize();
-					this.position = this.position.Add(this.speed);
-				}
-				else
-				{
-					//this.speed.Normalize();
-					this.position = this.position.Add(this.speed);
-				}
-			
-				//Ha kisrobot eléri a kiszemelt foltot, elkezdi takarítani
-				if(this.position.Distance(targetObstacle.position)<LittleBot.Radius)
-				{
-					targetObstacle.DecreaseLife(LittleBot.CleaningSpeed);
+					targetObstacle.DecreaseLife(CleaningSpeed);
 				}
 			}
+			else //Ha nincs folt akkor nincs mit takaritani.
+			{
+				targetObstacle = null; 
+			}
+			
+			if(atCollisionTarget == null)
+			{
+				for(LittleBot littleBot : g.getLittleBots())
+				{
+					if(littleBot != this)
+					{
+						this.CollisionWithLittleBot(littleBot,g.getMap()); 	//Ha utkozik valaszt egy random pontott es oda megy.
+																			//Közben nem vizsgal utkozest.
+																			//Ha ott megint utkozik akkor ujra keres egy masik pontott.
+					}
+				}
+			}
+			else if(this.position.Distance(atCollisionTarget)<LittleBot.Radius)
+			{
+				atCollisionTarget = null;									
+			}
+
+			//Prioritas az utkozes elkerulese, ha nem volt utkozes irany a kiszemelt folt (ha van).
+			if(atCollisionTarget != null || targetObstacle != null)
+				moveToPosition((atCollisionTarget == null) ? targetObstacle.getPosition() : atCollisionTarget,g.getMap());
 		}
 		else
 		{
 			g.addObstacle(new Oil(this.position));
 			g.removeLittleBot(this);
 		}
-	}
-
-	public boolean LittleBotisOutOfTrack(Vector2D pos){
-		int X=(int)pos.getX();
-		int Y=(int)pos.getY();
-		
-		if(Y < 0 || mask.getHeight() <= Y ||
-				X < 0 || mask.getWidth() <= X)
-			return true;
-
-		return mask.getRGB(X,Y) == Color.WHITE.getRGB();
 	}
 }
 
