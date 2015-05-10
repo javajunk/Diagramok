@@ -71,23 +71,10 @@ public class LittleBot extends Bot {
 		}
 	}
 
-	
-	ArrayList<Double> angles = new ArrayList<Double>();
-	
 	@Override
 	public void Draw(Graphics g) {
 		// TODO
 		Graphics2D grap = (Graphics2D)g;
-		
-		angles.add(speed.getAngle());
-		if(angles.size() > 10)
-			angles.remove(0);
-		double angleAvr = 0;
-		for(double angl : angles)
-		{
-			angleAvr += angl;
-		}
-		angleAvr /=	angles.size(); 
 		
 		AffineTransform trans = new AffineTransform();
 

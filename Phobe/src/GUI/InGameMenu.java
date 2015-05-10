@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class InGameMenu extends JPanel {
 
@@ -26,6 +27,7 @@ public class InGameMenu extends JPanel {
 	 * Create the panel.
 	 */
 	private InGameMenu() {
+		this.setOpaque(false);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0};
@@ -34,6 +36,7 @@ public class InGameMenu extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JPanel container = new JPanel();
+		container.setOpaque(false);
 		GridBagConstraints gbc_container = new GridBagConstraints();
 		gbc_container.gridx = 0;
 		gbc_container.gridy = 0;
@@ -46,7 +49,8 @@ public class InGameMenu extends JPanel {
 		container.setLayout(gbl_container);
 		
 		JLabel title_lbl = new JLabel("Szünet");
-		title_lbl.setFont(new Font("Tahoma", Font.PLAIN, 36));
+		title_lbl.setForeground(Color.WHITE);
+		title_lbl.setFont(new Font("Tahoma", Font.BOLD, 36));
 		GridBagConstraints gbc_title_lbl = new GridBagConstraints();
 		gbc_title_lbl.insets = new Insets(0, 0, 5, 0);
 		gbc_title_lbl.gridx = 0;

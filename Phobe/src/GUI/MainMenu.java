@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.Color;
+import java.awt.Font;
 
 public class MainMenu extends JPanel {
 	
@@ -38,6 +40,7 @@ public class MainMenu extends JPanel {
 	 * Create the panel.
 	 */
 	protected MainMenu() {
+		this.setOpaque(false);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0};
@@ -46,6 +49,7 @@ public class MainMenu extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JPanel container = new JPanel();
+		container.setOpaque(false);
 		GridBagConstraints gbc_container = new GridBagConstraints();
 		gbc_container.gridx = 0;
 		gbc_container.gridy = 0;
@@ -72,6 +76,7 @@ public class MainMenu extends JPanel {
 		container.add(newGame_btn, gbc_newGame_btn);
 		
 		JPanel gameTime_pnl = new JPanel();
+		gameTime_pnl.setOpaque(false);
 		GridBagConstraints gbc_gameTime_pnl = new GridBagConstraints();
 		gbc_gameTime_pnl.insets = new Insets(0, 0, 5, 0);
 		gbc_gameTime_pnl.fill = GridBagConstraints.BOTH;
@@ -80,6 +85,8 @@ public class MainMenu extends JPanel {
 		container.add(gameTime_pnl, gbc_gameTime_pnl);
 		
 		JLabel gameTime_lb = new JLabel("Játékidő:");
+		gameTime_lb.setFont(new Font("Tahoma", Font.BOLD, 14));
+		gameTime_lb.setForeground(Color.WHITE);
 		gameTime_pnl.add(gameTime_lb);
 		
 		gameTime_tf = new JTextField(defaultGameTime);

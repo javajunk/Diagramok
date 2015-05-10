@@ -1,11 +1,20 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,7 +46,13 @@ public class MainWindow extends JFrame {
 	 */
 	private MainWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		contentPane = new JPanel();
+		try {
+			contentPane = new ImageBackgroundJPanel("map/map.png");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
@@ -93,6 +108,7 @@ public class MainWindow extends JFrame {
 		this.contentPane.removeAll();
 		
 		this.contentPane.add(menus.get(s));
+		
 		this.pack();
 		repaint();
 	}
@@ -114,4 +130,18 @@ public class MainWindow extends JFrame {
 	{
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
+	
+	private class ImageBackgroundJPanel extends JPanel
+	{
+		private BufferedImage img;
+		
+		public ImageBackgroundJPanel(String imgPath) throws IOException {
+		    this.img = ImageIO.read(new File(imgPath));
+		}
+		
+		public void paintComponent(Graphics g) {
+		    g.drawImage(img, 0, 0, null);
+		}
+	}
+	
 }

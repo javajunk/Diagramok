@@ -15,6 +15,7 @@ import Game.Robot;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class GameEnd extends JPanel {
 	
@@ -35,6 +36,7 @@ public class GameEnd extends JPanel {
 	 * Create the panel.
 	 */
 	private GameEnd() {
+		this.setOpaque(false);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0};
@@ -43,6 +45,7 @@ public class GameEnd extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JPanel container = new JPanel();
+		container.setOpaque(false);
 		GridBagConstraints gbc_container = new GridBagConstraints();
 		gbc_container.gridx = 0;
 		gbc_container.gridy = 0;
@@ -55,7 +58,8 @@ public class GameEnd extends JPanel {
 		container.setLayout(gbl_container);
 		
 		winner_lb = new JLabel("Hupilila játékos nyert");
-		winner_lb.setFont(new Font("Tahoma", Font.PLAIN, 36));
+		winner_lb.setForeground(Color.WHITE);
+		winner_lb.setFont(new Font("Tahoma", Font.BOLD, 36));
 		GridBagConstraints gbc_winner_lb = new GridBagConstraints();
 		gbc_winner_lb.insets = new Insets(0, 0, 5, 0);
 		gbc_winner_lb.gridx = 0;

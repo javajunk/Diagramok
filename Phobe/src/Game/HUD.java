@@ -1,4 +1,5 @@
 package Game;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
@@ -26,15 +27,14 @@ public class HUD {
 	public HUD(Map m)
 	{
 		remainingTimeCenter = new Vector2D(m.getWidth()/2,36);
-		infosFont = new Font("Monoscape",0,24);
+		infosFont = new Font("Monoscape",Font.BOLD,24);
 		try {
 			timeFont = Font.createFont(Font.TRUETYPE_FONT, new File("./other/ds-digi.ttf"));
 			
 			GraphicsEnvironment ge = 
 			         GraphicsEnvironment.getLocalGraphicsEnvironment();
 			     ge.registerFont(timeFont);
-			     timeFont = new Font("DS-Digital",Font.PLAIN,36);
-			     
+			     timeFont = new Font("DS-Digital",Font.BOLD,36);
 			    
 		} catch (FontFormatException e) {
 			// TODO Auto-generated catch block
@@ -45,7 +45,7 @@ public class HUD {
 		}
 		
 		robotInfosPos.add(new Vector2D(5,36));
-		robotInfosPos.add(new Vector2D(m.getWidth(),36));
+		robotInfosPos.add(new Vector2D(m.getWidth()-5,36));
 	}
 	
 	public void Update(Game g)
@@ -72,7 +72,7 @@ public class HUD {
 		for(String info : infos.split("\n"))
 		{
 			
-			TextLayout layout = new TextLayout(info, (leftToRight) ? g.getFont().deriveFont(Font.LAYOUT_LEFT_TO_RIGHT) : g.getFont(), g.getFontRenderContext());
+			TextLayout layout = new TextLayout(info, (leftToRight) ? g.getFont().deriveFont(Font.LAYOUT_LEFT_TO_RIGHT | Font.BOLD) : g.getFont(), g.getFontRenderContext());
 			layout.draw(g, (float)(
 					(leftToRight) ? pos.getX()-layout.getBounds().getWidth() : pos.getX()
 					), 
@@ -84,6 +84,7 @@ public class HUD {
 	public void Draw(Graphics g)
 	{
 		Font fontTmp = g.getFont();
+		g.setColor(Color.WHITE);
 		g.setFont(timeFont);
 		Graphics2D grap = (Graphics2D)g;
 		
