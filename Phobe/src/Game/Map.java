@@ -21,7 +21,7 @@ public class Map implements GameObject {
 
 
 	/**
-	 * A Map oszt�ly param�ter n�lk�li konstruktora.
+	 * A Map osztály paraméter nélküli konstruktora.
 	 */
 	public Map(){
 		try {
