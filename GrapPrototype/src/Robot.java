@@ -66,7 +66,10 @@ public class Robot extends Bot implements GameObject {
 		{
 			double r1Speed = this.getSpeed().Length();
 			double r2Speed = robi.getSpeed().Length();
-			Vector2D newSp = new Vector2D((speed.getX() + robi.getSpeed().getX()) / 2, (speed.getY() + robi.getSpeed().getY()) / 2);
+			Vector2D newSp = new Vector2D(speed);
+			newSp.Add(robi.getSpeed());
+			newSp.Scale(0.5);
+			
 			if(r1Speed < r2Speed)
 			{
 				robi.setSpeed(newSp);
@@ -231,7 +234,7 @@ public class Robot extends Bot implements GameObject {
 			boolean glueBtnState = kb.isKeyDown(playerControlKeys.get(Control.GLUE));
 			if(!glueBtnLastState && glueBtnState && storedGlue > 0)
 			{
-				g.addObstacle(new Glue(position));
+				g.addObstacle(new Glue(new Vector2D(position)));
 				storedGlue--;
 			}
 			glueBtnLastState = glueBtnState;
@@ -239,7 +242,7 @@ public class Robot extends Bot implements GameObject {
 			boolean oilBtnState = kb.isKeyDown(playerControlKeys.get(Control.OIL));
 			if(!oilBtnLastState && oilBtnState && storedOil > 0)
 			{
-				g.addObstacle(new Oil(position));
+				g.addObstacle(new Oil(new Vector2D(position)));
 				storedOil--;
 			}
 			oilBtnLastState = oilBtnState;
@@ -282,7 +285,7 @@ public class Robot extends Bot implements GameObject {
 		Graphics2D grap = (Graphics2D)g;
 		
 		AffineTransform trans = new AffineTransform();
-		Vector2D spd = new Vector2D(speed.getX(),speed.getY());
+		Vector2D spd = new Vector2D(speed);
 		spd = spd.Add(addSpeed);
 		
 		double scale = Math.abs(Math.sin(
