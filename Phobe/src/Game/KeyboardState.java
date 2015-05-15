@@ -9,7 +9,7 @@ import java.util.Hashtable;
  */
 public class KeyboardState implements KeyListener {
 
-	private Hashtable<Integer, Boolean> keyStates = new Hashtable<Integer,Boolean>();
+	private Hashtable<Integer, Boolean> keyStates;
 	
 	public KeyboardState(){
 		
@@ -29,8 +29,14 @@ public class KeyboardState implements KeyListener {
 
 		keyStates.put(e.getKeyCode(), true);
 	}
+	/***
+	 * Alaphejzetbe álitja a billentyűk állapotát.
+	 */
+	public void Init()
+	{
+		keyStates = new Hashtable<Integer,Boolean>();
+	}
 	
-
 	/**
 	 * Egyéb, az interface által előírt, de nem használt metódusok
 	 */

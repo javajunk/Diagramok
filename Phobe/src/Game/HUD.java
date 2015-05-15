@@ -26,6 +26,8 @@ public class HUD {
 
 	public HUD(Map m)
 	{
+		remainingTime = "00:00";
+		
 		remainingTimeCenter = new Vector2D(m.getWidth()/2,36);
 		infosFont = new Font("Monoscape",Font.BOLD,24);
 		try {

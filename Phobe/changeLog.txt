@@ -1,0 +1,2 @@
+Javítás a 2015.05.10.-ei változathoz képest:
+	A játék végetérésekor nyomva tartott billentyűk nem maradnak leragadva új játék kezdésekor.

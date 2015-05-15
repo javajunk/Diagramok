@@ -191,6 +191,9 @@ public class Game extends JComponent implements Runnable {
 	 * Inicializál egy új játékot.
 	 */
 	public void Init() {
+		
+		keyboardState.Init();
+		
 		this.elapsedTime = 0;
 		this.obstacles.clear();
 		this.robots.clear();
