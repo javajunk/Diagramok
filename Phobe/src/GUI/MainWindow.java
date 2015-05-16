@@ -8,6 +8,8 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -43,7 +45,7 @@ public class MainWindow extends JFrame {
 	private MainWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
-			contentPane = new ImageBackgroundJPanel("other/background.png");
+			contentPane = new ImageBackgroundJPanel("/other/background.png");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -136,7 +138,9 @@ public class MainWindow extends JFrame {
 		private BufferedImage img;
 		
 		public ImageBackgroundJPanel(String imgPath) throws IOException {
-		    this.img = ImageIO.read(new File(imgPath));
+						
+			this.img = ImageIO.read(getClass().getResource(imgPath));
+			
 		}
 		
 		public void paintComponent(Graphics g) {

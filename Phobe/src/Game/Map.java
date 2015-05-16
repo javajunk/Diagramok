@@ -16,8 +16,8 @@ public class Map implements GameObject {
 	private BufferedImage mask=null; //A térkép pályát reprezentáló koordinátáit tartalmazó maszk
 	//private BufferedImage trackLine=null;
 	
-	public final static String outOfTrackMaskFile = "map/mapMask.png";
-	public final static String mapImage = "map/map.png";
+	public final static String outOfTrackMaskFile = "/map/mapMask.png";
+	public final static String mapImage = "/map/map.png";
 
 
 	/**
@@ -25,8 +25,8 @@ public class Map implements GameObject {
 	 */
 	public Map(){
 		try {
-		    map = ImageIO.read(new File(mapImage));
-		    mask = ImageIO.read(new File(outOfTrackMaskFile));
+		    map = ImageIO.read(getClass().getResource(mapImage));
+		    mask = ImageIO.read(getClass().getResource(outOfTrackMaskFile));
 		} catch (IOException e) {
 			System.out.println("Map files not found!");			
 		}

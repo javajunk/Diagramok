@@ -48,7 +48,7 @@ public class Robot extends Bot implements GameObject {
 		name = params.getName();
 
 		try {
-			robotImage = ImageIO.read(new File(params.getImageSrc()));
+			robotImage = ImageIO.read(getClass().getResource(params.getImageSrc()));
 		} catch (IOException e) {
 			System.out.println("Robot files not found!");
 		}

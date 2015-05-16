@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class LittleBot extends Bot {
 
-	public final static String littleBotPic = "robot/littleBot.png";
+	public final static String littleBotPic = "/robot/littleBot.png";
 	public final static double Radius = 13.0;
 	public final static double CleaningSpeed = 0.333;
 	private BufferedImage littleBotImage = null;
@@ -31,7 +31,7 @@ public class LittleBot extends Bot {
 		this.speed = new Vector2D(0, 0);
 
 		try {
-			littleBotImage = ImageIO.read(new File(littleBotPic));
+			littleBotImage = ImageIO.read(getClass().getResource(littleBotPic));
 		} catch (IOException e) {
 			System.out.println("LittleBot files not found!");
 		}

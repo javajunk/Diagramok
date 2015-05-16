@@ -11,13 +11,13 @@ import javax.imageio.ImageIO;
  */
 public class Oil extends Obstacle {
 	public final static double DryingSpeed = 0.01389;
-	public final static String oilPic = "obstacles/oil.png";
+	public final static String oilPic = "/obstacles/oil.png";
 
 	public Oil(Vector2D pos){
 		super(pos);
 		
 		try {
-			obstacleImage = ImageIO.read(new File(oilPic));
+			obstacleImage = ImageIO.read(getClass().getResource(oilPic));
 		} catch (IOException e) {
 			System.out.println("Obstacle files not found!");
 		}

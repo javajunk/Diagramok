@@ -31,7 +31,8 @@ public class HUD {
 		remainingTimeCenter = new Vector2D(m.getWidth()/2,36);
 		infosFont = new Font("Monoscape",Font.BOLD,24);
 		try {
-			timeFont = Font.createFont(Font.TRUETYPE_FONT, new File("./other/ds-digi.ttf"));
+			
+			timeFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResource("/other/ds-digi.ttf").openStream());
 			
 			GraphicsEnvironment ge = 
 			         GraphicsEnvironment.getLocalGraphicsEnvironment();

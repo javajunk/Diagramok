@@ -33,7 +33,7 @@ public class Game extends JComponent implements Runnable {
 		p1Control.put(Control.OIL, KeyEvent.VK_E);
 
 		PlayersInitParams[0] = new PlayerInitParams("Kék",p1Control,
-				"robot/p1Rob.png", new Vector2D(600, 594));
+				"/robot/p1Rob.png", new Vector2D(600, 594));
 
 		Hashtable<Control, Integer> p2Control = new Hashtable<Control, Integer>();
 		p2Control.put(Control.UP, KeyEvent.VK_I);
@@ -44,7 +44,7 @@ public class Game extends JComponent implements Runnable {
 		p2Control.put(Control.OIL, KeyEvent.VK_U);
 
 		PlayersInitParams[1] = new PlayerInitParams("Piros",p2Control,
-				"robot/p2Rob.png", new Vector2D(600, 532));
+				"/robot/p2Rob.png", new Vector2D(600, 532));
 	}
 
 	public static final int targetFrameTime = 16;

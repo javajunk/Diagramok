@@ -10,14 +10,14 @@ import javax.imageio.ImageIO;
  */
 public class Glue extends Obstacle {
 	
-	public static String gluePic = "obstacles/glue.png";
+	public static String gluePic = "/obstacles/glue.png";
 	public static final double OnStepLifeDecrease = 25;
 	
 	public Glue(Vector2D pos){
 		super(pos);
 		
 		try {
-			obstacleImage = ImageIO.read(new File(gluePic));
+			obstacleImage = ImageIO.read(getClass().getResource(gluePic));
 		} catch (IOException e) {
 			System.out.println("Obstacle files not found!");
 		}
